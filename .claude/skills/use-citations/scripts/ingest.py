@@ -49,6 +49,38 @@ def read_pdf(path: Path) -> tuple[list[str], bool]:
     return pages, scanned, empty
 
 
+_JUNK_META = re.compile(r"^(microsoft\s+\w+\s+-|untitled|document\d*$|powerpoint presentation|slide \d)"
+                        r"|\.(docx?|pdf|pptx?|xlsx?|rtf|txt|indd)$|[\\/]", re.I)
+
+
+def _clean_meta(s) -> str | None:
+    s = re.sub(r"\s+", " ", s or "").strip()
+    if not (4 <= len(s) <= 120) or not re.search(r"[A-Za-z]{2}", s) or _JUNK_META.search(s):
+        return None
+    if " " not in s and re.search(r"[_-]", s):
+        return None                       # a file name, not a title
+    return s
+
+
+def pdf_meta_title(path: Path) -> str | None:
+    """The title a publisher put in the PDF's own properties ("2025 Publication 525"),
+    with the subject added when the title alone is just a number. Most agency PDFs set
+    these; most other PDFs leave them empty or hold the name of the Word file they came
+    from, and those are ignored."""
+    try:
+        import pymupdf
+        with pymupdf.open(path) as doc:
+            meta = doc.metadata or {}
+    except Exception:
+        return None
+    title, subject = _clean_meta(meta.get("title")), _clean_meta(meta.get("subject"))
+    if not title:
+        return None
+    if subject and len(title) < 45 and subject.lower() not in title.lower():
+        return f"{title}: {subject}"
+    return title
+
+
 def render_pdf_images(path: Path, out_dir: Path, dpi: int = 110) -> int:
     import pymupdf
 
@@ -192,7 +224,7 @@ DOCKET = re.compile(r"^(rev\.?\s?(rul|proc)\.?|notice\s+\d|t\.?d\.?\s?\d|p\.?l\.
                     r"|standard\s+\S|policy\s+\S|procedure\s+\S)", re.I)
 
 
-def title_for(path: Path, pages: list[str]) -> str:
+def title_for(path: Path, pages: list[str], meta_title: str | None = None) -> str:
     """Find the title line on page 1, skipping running headers and stamps, and fall
     back to the filename.
 
@@ -209,6 +241,9 @@ def title_for(path: Path, pages: list[str]) -> str:
     m = re.match(r"CFR-\d{4}-title(\d+)\S*?-sec(\d+)-(\w+(?:-\w+)?)$", stem)
     if m:
         return f"{m.group(1)} C.F.R. \u00a7 {m.group(2)}.{m.group(3)}"
+    # the title the publisher set in the PDF's properties, when it's a real one
+    if meta_title:
+        return meta_title
     # a Markdown file that opens with a level-one heading: use the heading
     if path.suffix.lower() in {".md", ".markdown"}:
         first = next((ln.strip() for ln in (pages[0] if pages else "").splitlines() if ln.strip()), "")
@@ -409,7 +444,7 @@ def main() -> int:
 
         record = {
             "id": doc_id,
-            "title": title_for(f, pages),
+            "title": title_for(f, pages, pdf_meta_title(f) if ext == ".pdf" else None),
             "filename": f.name,
             "path": str(f.resolve()),
             "type": ext.lstrip("."),

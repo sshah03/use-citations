@@ -285,6 +285,11 @@ def phase_hybrid(tmp: Path) -> None:
            ("USCODE-2023-title42-chap21-subchapVI-sec2000e-5-c402f4ab.pdf", "CFR-2024-title26-vol1-sec1-152-1.pdf")]
     check(got == ["42 U.S.C. \u00a7 2000e-5", "26 C.F.R. \u00a7 1.152-1"],
           "govinfo Code and CFR files are named from the file name, not the page's first line", f"got {got!r}")
+    from ingest import _clean_meta  # noqa: E402
+    got = [_clean_meta(t) for t in ("2025 Publication 525", "Microsoft Word - MSA_v3.docx", "untitled", "MSA_final_v2")]
+    check(got == ["2025 Publication 525", None, None, None], "a PDF's own title is used, and file-name titles are ignored", f"got {got!r}")
+    got = title_for(Path("p525.pdf"), ["Future Developments\nbody"], "2025 Publication 525: Taxable and Nontaxable Income")
+    check(got.startswith("2025 Publication 525"), "the PDF's own title beats the first line of the page", f"got {got!r}")
 
 
 def phase_registry(tmp: Path) -> None:
