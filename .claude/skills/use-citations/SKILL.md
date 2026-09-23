@@ -226,6 +226,8 @@ two or three sentences. Claims flow together as paragraphs, so write them as pro
 In anything the reader sees (the summary, claims, notes, gaps and the chat reply), call
 the collection "the documents" or "the sources", never "the corpus", and say "saved"
 rather than "captured" or "ingested". Those are the scripts' words, not the reader's.
+Keep the chat reply to the answer and the report: don't pass on the session's own notices,
+such as connectors waiting to be signed in, unless the answer needed one of them.
 The schema has the details.
 
 **The summary is not verified.** It is the sentence a reader acts on and the only prose
