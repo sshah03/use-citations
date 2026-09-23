@@ -1,7 +1,7 @@
 # use-citations
 
-Ask Claude about your documents and get answers you can check, with every quote
-matched against the original file.
+Ask Claude Code a research question and get an answer with every quote checked against
+a saved copy of its source, whether that's a government site or a file on your computer.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
