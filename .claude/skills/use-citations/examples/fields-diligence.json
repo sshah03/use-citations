@@ -1,0 +1,96 @@
+[
+ {
+  "name": "Counterparty",
+  "query": "between Orion Freight Holdings Buyer Supplier agreement made as of",
+  "rules": [
+   {
+    "match": "and\\s+([A-Z][A-Za-z\\- ]+?),\\s+Inc\\.\\s+\\(\"Supplier\"\\)",
+    "value": "$1"
+   }
+  ],
+  "absent": "Unidentified"
+ },
+ {
+  "name": "Governing law",
+  "query": "governing law state conflict of laws exclusive jurisdiction",
+  "rules": [
+   {
+    "match": "laws of the State of ([A-Za-z ]+?),",
+    "value": "$1"
+   }
+  ],
+  "absent": "Not stated"
+ },
+ {
+  "name": "Convenience exit",
+  "query": "termination for convenience prior written notice either party",
+  "rules": [
+   {
+    "match": "for convenience upon [a-z\\- ]*\\((\\d+)\\) days",
+    "value": "$1 days' notice"
+   },
+   {
+    "match": "(?:no right to terminate this Agreement for convenience|terminated only for cause)",
+    "value": "Excluded"
+   }
+  ],
+  "absent": "Not addressed"
+ },
+ {
+  "name": "Liability cap",
+  "query": "limitation of liability aggregate liability exceeds cap damages",
+  "rules": [
+   {
+    "match": "aggregate liability[^.]*?exceeds two \\(2\\) times",
+    "value": "2× 12-month fees"
+   },
+   {
+    "match": "aggregate liability[^.]*?exceeds two million dollars \\(\\$2,000,000\\)",
+    "value": "$2,000,000"
+   },
+   {
+    "match": "aggregate liability[^.]*?twelve \\(12\\) months preceding",
+    "value": "12-month fees"
+   },
+   {
+    "match": "aggregate liability[^.]*?six \\(6\\) months preceding",
+    "value": "6-month fees"
+   },
+   {
+    "match": "have not agreed any aggregate cap",
+    "value": "UNCAPPED"
+   }
+  ],
+  "absent": "Not addressed"
+ },
+ {
+  "name": "Change of control",
+  "query": "assignment consent change of control successor in interest",
+  "rules": [
+   {
+    "match": "change of control of (?:Supplier|either party) is deemed an assignment requiring\\s+consent",
+    "value": "Consent required"
+   },
+   {
+    "match": "may assign this Agreement to a successor in interest without the\\s+other party's consent",
+    "value": "NO CONSENT RIGHT"
+   }
+  ],
+  "absent": "Silent"
+ },
+ {
+  "name": "Renewal",
+  "query": "term renewal automatic successive notice of non-renewal",
+  "rules": [
+   {
+    "match": "renews automatically[^.]*?at least (\\d+) days",
+    "value": "Evergreen, $1-day notice"
+   },
+   {
+    "match": "There is no automatic renewal",
+    "value": "Expires at term"
+   }
+  ],
+  "absent": "Not addressed"
+ }
+]

@@ -1,0 +1,1454 @@
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#f5f7f6; --surface:#ffffff; --surface-2:#eef1f0; --sunk:#e6eae9;
+  --ink:#13171a; --ink-2:#3f4a51; --ink-3:#6c777e; --ink-4:#9aa4aa;
+  --rule:#dde3e2; --rule-2:#c7d0cf;
+  --accent:#1a4f72; --accent-2:#2d7ba8; --accent-soft:#e6eef4; --accent-ink:#1a4f72;
+  --ok:#1d6b49; --ok-soft:#e1efe8; --warn:#8a5712; --warn-soft:#f7ecd9;
+  --bad:#9f3128; --bad-soft:#f8e2e0;
+  --mark:#ffe8ab; --mark-edge:#d9a520;
+  --shadow-1:0 1px 2px rgba(19,23,26,.05);
+  --shadow-2:0 2px 6px rgba(19,23,26,.07), 0 12px 28px rgba(19,23,26,.09);
+  --shadow-3:-20px 0 60px rgba(19,23,26,.18);
+  --serif:"Source Serif 4", ui-serif, Georgia, serif;
+  --sans:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#0e1113; --surface:#15191c; --surface-2:#1c2125; --sunk:#111416;
+  --ink:#e8edeb; --ink-2:#aeb9be; --ink-3:#7c878d; --ink-4:#5c676d;
+  --rule:#262d31; --rule-2:#374146;
+  --accent:#7bb8dc; --accent-2:#5fa3cc; --accent-soft:#15303f; --accent-ink:#a3cee6;
+  --ok:#5cbc8e; --ok-soft:#132f29; --warn:#d7a450; --warn-soft:#2d2416;
+  --bad:#e07c6e; --bad-soft:#331d1a;
+  --mark:rgba(255,206,102,.24); --mark-edge:#b98a1f;
+  --shadow-1:0 1px 2px rgba(0,0,0,.35);
+  --shadow-2:0 2px 6px rgba(0,0,0,.4), 0 12px 28px rgba(0,0,0,.38);
+  --shadow-3:-20px 0 60px rgba(0,0,0,.55);
+}}
+:root[data-theme="dark"]{
+  --ground:#0e1113; --surface:#15191c; --surface-2:#1c2125; --sunk:#111416;
+  --ink:#e8edeb; --ink-2:#aeb9be; --ink-3:#7c878d; --ink-4:#5c676d;
+  --rule:#262d31; --rule-2:#374146;
+  --accent:#7bb8dc; --accent-2:#5fa3cc; --accent-soft:#15303f; --accent-ink:#a3cee6;
+  --ok:#5cbc8e; --ok-soft:#132f29; --warn:#d7a450; --warn-soft:#2d2416;
+  --bad:#e07c6e; --bad-soft:#331d1a;
+  --mark:rgba(255,206,102,.24); --mark-edge:#b98a1f;
+  --shadow-1:0 1px 2px rgba(0,0,0,.35);
+  --shadow-2:0 2px 6px rgba(0,0,0,.4), 0 12px 28px rgba(0,0,0,.38);
+  --shadow-3:-20px 0 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}   /* the page can also be opened as a local file, which has no artifact reset */
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ─────────── masthead ─────────── */
+.masthead{background:var(--surface)}
+.masthead-in{max-width:960px;margin:0 auto;padding:22px 20px 14px;display:flex;gap:14px 28px;
+  align-items:flex-start}
+.eyebrow{font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.eyebrow .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-4);flex:none}
+h1.title{font-family:var(--serif);font-size:clamp(21px,2.6vw,28px);line-height:1.25;
+  margin-top:5px;max-width:40ch;letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* The question as asked. Chat questions can run to a paragraph, so we keep the whole
+   thing but clamp it and let the answer take the first screen. */
+.asked{margin-top:10px;max-width:68ch;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.asked .q{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.asked.open .q{display:block}
+.asked .l{color:var(--ink-4);margin-right:6px}
+.asked button{color:var(--accent-ink);font-size:13px;margin-top:2px}
+.asked button:hover{text-decoration:underline}
+.head-main{flex:1 1 auto;min-width:0}
+.head-side{flex:none;position:relative}
+.menu-pop{position:absolute;right:0;top:calc(100% + 6px);z-index:40;min-width:250px;background:var(--surface);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:var(--shadow-2);padding:5px}
+.menu-pop button{display:block;width:100%;padding:8px 11px;border-radius:3px;font-size:13px;color:var(--ink-2)}
+.menu-pop button:hover{background:var(--surface-2);color:var(--ink)}
+.menu-pop small{display:block;color:var(--ink-4);font-size:11.5px}
+.btn{padding:6px 11px;border:1px solid var(--rule-2);border-radius:3px;background:var(--surface);
+  font-size:12.5px;color:var(--ink-2);transition:background .12s,border-color .12s,color .12s}
+.btn:hover{background:var(--surface-2);border-color:var(--ink-4);color:var(--ink)}
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--surface);
+  border-bottom:1px solid var(--rule)}
+.tabbar-in{max-width:960px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px}
+.tabs{flex:1 1 auto;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+/* multi-question reports: the bar shows which question you're on and lets you jump to another */
+.qnow{position:relative;flex:none}
+.qnow > button{font-size:12.5px;color:var(--ink-2);padding:5px 9px;border:1px solid var(--rule-2);border-radius:3px;
+  background:var(--surface);max-width:min(340px,48vw);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qnow > button:hover{background:var(--surface-2)}
+.qnow > button b{font-weight:600;color:var(--ink)}
+.qnow .menu-pop{min-width:280px;max-width:min(380px,90vw)}
+.qnow .menu-pop button{display:flex;gap:8px;align-items:baseline}
+.qnow .menu-pop .n{color:var(--ink-4);font-size:12px;min-width:1.2em}
+.qnow .menu-pop button[aria-current="true"]{background:var(--accent-soft);color:var(--accent-ink)}
+.qnow .short,.tab .short{display:none}
+@media (max-width:760px){ .qnow .long{display:none} }
+@media (max-width:560px){ .qnow .full,.tab .full{display:none} .qnow .short,.tab .short{display:inline} }
+/* back to top */
+.totop{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  z-index:35;display:flex;align-items:center;gap:6px;padding:8px 13px;border-radius:20px;font-size:13px;
+  background:var(--surface);color:var(--ink-2);border:1px solid var(--rule-2);box-shadow:var(--shadow-2);
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .18s,transform .18s}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{color:var(--ink);background:var(--surface-2)}
+body.docked .totop{right:calc(min(620px,95vw) + 20px)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 13px;font-size:13px;font-weight:450;color:var(--ink-3);
+  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--accent-ink);border-bottom-color:var(--accent-2)}
+.tab:hover{color:var(--ink)}
+.tab .count{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);margin-left:6px}
+
+main{max-width:960px;margin:0 auto;padding:30px 20px 110px}
+@media (max-width:720px){
+  .masthead-in{padding-top:16px}
+  .summary{font-size:18px}
+  main{padding-top:22px}
+}
+.panel[hidden]{display:none!important}
+.memo{max-width:none}
+/* shared reading width for the answer column. It's in rem because ch scales with each
+   element's font size, and then the column edges stop lining up */
+.memo .summary,.memo .checked,.memo .alert,.memo p.prose,.memo .prose-list,.memo p.aside,
+.memo h2.sec,.memo .gaps,.memo .auth{max-width:40rem}
+
+/* ─────────── summary ─────────── */
+/* multiple questions: an index at the top, then one section per question */
+.qindex{max-width:40rem;border:1px solid var(--rule);background:var(--surface);border-radius:4px;
+  padding:12px 16px 10px;margin:0 0 30px}
+.qindex .qi-h{font-size:12.5px;font-weight:600;color:var(--ink-3);margin-bottom:6px}
+.qindex ol{margin:0;padding-left:1.4em;display:grid;gap:4px}
+.qindex li{font-size:14.5px;line-height:1.45}
+.qindex li::marker{color:var(--ink-4);font-size:13px}
+.qindex a{color:var(--ink);text-decoration:none}
+.qindex a:hover{color:var(--accent-ink);text-decoration:underline}
+.qindex .latest{font-size:11px;color:var(--accent-ink);background:var(--accent-soft);border-radius:3px;
+  padding:1px 6px;margin-left:8px;vertical-align:1px}
+.turn{scroll-margin-top:60px}
+.turn + .turn{margin-top:64px}
+/* Each new question should stand out like a new chat message: a numbered divider,
+   the question in its own bubble, then the answer. */
+.turn-div{display:flex;align-items:center;gap:12px;max-width:40rem;margin-bottom:22px;
+  font-size:12.5px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+.turn-div::before,.turn-div::after{content:"";flex:1;border-top:1px solid var(--rule-2)}
+.turn-div .when{font-weight:400;color:var(--ink-4)}
+.turn-head{max-width:40rem;margin-bottom:20px}
+.asked-b{margin:0 0 20px auto;max-width:34rem;width:fit-content;font-size:15.5px;line-height:1.5;color:var(--ink);
+  background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent-2) 22%,transparent);
+  border-radius:16px 16px 4px 16px;padding:11px 15px}
+.asked-b .l{display:block;font-size:11.5px;font-weight:600;color:var(--accent-ink);margin-bottom:3px}
+.asked-b .q{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.asked-b.open .q{display:block}
+.asked-b button{color:var(--accent-ink);font-size:13px;margin-top:4px}
+.turn-title{font-family:var(--serif);font-size:23px;line-height:1.3}
+.upd{max-width:40rem;font-size:14px;line-height:1.5;border-left:3px solid var(--accent-2);background:var(--accent-soft);
+  border-radius:0 4px 4px 0;padding:10px 14px;margin:0 0 18px;color:var(--ink)}
+.upd a{color:var(--accent-ink)}
+.followup{max-width:40rem;margin-top:36px;border:1px dashed var(--rule-2);border-radius:4px;padding:14px 16px;
+  font-size:14px;line-height:1.5;color:var(--ink-2)}
+.followup b{color:var(--ink)}
+.fu-row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.fu-row code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--rule);
+  border-radius:3px;padding:6px 9px;color:var(--ink);overflow-wrap:anywhere}
+.summary{font-family:var(--serif);font-size:19.5px;line-height:1.55;color:var(--ink);margin:0 0 14px}
+/* short summary of what was checked, shown once, right after the answer ends */
+.checked{font-size:13px;line-height:1.55;color:var(--ink-3);
+  padding-bottom:22px;margin-bottom:26px;border-bottom:1px solid var(--rule)}
+.checked svg{color:var(--ok);vertical-align:-2px;margin-right:6px}
+.checked button{color:var(--accent-ink);margin-left:4px;white-space:nowrap}
+.checked button:hover{text-decoration:underline}
+.alert{border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);background:var(--bad-soft);
+  color:var(--bad);border-radius:4px;padding:12px 15px;margin-bottom:22px;font-size:14px}
+.alert b{display:block;margin-bottom:2px}
+
+/* ─────────── memo body ─────────── */
+.sec{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin:34px 0 14px;padding-bottom:7px;
+  border-bottom:1px solid var(--rule)}
+.sec:first-child{margin-top:0}
+p.prose{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--ink);margin:0 0 17px}
+.prose-list{font-family:var(--serif);font-size:17px;line-height:1.65;color:var(--ink);
+  margin:0 0 19px;padding-left:1.6em}
+.prose-list li{margin:0 0 9px;padding-left:4px}
+.prose-list li::marker{color:var(--ink-3);font-family:var(--sans);font-size:14.5px;font-weight:500}
+.claim{transition:background .18s;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.conf{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--warn);background:var(--warn-soft);
+  border-radius:3px;padding:1px 6px;margin-left:4px;white-space:nowrap;vertical-align:2px;cursor:help}
+p.aside{font-family:var(--serif);font-size:16px;line-height:1.62;color:var(--ink-3);
+  margin:0 0 15px;padding-left:15px;border-left:2px solid var(--rule)}
+.claim.lit{background:var(--accent-soft);box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* anchored phrase + inline marker */
+.cited{border-bottom:1px solid color-mix(in srgb,var(--accent-2) 30%,transparent);
+  transition:background .18s,border-color .18s;cursor:pointer;
+  text-decoration-skip-ink:auto}
+.cited:hover{background:var(--accent-soft);border-bottom-color:var(--accent-2)}
+.cited.on{background:var(--mark);border-bottom-color:var(--mark-edge);
+  box-shadow:0 0 0 2px var(--mark)}
+.glue{white-space:nowrap}
+sup.cg{font-size:0;white-space:nowrap;line-height:0;margin-right:1px}
+.cm{font-family:var(--mono);font-size:10px;font-weight:500;line-height:1;vertical-align:super;
+  color:var(--accent-ink);background:var(--accent-soft);border-radius:3px;padding:2px 4px;
+  margin-left:1px;transition:background .14s,color .14s,transform .14s;
+  border:1px solid transparent}
+.cm:hover,.cm:focus-visible{background:var(--accent-2);color:#fff;transform:translateY(-1px)}
+.cm.g-fuzzy{background:var(--warn-soft);color:var(--warn)}
+.cm.g-fuzzy:hover{background:var(--warn);color:#fff}
+.cm.g-UNVERIFIED{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)}
+.cm.g-UNVERIFIED:hover{background:var(--bad);color:#fff}
+.cm.on{background:var(--accent);color:#fff}
+
+/* ─────────── hover preview ─────────── */
+.peek{position:fixed;z-index:45;width:min(380px,calc(100vw - 32px));background:var(--surface);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:var(--shadow-2);padding:13px 15px;
+  opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .13s,transform .13s}
+.peek.on{opacity:1;pointer-events:auto;transform:none}
+.peek .pk-src{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-ink);display:flex;gap:7px;align-items:baseline;margin-bottom:8px}
+.peek .pk-src .pg{color:var(--ink-4);letter-spacing:.04em}
+.peek blockquote{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.56;color:var(--ink-2);
+  border-left:2px solid var(--mark-edge);padding-left:11px;max-height:8.4em;overflow:hidden}
+.peek .pk-go{margin-top:10px;font-size:11.5px;color:var(--ink-4);display:flex;
+  justify-content:space-between;gap:10px}
+.peek .pk-go .k{font-family:var(--mono);font-size:10px}
+
+/* ─────────── gaps ─────────── */
+.gaps{margin-top:34px;border-left:3px solid var(--warn);background:var(--warn-soft);
+  padding:15px 19px;border-radius:0 4px 4px 0}
+.gaps h2{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.gaps ul{margin:0;padding-left:19px;font-family:var(--serif);font-size:15.5px;
+  line-height:1.6;color:var(--ink-2)}
+.gaps li{margin:6px 0}
+.gaps li::marker{color:var(--warn)}
+
+/* ─────────── authorities (end of memo) ─────────── */
+.auth{margin-top:34px;border-top:1px solid var(--rule)}
+.auth > summary{list-style:none;cursor:pointer;padding:15px 0;font-size:14px;font-weight:600;
+  color:var(--ink-2);display:flex;align-items:center;gap:8px}
+.auth > summary::-webkit-details-marker{display:none}
+.auth > summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;margin-right:3px}
+.auth[open] > summary::before{transform:rotate(45deg)}
+.auth > summary .ct{font-weight:400;color:var(--ink-4)}
+.auth > .hint{font-size:12.5px;color:var(--ink-4);margin:-4px 0 16px}
+.auth-doc{margin-bottom:22px}
+.auth-doc > .h{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;margin-bottom:9px}
+.auth-doc .nm{font-family:var(--serif);font-size:16px;font-weight:600}
+.auth-doc .fl{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);word-break:break-all}
+.fn{display:grid;grid-template-columns:2.1rem 1fr;gap:0 4px;padding:8px 10px 8px 0;
+  border-radius:3px;width:100%;transition:background .13s}
+.fn:hover{background:var(--surface-2)}
+.fn .n{font-family:var(--mono);font-size:11px;color:var(--accent-ink);padding-top:3px}
+.fn .q{font-family:var(--serif);font-size:14.5px;line-height:1.56;color:var(--ink-2)}
+.fn .pin{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);margin-top:4px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge{display:inline-block;padding:0 5px;border-radius:2px;font-family:var(--mono);font-size:9.5px;
+  text-transform:uppercase;letter-spacing:.06em;line-height:1.6}
+.badge.exact,.badge.elided,.badge.spanning{background:var(--ok-soft);color:var(--ok)}
+.badge.fuzzy{background:var(--warn-soft);color:var(--warn)}
+.badge.UNVERIFIED{background:var(--bad-soft);color:var(--bad)}
+.badge.ocr{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--rule-2)}
+.chip.ocr{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 30%,transparent);
+  color:var(--warn)}
+.chip.local{background:var(--surface);border-style:dashed;color:var(--ink-2)}
+.chip.web{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent-2) 30%,transparent);
+  color:var(--accent-ink)}
+.srcline{font-family:var(--mono);font-size:11px;color:var(--ink-3);background:var(--surface);
+  border:1px solid var(--rule);border-left:2px solid var(--accent-2);padding:10px 13px;
+  margin-bottom:13px;border-radius:0 3px 3px 0;display:flex;gap:10px;flex-wrap:wrap;
+  align-items:baseline}
+.srcline a{color:var(--accent-ink);overflow-wrap:anywhere}
+.srcline .asof{color:var(--ink-4)}
+
+/* ─────────── tables ─────────── */
+.grid-wrap{overflow-x:auto;margin:6px 0 20px;border:1px solid var(--rule);border-radius:3px;
+  background:var(--surface);box-shadow:var(--shadow-1)}
+table.grid{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+table.grid th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);padding:10px 13px;
+  border-bottom:1px solid var(--rule-2);background:var(--surface-2);white-space:nowrap}
+table.grid td{padding:11px 13px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+table.grid td:first-child{color:var(--ink);font-weight:450}
+table.grid tr:last-child td{border-bottom:0}
+
+/* ─────────── sources panel ─────────── */
+/* The Sources tab lists documents. Each is a collapsed row with its title and origin;
+   expanding it shows provenance and the quotes taken from it. For citations in reading
+   order, use the References list on the Answer tab. */
+.src-bar{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.src-bar .sum{font-size:13.5px;color:var(--ink-2);flex:1 1 260px}
+.src-bar .sum b{color:var(--ink);font-weight:600}
+.src-bar input{font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--rule-2);border-radius:3px;
+  background:var(--surface);color:var(--ink);width:min(240px,100%)}
+.src-bar .link{font-size:13px;color:var(--accent-ink)}
+.src-bar .link:hover{text-decoration:underline}
+.src-group{font-size:12px;font-weight:600;color:var(--ink-3);margin:22px 0 8px}
+.src-group:first-of-type{margin-top:4px}
+.src-group .ct{font-weight:400;color:var(--ink-4);margin-left:5px}
+.doclist{display:grid;gap:8px}
+.doccard{padding:0;background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  overflow:hidden;box-shadow:var(--shadow-1)}
+.doccard[open]{border-color:var(--rule-2)}
+.doccard > .top{display:flex;gap:14px;align-items:center;padding:12px 16px;width:100%;
+  transition:background .12s;cursor:pointer;list-style:none}
+.doccard > .top::-webkit-details-marker{display:none}
+.doccard > .top:hover{background:var(--surface-2)}
+.doccard .who{min-width:0;flex:1}
+.doccard .n-q{flex:none;font-size:12.5px;color:var(--accent-ink);white-space:nowrap}
+.doccard .n-q.none{color:var(--ink-4)}
+.doccard .chev{flex:none;width:7px;height:7px;border-right:1.5px solid var(--ink-3);border-bottom:1.5px solid var(--ink-3);
+  transform:rotate(-45deg);transition:transform .15s;margin:0 3px 0 2px}
+.doccard[open] .chev{transform:rotate(45deg)}
+.doccard .body{border-top:1px solid var(--rule);padding:14px 16px 12px;background:var(--sunk)}
+.prov{display:grid;grid-template-columns:max-content 1fr;gap:5px 14px;margin:0 0 12px;font-size:13px}
+.prov dt{color:var(--ink-4)}
+.prov dd{margin:0;color:var(--ink-2);overflow-wrap:anywhere}
+.prov dd a{color:var(--accent-ink)}
+.prov .mono{font-family:var(--mono);font-size:11.5px}
+.src-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.src-q{font-size:12px;font-weight:600;color:var(--ink-3);margin:4px 0 2px}
+.src-none{font-size:13px;color:var(--ink-4);margin:2px 0}
+.doccard .srcb{display:none}          /* the card already shows the origin */
+a.btn{text-decoration:none;display:inline-block}
+
+.docmark{flex:none;width:34px;height:42px;border:1px solid var(--rule-2);border-radius:2px;
+  background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);
+  font-size:9px;letter-spacing:.04em;color:var(--ink-4);text-transform:uppercase}
+.doccard .t{display:block;font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.32}
+.doccard .m{display:flex;gap:6px 8px;flex-wrap:wrap;align-items:center;margin-top:3px;
+  font-size:12.5px;color:var(--ink-3)}
+.doccard .m .sep{color:var(--ink-4)}
+.chip{display:inline-block;padding:1px 7px;border-radius:2px;background:var(--surface-2);
+  border:1px solid var(--rule);font-family:var(--mono);font-size:9.5px;color:var(--ink-3);
+  letter-spacing:.04em}
+.chip.cited{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent-2) 30%,transparent);
+  color:var(--accent-ink)}
+.chip.none{color:var(--ink-4)}
+
+
+/* ─────────── audit panel ─────────── */
+/* Audit tab: three short statements, then any notes, then how the sources were found.
+   The full ledger is collapsed at the bottom. */
+.check{max-width:44rem}
+.chk{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:12px}
+.chk li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px;line-height:1.5;color:var(--ink)}
+.chk li small{display:block;font-size:13px;color:var(--ink-3);margin-top:2px}
+.chk .ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;margin-top:1px}
+.chk .ic.ok{background:var(--ok-soft);color:var(--ok)}
+.chk .ic.bad{background:var(--bad-soft);color:var(--bad)}
+.chk .ic.info{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--rule)}
+.check h3{font-size:14px;font-weight:600;color:var(--ink);margin:0 0 4px}
+.check .hint{font-size:13px;color:var(--ink-3);margin:0 0 12px;line-height:1.5}
+.notes{margin:0 0 28px}
+.note-i{border-left:3px solid var(--warn);background:var(--warn-soft);border-radius:0 4px 4px 0;
+  padding:10px 14px;margin-bottom:8px;font-size:14px;line-height:1.5;color:var(--ink)}
+.note-i.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.note-i .go{color:var(--accent-ink);font-size:13px;margin-left:6px;white-space:nowrap}
+.note-i .go:hover{text-decoration:underline}
+.note-i q{display:block;font-family:var(--serif);font-size:13.5px;color:var(--ink-2);margin-top:4px;quotes:none}
+.slog{margin:0 0 28px}
+.slog .slog-q{font-size:13.5px;font-weight:600;color:var(--ink);margin:20px 0 -4px}
+.slog .grp{font-size:13px;font-weight:600;color:var(--ink-2);margin:14px 0 6px}
+.slog ul{margin:0;padding:0 0 0 18px;display:grid;gap:4px}
+.slog li{font-size:14px;color:var(--ink-2);line-height:1.45}
+.slog .web{font-size:11px;color:var(--ink-3);border:1px solid var(--rule-2);border-radius:3px;
+  padding:0 5px;margin-left:6px;white-space:nowrap}
+.ledger{border-top:1px solid var(--rule);padding-top:4px}
+.ledger > summary{list-style:none;cursor:pointer;padding:12px 0;font-size:14px;font-weight:600;color:var(--ink-2);
+  display:flex;align-items:center;gap:8px}
+.ledger > summary::-webkit-details-marker{display:none}
+.ledger > summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;margin-right:3px}
+.ledger[open] > summary::before{transform:rotate(45deg)}
+.ledger .ct{font-weight:400;color:var(--ink-4)}
+.audit-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table.audit{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+table.audit th{text-align:left;font-size:12px;font-weight:600;color:var(--ink-3);padding:9px 12px;
+  background:var(--surface-2);border-bottom:1px solid var(--rule-2)}
+table.audit td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+table.audit tr[data-cite]{cursor:pointer}
+table.audit tr[data-cite]:hover td{background:var(--surface-2)}
+table.audit td.q{font-family:var(--serif);font-size:14px;color:var(--ink)}
+table.audit td.n{color:var(--ink-4);width:2.5em}
+table.audit td.w{white-space:nowrap;font-size:12.5px}
+table.audit td.m{white-space:nowrap;font-size:12.5px}
+.m-exact{color:var(--ok)} .m-warn{color:var(--warn)} .m-bad{color:var(--bad);font-weight:600}
+
+/* ─────────── drawer ─────────── */
+.scrim{position:fixed;inset:0;background:rgba(14,17,19,.4);opacity:0;pointer-events:none;
+  transition:opacity .22s;z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(620px,95vw);background:var(--surface);
+  border-left:1px solid var(--rule-2);box-shadow:none;z-index:50;visibility:hidden;
+  transform:translateX(102%);
+  transition:transform .26s cubic-bezier(.32,.72,.35,1),box-shadow .26s,visibility 0s .26s;
+  display:flex;flex-direction:column}
+.drawer.open{transform:none;visibility:visible;box-shadow:var(--shadow-3);
+  transition:transform .26s cubic-bezier(.32,.72,.35,1),box-shadow .26s,visibility 0s}
+/* From 1180px up, dock the drawer beside the answer so the claim and its source can be
+   read side by side. Below that, the column left next to a 620px drawer is too narrow
+   to read comfortably, so the drawer overlays the page instead. */
+@media (min-width:1180px){
+  body.docked .scrim{display:none}
+  body.docked .drawer{box-shadow:var(--shadow-1)}
+  body.docked main,body.docked .masthead-in,body.docked .tabbar-in{
+    margin-left:max(20px,calc((100vw - min(620px,95vw) - 760px) / 2));margin-right:0;max-width:760px}
+  main,.masthead-in,.tabbar-in{transition:margin .26s cubic-bezier(.32,.72,.35,1)}
+}
+.dw-head{padding:calc(13px + env(safe-area-inset-top,0px)) 17px 11px;border-bottom:1px solid var(--rule);
+  display:flex;gap:13px;align-items:flex-start;background:var(--surface-2)}
+.dw-head .who{min-width:0;flex:1}
+.dw-head .cnum{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent-ink);margin-bottom:3px}
+.dw-head .t{font-family:var(--serif);font-size:16.5px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.dw-head .p{font-family:var(--mono);font-size:10px;color:var(--ink-4);margin-top:3px;overflow-wrap:anywhere}
+.x{font-size:19px;line-height:1;color:var(--ink-3);padding:5px 7px;border-radius:3px}
+.x:hover{background:var(--sunk);color:var(--ink)}
+.dw-bar{display:flex;gap:6px;align-items:center;padding:8px 17px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);flex-wrap:wrap}
+.nav{padding:4px 9px;border:1px solid var(--rule-2);border-radius:3px;font-size:10.5px;
+  font-family:var(--mono);color:var(--ink-2);transition:background .12s,border-color .12s}
+.nav:hover:not(:disabled){background:var(--surface-2);border-color:var(--ink-4)}
+.nav:disabled{opacity:.34;cursor:default}
+.dw-bar .sp{flex:1}
+.seg{display:flex;border:1px solid var(--rule-2);border-radius:3px;overflow:hidden}
+.seg button{padding:4px 10px;font-size:10px;font-family:var(--mono);color:var(--ink-3);
+  letter-spacing:.05em;text-transform:uppercase}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-ink)}
+.dw-body{overflow:auto;padding:18px 20px calc(30px + env(safe-area-inset-bottom,0px));flex:1;
+  background:var(--sunk);scroll-behavior:smooth}
+.sheet{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:26px 28px;
+  font-family:var(--serif);font-size:14.5px;line-height:1.75;white-space:pre-wrap;
+  overflow-wrap:break-word;color:var(--ink-2);box-shadow:var(--shadow-2)}
+.sheet mark{background:var(--mark);color:var(--ink);padding:2px 0;border-radius:1px;
+  box-shadow:-4px 0 0 var(--mark-edge), 0 0 0 2px var(--mark)}
+@keyframes pulse{0%{box-shadow:-4px 0 0 var(--mark-edge),0 0 0 9px transparent}
+  40%{box-shadow:-4px 0 0 var(--mark-edge),0 0 0 9px color-mix(in srgb,var(--mark-edge) 30%,transparent)}
+  100%{box-shadow:-4px 0 0 var(--mark-edge),0 0 0 2px var(--mark)}}
+.sheet mark.flash{animation:pulse 1.1s ease-out}
+.pageimg{display:block;width:100%;height:auto;border:1px solid var(--rule);background:#fff;
+  border-radius:2px;box-shadow:var(--shadow-2)}
+.claimback{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--rule);border-left:2px solid var(--accent-2);
+  padding:11px 14px;margin-bottom:13px;border-radius:0 3px 3px 0}
+.claimback b{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-4);display:block;margin-bottom:5px;font-weight:500}
+.why{font-size:13px;color:var(--ink-2);background:var(--accent-soft);border-left:2px solid var(--accent-2);
+  padding:11px 14px;margin-bottom:13px;border-radius:0 3px 3px 0}
+.why b{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent-ink);display:block;margin-bottom:4px;font-weight:500}
+.flag{font-size:13px;padding:11px 14px;margin-bottom:13px;border-left:2px solid var(--warn);
+  background:var(--warn-soft);color:var(--warn);border-radius:0 3px 3px 0}
+.flag.bad{border-left-color:var(--bad);background:var(--bad-soft);color:var(--bad)}
+.empty{color:var(--ink-4);font-size:13px;padding:34px 0;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));
+  transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--ground);
+  padding:9px 17px;border-radius:3px;font-size:12.5px;opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s;z-index:60;box-shadow:var(--shadow-2)}
+.toast.on{opacity:1;transform:translateX(-50%)}
+kbd{font-family:var(--mono);font-size:9.5px;border:1px solid var(--rule-2);border-bottom-width:2px;
+  border-radius:3px;padding:1px 4px;color:var(--ink-4);background:var(--surface)}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="head-main">
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 class="title" id="title"></h1>
+      <div class="asked" id="asked" hidden>
+        <div class="q"><span class="l">Question</span><span id="asked-q"></span></div>
+        <button id="asked-more" hidden>Show full question</button>
+      </div>
+    </div>
+    <div class="head-side">
+      <button class="btn" id="copy-btn" aria-haspopup="menu" aria-expanded="false">Copy&nbsp;&#9662;</button>
+      <div class="menu-pop" id="copy-menu" role="menu" hidden>
+        <button role="menuitem" id="copy-md">Answer with footnotes<small>Markdown, for email or a document</small></button>
+        <button role="menuitem" id="copy-fu" hidden>Follow-up command<small id="copy-fu-sub">Paste into Claude Code to add a question to this report</small></button>
+        <button role="menuitem" id="copy-json">Audit trail<small>Every cited passage and where it was found, as JSON</small></button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="tabbar"><div class="tabbar-in">
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="tab-memo" aria-selected="true" aria-controls="panel-memo"><span id="doc-label">Answer</span></button>
+    <button class="tab" role="tab" id="tab-sources" aria-selected="false" aria-controls="panel-sources">Sources<span class="count" id="n-docs"></span></button>
+    <button class="tab" role="tab" id="tab-audit" aria-selected="false" aria-controls="panel-audit"><span class="full">How it was checked</span><span class="short">Checks</span></button>
+  </nav>
+  <div class="qnow" id="qnow" hidden>
+    <button id="qnow-btn" aria-haspopup="menu" aria-expanded="false"></button>
+    <div class="menu-pop" id="qnow-menu" role="menu" hidden></div>
+  </div>
+</div></div>
+<button class="totop" id="totop" aria-label="Back to top">
+  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg>Top</button>
+
+<main>
+  <section class="panel" id="panel-memo" role="tabpanel" aria-labelledby="tab-memo">
+    <div class="memo">
+      <div id="alert-slot"></div>
+      <div id="summary-slot"></div>
+      <div id="checked-slot"></div>
+      <div id="body-slot"></div>
+      <div id="gaps-slot"></div>
+      <details class="auth" id="auth-slot"></details>
+    </div>
+  </section>
+  <section class="panel" id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" hidden>
+    <div class="src-bar"><div class="sum" id="src-sum"></div>
+      <input type="search" id="src-filter" placeholder="Filter sources" aria-label="Filter sources" hidden>
+      <button class="link" id="src-toggle">Expand all</button></div>
+    <div id="doclist"></div>
+  </section>
+  <section class="panel" id="panel-audit" role="tabpanel" aria-labelledby="tab-audit" hidden>
+    <div class="check">
+      <ul class="chk" id="chk"></ul>
+      <div id="notes"></div>
+      <div id="searchlog"></div>
+      <details class="ledger" id="ledger"><summary>Every cited passage and where it was found
+        <span class="ct" id="ledger-ct"></span></summary>
+        <p class="hint">Select a row to open the source at that passage. Character positions and
+          match scores are in the audit trail (Copy &#9656; Audit trail).</p>
+        <div class="audit-wrap"><table class="audit"><thead><tr>
+          <th>#</th><th>Passage</th><th>Where</th><th>Found in source</th>
+        </tr></thead><tbody id="audit-rows"></tbody></table></div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<div class="peek" id="peek" role="tooltip"></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="false" aria-labelledby="dw-title" aria-hidden="true">
+  <div class="dw-head">
+    <div class="who">
+      <div class="cnum" id="dw-num"></div>
+      <div class="t" id="dw-title"></div>
+      <div class="p" id="dw-path"></div>
+    </div>
+    <button class="x" id="dw-close" aria-label="Close source">&times;</button>
+  </div>
+  <div class="dw-bar">
+    <button class="nav" id="pg-prev" aria-label="Previous page">&larr;</button>
+    <span id="pg-label"></span>
+    <button class="nav" id="pg-next" aria-label="Next page">&rarr;</button>
+    <span class="sp"></span>
+    <div class="seg" id="viewseg" hidden>
+      <button id="v-text" aria-pressed="true">text</button>
+      <button id="v-img" aria-pressed="false">page</button>
+    </div>
+    <button class="nav" id="dw-copy">copy cite</button>
+    <button class="nav" id="cite-prev" aria-label="Previous citation">&#9650;</button>
+    <button class="nav" id="cite-next" aria-label="Next citation">&#9660;</button>
+  </div>
+  <div class="dw-body" id="dw-body"></div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script id="citation-data" type="application/json">__CITATION_DATA__</script>
+<script>
+(function(){
+const DATA = JSON.parse(document.getElementById('citation-data').textContent);
+const docs = DATA.docs || {};
+const el = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const pin = (d, n) => (d.page_label || 'p.') + ' ' + n;
+const squash = s => String(s || '').replace(/\s+/g,' ').trim();
+const host = u => { try { return new URL(u).host.replace(/^www\./, ''); } catch(e){ return u; } };
+const asof = s => String(s || '').slice(0, 10);
+const COARSE = window.matchMedia('(hover: none)').matches;
+
+/* Flatten all citations in reading order. The index is the footnote number, and the
+   rail, the audit table and the markdown export all use that same number. */
+/* A report can have several questions (the first plus any follow-ups). DATA.blocks holds
+   all of their blocks in reading order, and each turn records how many belong to it. */
+const TURNS = (DATA.turns && DATA.turns.length) ? DATA.turns
+  : [{question: DATA.question, summary: DATA.summary, gaps: DATA.gaps || [], searches: [],
+      n_blocks: (DATA.blocks || []).length}];
+{ let off = 0; TURNS.forEach((t, ti) => { t._start = off; off += t.n_blocks || 0; t._end = off; }); }
+const MULTI = TURNS.length > 1;
+const turnOf = bi => Math.max(0, TURNS.findIndex(t => bi >= t._start && bi < t._end));
+const fmtLong = v => {
+  const d = new Date(String(v || '').slice(0, 10) + 'T12:00:00');
+  return isNaN(d) ? '' : d.toLocaleDateString(undefined, {day: 'numeric', month: 'long', year: 'numeric'});
+};
+const cites = [];
+(DATA.blocks || []).forEach((b, bi) => {
+  const take = (c, claim, at) => { c._i = cites.length; c._claim = claim; c._at = at; c._turn = turnOf(bi); cites.push(c); };
+  if (b.type === 'table'){
+    (b.rows || []).forEach((row, ri) => row.forEach((cell, ci) => {
+      if (cell && typeof cell === 'object')
+        (cell.cites || []).forEach(c => {
+          c._table = true;
+          take(c, cell.text || '', 'row ' + (ri + 1));
+        });
+    }));
+  } else {
+    /* number citations by where their anchor phrase appears in the sentence, so the
+       markers count up left to right whatever order the cites were written in.
+       Cites with no anchor go last, matching where they're rendered */
+    const text = b.text || '';
+    const pos = c => { const i = c.anchor ? text.indexOf(c.anchor) : -1; return i < 0 ? Infinity : i; };
+    (b.cites || []).map((c, k) => [c, k]).sort((x, y) => pos(x[0]) - pos(y[0]) || x[1] - y[1])
+      .forEach(([c]) => take(c, text, 'para ' + (bi + 1)));
+  }
+});
+
+/* ═══════════ masthead ═══════════ */
+const V = DATA.verification || {};
+const META = DATA.meta || {};
+/* The heading is a short title. A question typed into chat can be a whole paragraph,
+   and as a headline it would fill a phone screen before the answer starts. Use
+   `meta.title` if it's set; otherwise use the question when it's short, or its first
+   sentence when it's long. The full question is still shown below. */
+const Q = squash(TURNS[0].question || DATA.question || '');
+function headline(){
+  if (META.title) return META.title;
+  if (TURNS[0].title) return TURNS[0].title;
+  if (Q.length <= 90) return Q || 'Findings';
+  // the ask is the sentence ending in a question mark; anything before it is context
+  const sentences = Q.match(/[^.?!]+[.?!]+/g) || [Q];
+  const ask = (sentences.find(x => x.includes('?')) || sentences[0]).trim();
+  return ask.length <= 90 ? ask : ask.slice(0, 88).replace(/[\s,;:]+\S*$/, '') + '\u2026';
+}
+const TITLE = headline();
+el('title').textContent = TITLE;
+if (Q && Q !== TITLE && !MULTI){     // with several questions, each section shows its own question instead
+  el('asked').hidden = false;
+  el('asked-q').textContent = Q;
+  requestAnimationFrame(() => {
+    const q = el('asked').querySelector('.q');
+    if (q.scrollHeight > q.clientHeight + 2) el('asked-more').hidden = false;
+  });
+  el('asked-more').addEventListener('click', () => {
+    const open = el('asked').classList.toggle('open');
+    el('asked-more').textContent = open ? 'Show less' : 'Show full question';
+  });
+}
+el('doc-label').textContent = META.document_label || 'Answer';
+const bits = [];
+if (META.matter) bits.push(esc(META.matter));
+if (MULTI) bits.push(TURNS.length + ' questions');
+{
+  const last = MULTI ? (TURNS[TURNS.length - 1].asked || DATA.generated) : DATA.generated;
+  if (last) bits.push((MULTI ? 'updated ' : '') + (fmtLong(last) || esc(last)));
+}
+el('eyebrow').innerHTML = bits.map(b => '<span>' + b + '</span>').join('<span class="dot"></span>');
+el('eyebrow').hidden = !bits.length;
+el('n-docs').textContent = Object.keys(docs).length;
+
+/* Plain-language summary of the check. It only claims what the check covers (the quotes
+   appear in the sources). It doesn't say whether the answer is correct. */
+const failed = V.failed || 0;
+const nDocs = V.documents_cited || new Set(cites.map(c => c.doc)).size;
+const nLocal = Object.values(docs).filter(d => cites.some(c => c.doc === d.id) && !(d.source && d.source.url)).length;
+const nWeb = nDocs - nLocal;
+const kinds = nLocal && nWeb ? ' (' + nLocal + ' of your files, ' + nWeb + ' from the web)' : '';
+if (failed){
+  el('alert-slot').innerHTML = '<div class="alert" role="alert"><b>' + failed + ' of ' + cites.length
+    + ' cited passages could not be found in the sources.</b>The statements that rely on them are marked in red. '
+    + 'Treat them as unsupported.</div>';
+}
+function checkedLine(cs){
+  if (!cs.length) return '';
+  const bad = cs.filter(c => c.status === 'UNVERIFIED').length;
+  const ids = [...new Set(cs.map(c => c.doc))];
+  const loc = ids.filter(id => !((docs[id] || {}).source && docs[id].source.url)).length;
+  const kind = loc && loc < ids.length ? ' (' + loc + ' of your files, ' + (ids.length - loc) + ' from the web)' : '';
+  return '<div class="checked">'
+    + (bad ? '' : '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 8.4l3 3 6-6.6"/></svg>')
+    + '<span>Each statement links to the passage it\u2019s based on. '
+    + (bad ? (cs.length - bad) + ' of ' + cs.length : cs.length === 1 ? 'The' : 'All ' + cs.length)
+    + (cs.length === 1 ? ' passage was' : ' passages were') + ' found word for word in the '
+    + (ids.length === 1 ? 'source' : ids.length + ' sources') + kind + '.</span>'
+    + '<button class="go-audit">How this was checked</button></div>';
+}
+document.addEventListener('click', e => {
+  if (e.target.closest('.go-audit')){ showTab('audit'); scrollTo(0, 0); }
+});
+
+/* ═══════════ memo body ═══════════ */
+function marker(c){
+  return '<button class="cm g-' + esc(c.status || 'exact') + '" data-cite="' + c._i
+    + '" aria-label="Citation ' + (c._i + 1) + ': ' + esc(squash((docs[c.doc]||{}).short))
+    + '">' + (c._i + 1) + '</button>';
+}
+
+/* Place each citation inline next to the phrase it supports. A cite's `anchor` is a
+   substring of the claim: we underline that phrase and put the marker right after it,
+   the same way a pin cite follows the proposition it supports. */
+function inlineClaim(text, cs){
+  const spans = [];
+  const loose = [];
+  cs.forEach(c => {
+    const a = c.anchor && String(c.anchor);
+    const at = a ? text.indexOf(a) : -1;
+    if (at < 0){ loose.push(c); return; }
+    const hit = spans.find(s => s.start === at && s.end === at + a.length);
+    if (hit) hit.cites.push(c);
+    else spans.push({start: at, end: at + a.length, cites: [c]});
+  });
+  spans.sort((x, y) => x.start - y.start);
+  let out = '', pos = 0;
+  spans.forEach(s => {
+    if (s.start < pos) { loose.push(...s.cites); return; }   // overlaps the previous anchor, so these go at the end with the unanchored ones
+    /* keep the phrase's last word glued to its marker so the marker can't wrap onto a line by itself */
+    const phrase = text.slice(s.start, s.end);
+    const cut = phrase.search(/\S+\s*$/);
+    const open = '<span class="cited" data-cite="' + s.cites[0]._i + '">';
+    out += esc(text.slice(pos, s.start))
+      + (cut > 0 ? open + esc(phrase.slice(0, cut)) + '</span>' : '')
+      + '<span class="glue">' + open + esc(phrase.slice(Math.max(cut, 0))) + '</span>'
+      + '<sup class="cg">' + s.cites.map(marker).join('') + '</sup></span>';
+    pos = s.end;
+  });
+  const rest = text.slice(pos);
+  if (!loose.length) return out + esc(rest);
+  const cut = rest.search(/\S+\s*$/);
+  return out + esc(rest.slice(0, Math.max(cut, 0))) + '<span class="glue">'
+    + esc(rest.slice(Math.max(cut, 0))) + '<sup class="cg">' + loose.map(marker).join('')
+    + '</sup></span>';
+}
+
+/* Each claim is a sentence. Consecutive claims run together into one paragraph, like an
+   answer in chat, and a claim with "break": true starts a new one. Headings, notes and
+   tables also close the current paragraph. */
+let html = '', open = false;       // false | 'p' | 'ol' | 'ul'
+const close = () => {
+  if (open) html += open === 'p' ? '</p>' : '</' + open + '>';
+  open = false;
+};
+function blocksHTML(from, to){
+html = ''; open = false;
+(DATA.blocks || []).forEach((b, bi) => {
+  if (bi < from || bi >= to) return;
+  const type = b.type || 'claim';
+  if (type !== 'claim') close();
+  if (type === 'heading'){ html += '<h2 class="sec">' + esc(b.text) + '</h2>'; return; }
+  if (type === 'note'){ html += '<p class="aside">' + esc(b.text) + '</p>'; return; }
+  if (type === 'table'){
+    if (b.text) html += '<h2 class="sec">' + esc(b.text) + '</h2>';
+    html += '<div class="grid-wrap"><table class="grid"><thead><tr>'
+      + (b.columns || []).map(c => '<th>' + esc(c) + '</th>').join('') + '</tr></thead><tbody>'
+      + (b.rows || []).map(row => '<tr>' + row.map(cell => {
+          if (cell && typeof cell === 'object')
+            return '<td>' + inlineClaim(cell.text || '', cell.cites || []) + '</td>';
+          return '<td>' + esc(cell) + '</td>';
+        }).join('') + '</tr>').join('')
+      + '</tbody></table></div>';
+    return;
+  }
+  /* "list": "steps" or "bullets" renders consecutive claims as a numbered or bulleted list */
+  const want = b.list === 'steps' ? 'ol' : b.list ? 'ul' : 'p';
+  if (b.break || (open && open !== want)) close();
+  if (!open){ html += want === 'p' ? '<p class="prose">' : '<' + want + ' class="prose-list">'; open = want; }
+  else if (want === 'p') html += ' ';
+  if (want !== 'p') html += '<li>';
+  const conf = b.confidence && b.confidence !== 'high'
+    ? '<span class="conf" tabindex="0" title="' + esc(b.note || '') + '">' + esc(b.confidence) + ' confidence</span>' : '';
+  html += '<span class="claim" data-block="' + bi + '">' + inlineClaim(b.text || '', b.cites || []) + conf + '</span>';
+  if (want !== 'p') html += '</li>';
+});
+close();
+return html;
+}
+
+/* Renders one question and its answer. A single-question report looks the same as it
+   always has; with follow-ups, each question gets a section headed by the question as asked. */
+const qLabel = ti => 'Question ' + (ti + 1);
+function turnHTML(t, ti){
+  const cs = cites.filter(c => c._turn === ti);
+  let h = '';
+  if (MULTI){
+    const when = fmtLong(t.asked);
+    h += '<section class="turn" id="q' + (ti + 1) + '" data-turn="' + ti + '">'
+      + '<div class="turn-div" role="separator">' + qLabel(ti) + ' of ' + TURNS.length
+      + (ti ? ' \u00b7 follow-up' : '') + (when ? ' <span class="when">\u00b7 ' + esc(when) + '</span>' : '') + '</div>'
+      + '<div class="turn-head">'
+      + '<div class="asked-b"><span class="l">You asked</span><div class="q">' + esc(squash(t.question || '')) + '</div>'
+      + '<button class="more-q" hidden>Show full question</button></div>'
+      + (t.title ? '<h2 class="turn-title">' + esc(t.title) + '</h2>' : '') + '</div>';
+    // if a later question corrected this one, note it here where the reader will see it
+    TURNS.forEach((u, ui) => {
+      const up = u.updates;
+      if (up && Number(up.turn) === ti + 1)
+        h += '<div class="upd"><b>Updated in ' + qLabel(ui) + '.</b> ' + esc(up.note || '')
+          + ' <a href="#q' + (ui + 1) + '">See ' + qLabel(ui).toLowerCase() + '</a></div>';
+    });
+  }
+  if (t.summary) h += '<p class="summary" id="sum-' + ti + '">' + esc(t.summary) + '</p>';
+  h += checkedLine(cs);
+  h += blocksHTML(t._start, t._end);
+  if ((t.gaps || []).length)
+    h += '<div class="gaps"><h2>What the sources don\u2019t settle</h2><ul>'
+      + t.gaps.map(g => '<li>' + esc(g) + '</li>').join('') + '</ul></div>';
+  // each question gets its own references list, filled in further down once it can be built
+  h += '<details class="auth" data-refs="' + ti + '" hidden></details>';
+  if (MULTI) h += '</section>';
+  return h;
+}
+let body = '';
+if (MULTI){
+  body += '<nav class="qindex" aria-label="Questions in this report"><div class="qi-h">'
+    + TURNS.length + ' questions in this report</div><ol>'
+    + TURNS.map((t, ti) => '<li><a href="#q' + (ti + 1) + '">' + esc(t.title || squash(t.question || ''))
+      + '</a>' + (ti === TURNS.length - 1 ? '<span class="latest">latest</span>' : '') + '</li>').join('')
+    + '</ol></nav>';
+}
+body += TURNS.map(turnHTML).join('');
+/* shows the command for adding another question to this report */
+const FOLLOW = DATA.report_id ? '/use-citations follow-up ' + DATA.report_id + ' ' : '';
+if (FOLLOW)
+  body += '<div class="followup"><div><b>Have a follow-up question?</b> Paste this into Claude Code, then type your question. '
+    + 'The answer is added to this report, at the same link.</div>'
+    + '<div class="fu-row"><code>' + esc(FOLLOW) + '\u2026</code><button class="btn" id="fu-copy">Copy</button></div></div>';
+el('body-slot').innerHTML = body;
+/* Track which question's section is currently under the tab bar. */
+const qnow = el('qnow'), qBtn = el('qnow-btn'), qMenu = el('qnow-menu');
+let curTurn = -1;
+const shortQ = t => t.title || squash(t.question || '');
+function setQnow(ti){
+  if (ti === curTurn) return;
+  curTurn = ti;
+  qBtn.innerHTML = '<span class="full"><b>' + qLabel(ti) + '</b> of ' + TURNS.length + '</span>'
+    + '<span class="short"><b>' + (ti + 1) + '</b>/' + TURNS.length + '</span>'
+    + '<span class="long"> \u00b7 ' + esc(shortQ(TURNS[ti])) + '</span> \u25be';
+  qBtn.setAttribute('aria-label', qLabel(ti) + ' of ' + TURNS.length + ': ' + shortQ(TURNS[ti]) + '. Jump to another question');
+  qMenu.querySelectorAll('button').forEach(b => b.setAttribute('aria-current', String(Number(b.dataset.q) === ti)));
+}
+if (MULTI){
+  qnow.hidden = false;
+  qMenu.innerHTML = TURNS.map((t, ti) => '<button role="menuitem" data-q="' + ti + '"><span class="n">' + (ti + 1)
+    + '</span><span>' + esc(shortQ(t)) + '</span></button>').join('');
+  const setQMenu = on => { qMenu.hidden = !on; qBtn.setAttribute('aria-expanded', String(on)); };
+  qBtn.addEventListener('click', e => { e.stopPropagation(); setQMenu(qMenu.hidden); });
+  document.addEventListener('click', e => { if (!e.target.closest('.qnow')) setQMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setQMenu(false); });
+  qMenu.addEventListener('click', e => {
+    const b = e.target.closest('[data-q]');
+    if (!b) return;
+    setQMenu(false);
+    if (el('panel-memo').hidden) showTab('memo');
+    const ti = Number(b.dataset.q);
+    // the reader picked this question, so mark it now and hold it for the smooth scroll
+    // (otherwise the highlight flickers through every question on the way)
+    setQnow(ti);
+    jumpUntil = Date.now() + 1000;
+    el('q' + (ti + 1)).scrollIntoView({behavior: 'smooth'});
+  });
+  setQnow(0);
+}
+const totop = el('totop');
+let ticking = false, jumpUntil = 0;
+/* The current question is the last one whose heading is above a line a quarter of the
+   window (capped at 160px) below the tab bar. We can't use the tab bar's bottom edge
+   itself: when the browser finishes a jump there it can stop a fraction of a pixel short,
+   and the previous question would be picked. At the very bottom, the last question wins. */
+function readingTurn(){
+  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) return TURNS.length - 1;
+  const line = document.querySelector('.tabbar').getBoundingClientRect().bottom + Math.min(160, innerHeight * 0.25);
+  let ti = 0;
+  document.querySelectorAll('section.turn').forEach(sec => {
+    if (sec.getBoundingClientRect().top <= line) ti = Number(sec.dataset.turn);
+  });
+  return ti;
+}
+addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    ticking = false;
+    totop.classList.toggle('on', scrollY > innerHeight * 0.9);
+    if (MULTI && !el('panel-memo').hidden && Date.now() > jumpUntil) setQnow(readingTurn());
+  });
+}, {passive: true});
+totop.addEventListener('click', () => {
+  scrollTo({top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  qBtn.focus({preventScroll: true});
+});
+document.querySelectorAll('.asked-b').forEach(a => requestAnimationFrame(() => {
+  const q = a.querySelector('.q');
+  if (q.scrollHeight > q.clientHeight + 2) a.querySelector('.more-q').hidden = false;
+}));
+document.addEventListener('click', e => {
+  const m = e.target.closest('.more-q');
+  if (!m) return;
+  const open = m.parentElement.classList.toggle('open');
+  m.textContent = open ? 'Show less' : 'Show full question';
+});
+
+/* ═══════════ authorities ═══════════ */
+/* An exact match is the usual case and gets no label. Anything else is described in words. */
+const GRADE = {elided: 'found, with a gap', spanning: 'found, across pages', fuzzy: 'close, not exact', UNVERIFIED: 'not found'};
+const gradeBadge = (c, style) => GRADE[c.status]
+  ? '<span class="badge ' + esc(c.status) + '"' + (style ? ' style="' + style + '"' : '') + '>' + GRADE[c.status] + '</span>' : '';
+function footnote(c){
+  const d = docs[c.doc] || {};
+  return '<button class="fn" data-cite="' + c._i + '">'
+    + '<span class="n">' + (c._i + 1) + '.</span><span>'
+    + '<span class="q">&ldquo;' + esc(squash(c.quote)) + '&rdquo;</span>'
+    + '<span class="pin">' + esc(c.page ? pin(d, c.page) : '')
+    + gradeBadge(c)
+    + (d.ocr ? '<span class="badge ocr">ocr</span>' : '')
+    + (d.source && d.source.url
+        ? '<span class="badge ocr srcb">' + esc(host(d.source.url)) + ' \u00b7 '
+          + esc(asof(d.source.retrieved_at)) + '</span>' : '')
+    + '</span></span></button>';
+}
+const byDoc = new Map();
+cites.forEach(c => { if (!byDoc.has(c.doc)) byDoc.set(c.doc, []); byDoc.get(c.doc).push(c); });
+
+/* References go under the answer they support: each question lists the passages behind
+   its own statements, grouped by source. Numbering continues across the whole page, so a
+   given number refers to the same citation wherever it appears. */
+function refsHTML(cs){
+  const prose = cs.filter(c => !c._table);
+  if (!prose.length) return '';
+  const grouped = new Map();
+  prose.forEach(c => { if (!grouped.has(c.doc)) grouped.set(c.doc, []); grouped.get(c.doc).push(c); });
+  const nTable = cs.length - prose.length;
+  return '<summary>' + esc(META.authorities_label || 'References')
+    + ' <span class="ct">' + prose.length + '</span></summary>'
+    + '<p class="hint">The passage behind each numbered citation' + (MULTI ? ' in this answer' : '')
+    + '. Select one to open the source there.'
+    + (nTable ? ' The table\u2019s ' + nTable + ' cell citations are listed under <b>How it was checked</b>.' : '') + '</p>'
+    + [...grouped.entries()].map(([id, list]) => {
+        const d = docs[id] || {};
+        return '<div class="auth-doc"><div class="h"><span class="nm">' + esc((META.short_names || {})[id] || d.title || id)
+          + '</span><span class="fl">' + esc(d.filename || '') + '</span></div>' + list.map(footnote).join('') + '</div>';
+      }).join('');
+}
+document.querySelectorAll('[data-refs]').forEach(box => {
+  const html = refsHTML(cites.filter(c => c._turn === Number(box.dataset.refs)));
+  box.innerHTML = html;
+  box.hidden = !html;
+});
+el('auth-slot').hidden = true;
+
+/* ═══════════ sources ═══════════ */
+const fmtDate = v => {
+  const d = new Date(String(v || '').slice(0, 10) + 'T12:00:00');
+  return isNaN(d) ? asof(v) : d.toLocaleDateString(undefined, {day: 'numeric', month: 'short', year: 'numeric'});
+};
+function sourceCard(d){
+  const cs = byDoc.get(d.id) || [];
+  const unit = (d.page_label === '§' ? 'section' : 'page') + (d.pages === 1 ? '' : 's');
+  const web = d.source && d.source.url;
+  /* prefer a name the answer gave the document over the title found on its first page */
+  /* When several documents share a title (say, eighty copies of "MASTER SERVICES
+     AGREEMENT"), lead with the file name so the rows can be told apart. */
+  const shared = allDocs.filter(x => x.title === d.title).length > 1;
+  const stem = String(d.filename || '').replace(/\.[^.]+$/, '').replace(/[_]+/g, ' ').replace(/-[0-9a-f]{8}$/, '');
+  const named = (META.short_names || {})[d.id] || (shared && stem ? stem : null);
+  const name = esc(named || d.title);
+  const sep = '<span class="sep">·</span>';
+  const line = [web ? 'Web · ' + esc(host(d.source.url)) : 'Your file',
+                web ? 'captured ' + esc(fmtDate(d.source.retrieved_at)) : esc(d.path || d.filename),
+                d.pages + ' ' + unit].concat(MULTI && cs.length
+                ? ['cited in ' + [...new Set(cs.map(c => c._turn + 1))].sort((a, b) => a - b)
+                    .map((n, i, a) => (i === 0 ? (a.length > 1 ? 'questions ' : 'question ') : '') + n).join(', ')] : []).join(sep)
+    + (d.ocr ? '<span class="chip ocr">scan, read by OCR</span>' : '')
+    + (d.thin ? '<span class="chip ocr">low text yield</span>' : '');
+  const prov = web
+    ? '<dt>Source</dt><dd><a href="' + esc(d.source.final_url || d.source.url) + '" target="_blank" rel="noopener">'
+        + esc(d.source.url) + '</a></dd>'
+      + '<dt>Captured</dt><dd>' + esc(fmtDate(d.source.retrieved_at))
+        + '. The citations point to this saved copy; the live page may have changed since.</dd>'
+      + (d.source.sha256 ? '<dt>Fingerprint</dt><dd class="mono">sha256 ' + esc(d.source.sha256.slice(0, 16)) + '…</dd>' : '')
+    : '<dt>File</dt><dd class="mono">' + esc(d.path || d.filename) + '</dd>'
+      + '<dt>Copy</dt><dd>The text as it was read when the report was made.</dd>';
+  const extra = (named && named !== d.title ? '<dt>Document title</dt><dd>' + esc(d.title) + '</dd>' : '')
+    + (d.ocr ? '<dt>Scan</dt><dd>Text read by OCR (' + esc(d.ocr.engine) + ')'
+        + (d.images && Object.keys(d.images).length ? '; page images are included to check it against.' : '.') + '</dd>' : '')
+    + (d.partial ? '<dt>Included</dt><dd>Only the cited pages and their neighbours are in the report.</dd>' : '')
+    + (d.thin ? '<dt>Warning</dt><dd>Very little text came out of this capture. It may be site navigation rather than the document.</dd>' : '');
+  return '<details class="doccard" data-doc="' + esc(d.id) + '" data-q="' + esc((d.title + ' ' + (d.filename || '') + ' ' + (web ? host(d.source.url) : '')).toLowerCase()) + '">'
+    + '<summary class="top"><span class="docmark">' + esc(d.type) + '</span>'
+    + '<span class="who"><span class="t">' + name + '</span><span class="m">' + line + '</span></span>'
+    + '<span class="n-q' + (cs.length ? '' : ' none') + '">' + (cs.length ? cs.length + ' citation' + (cs.length > 1 ? 's' : '') : 'not cited') + '</span>'
+    + '<span class="chev" aria-hidden="true"></span></summary>'
+    + '<div class="body"><dl class="prov">' + prov + extra + '</dl>'
+    + '<div class="src-actions"><button class="btn open-doc" data-doc="' + esc(d.id) + '">Open document</button>'
+    + (web ? '<a class="btn" href="' + esc(d.source.final_url || d.source.url) + '" target="_blank" rel="noopener">Live page ↗</a>' : '')
+    + '</div>'
+    + (cs.length ? '<div class="src-q">Passages cited in the answer</div>' + cs.map(footnote).join('')
+                 : '<p class="src-none">The answer doesn\u2019t cite this document. It\u2019s listed so you can see everything that was collected.</p>')
+    + '</div></details>';
+}
+const allDocs = Object.values(docs);
+const citedDocs = allDocs.filter(d => byDoc.has(d.id));
+const otherDocs = allDocs.filter(d => !byDoc.has(d.id));
+const nWebAll = allDocs.filter(d => d.source && d.source.url).length;
+el('src-sum').innerHTML = '<b>' + allDocs.length + ' source' + (allDocs.length === 1 ? '' : 's') + '</b>'
+  + (nWebAll && nWebAll < allDocs.length ? ' (' + (allDocs.length - nWebAll) + ' your files, ' + nWebAll + ' from the web)'
+     : nWebAll ? ', all captured from the web' : ', all your files')
+  + '. ' + citedDocs.length + ' cited in the answer'
+  + (otherDocs.length ? ', ' + otherDocs.length + ' collected but not cited.' : '.');
+const group = (label, list) => list.length
+  ? '<div class="src-group">' + label + '<span class="ct">' + list.length + '</span></div>'
+    + '<div class="doclist">' + list.map(sourceCard).join('') + '</div>' : '';
+el('doclist').innerHTML = otherDocs.length
+  ? group('Cited in the answer', citedDocs) + group('Collected, not cited', otherDocs)
+  : '<div class="doclist">' + citedDocs.map(sourceCard).join('') + '</div>';
+if (allDocs.length === 1) el('doclist').querySelector('details').open = true;
+
+const cards = () => [...el('doclist').querySelectorAll('details.doccard')];
+const syncToggle = () => {
+  el('src-toggle').textContent = cards().every(c => c.open || c.hidden) ? 'Collapse all' : 'Expand all';
+};
+el('src-toggle').addEventListener('click', () => {
+  const openAll = el('src-toggle').textContent === 'Expand all';
+  cards().forEach(c => { if (!c.hidden) c.open = openAll; });
+  syncToggle();
+});
+el('doclist').addEventListener('toggle', syncToggle, true);
+syncToggle();
+if (allDocs.length > 6){
+  const f = el('src-filter');
+  f.hidden = false;
+  f.addEventListener('input', () => {
+    const q = f.value.trim().toLowerCase();
+    cards().forEach(c => { c.hidden = !!q && !c.dataset.q.includes(q); });
+    document.querySelectorAll('#doclist .src-group').forEach(g => {
+      g.hidden = !!q && ![...g.nextElementSibling.children].some(c => !c.hidden);
+    });
+  });
+}
+
+/* ═══════════ how it was checked ═══════════ */
+const ICON = {
+  ok: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3.5 8.4l3 3 6-6.6"/></svg>',
+  bad: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>',
+  info: '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 7.2v5M8 3.9v.2"/></svg>',
+};
+const nClaims = (DATA.blocks || []).filter(b => (b.type || 'claim') === 'claim').length;
+const uncited = (V.problems || []).filter(p => /no citation/.test(p.problem || '')).length;
+const chk = [];
+chk.push(failed
+  ? ['bad', failed + ' of ' + cites.length + ' cited passages could not be found in their sources.',
+     'The statements that rely on them are marked in red in the answer. Treat them as unsupported.']
+  : ['ok', 'All ' + cites.length + ' cited passages are in the sources, word for word.',
+     'The answer is written in plain words, and each statement links to the passage from the source it’s based on. '
+     + 'Before this report was made, a program searched each document for that passage’s exact wording. It doesn’t take the AI’s word for it.']);
+chk.push(uncited
+  ? ['bad', uncited + ' statement' + (uncited === 1 ? ' has' : 's have') + ' no source.', 'They are shown, but nothing backs them.']
+  : ['ok', 'Every one of the ' + nClaims + ' statements in the answer has at least one source.', '']);
+chk.push(['info', 'Not checked by the program: whether each statement fairly sums up its passage.',
+  'The statements are paraphrases, not quotations. Before you rely on one, click its number and read the passage it\u2019s based on.']);
+chk.push(['info', 'Also not checked: whether the reasoning is right, or whether documents outside this set say otherwise.',
+  'The searches below show how the sources were found, including the searches for evidence against the answer.']);
+el('chk').innerHTML = chk.map(([k, t, sub]) => '<li><span class="ic ' + k + '">' + ICON[k] + '</span><span>'
+  + esc(t) + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span></li>').join('');
+
+/* The verifier's messages are aimed at the model that has to fix the answer. Reword them
+   here for the person reading the report. */
+const whyOf = bi => ((DATA.blocks || [])[bi] || {}).cites ? DATA.blocks[bi].cites.map(c => c.why).filter(Boolean).join(' ') : '';
+function plain(p){
+  const t = String(p.problem || ''); let m;
+  const bi = (/^block(\d+)$/.exec(String(p.at || '')) || [])[1];
+  if ((m = /the summary states the figure (\S+),/.exec(t)))
+    return 'The summary gives ' + m[1] + ', and none of the cited passages contain that figure. Check it against the statements below.';
+  if ((m = /the figure (\S+) appears in no cited quote/.exec(t))){
+    const why = bi != null ? whyOf(Number(bi)) : '';
+    return 'This statement gives ' + m[1] + ', which isn\u2019t in any cited passage. It was worked out from the sources rather than quoted.'
+      + (why ? ' The note on it says: \u201c' + why.replace(/[.\s]+$/, '') + '.\u201d' : '') + ' Check the working.';
+  }
+  if (/occurs more than once/.test(t)) return 'The cited passage appears more than once in the source. The first place it appears is highlighted when you open it.';
+  if ((m = /not verbatim \(similarity ([\d.]+)\)/.exec(t))) return 'This cited passage is close to the source but not word for word. When you open it, the source’s actual words are highlighted.';
+  if ((m = /ellipsis skips (\d+)/.exec(t))) return 'This cited passage leaves out ' + m[1] + ' characters of the source, marked “…”. Check that the full passage says the same thing.';
+  if ((m = /cited page (\d+), quote is on page (\d+)/.exec(t))) return 'The answer pointed to page ' + m[1] + ', but the passage is on page ' + m[2] + '. The link goes to the right page.';
+  if (/low-yield/.test(t)) return 'Very little text came out of this source when it was saved, so it may not be the real document. Open it and check.';
+  if (/too short/.test(t)) return 'This cited passage is very short and may not carry the whole point. Read the passage around it.';
+  if (/not a substring of the claim/.test(t)) return 'One citation couldn’t be attached to a specific phrase, so its number sits at the end of the sentence.';
+  if ((m = /quote is (\d+) chars/.exec(t))) return 'This cited passage is long, and the sentence that matters may be buried in it.';
+  if (/no search record/.test(t)) return 'No record was kept of the searches, so there’s no way to see how the sources were found.';
+  if (/none marked 'contradict'/.test(t)) return 'None of the searches looked for evidence against the answer.';
+  if (/no citation/.test(t)) return 'This statement has no source.';
+  if (p.bad) return 'This cited passage could not be found in the source (' + t + '). Treat the statement as unsupported.';
+  return t;
+}
+const notes = [].concat(
+  (V.problems || []).map(p => ({bad: true, ...p})),
+  (V.warning_details || []).map(p => ({bad: false, ...p})));
+el('notes').innerHTML = notes.length
+  ? '<div class="notes"><h3>Worth knowing</h3><p class="hint">' + notes.length
+    + (notes.length === 1 ? ' thing' : ' things') + ' the check flagged for a person to look at.</p>'
+    + notes.map(p => {
+        const at = String(p.at || '');
+        const bi = (/^block(\d+)/.exec(at) || [])[1];
+        const ts = (/^turn(\d+)/.exec(at) || [])[1];
+        const go = bi != null && !/\.r\d+c\d+$/.test(at) ? '<button class="go" data-go="' + bi + '">Show in answer</button>'
+          : at === 'summary' ? '<button class="go" data-go="sum-0">Show in answer</button>'
+          : /^turn\d+\.summary$/.test(at) ? '<button class="go" data-go="sum-' + ts + '">Show in answer</button>' : '';
+        const which = !MULTI ? '' : bi != null ? qLabel(turnOf(Number(bi))) + ': ' : ts != null ? qLabel(Number(ts)) + ': ' : '';
+        return '<div class="note-i' + (p.bad ? ' bad' : '') + '">' + esc(which + plain(p)) + go
+          + (p.quote && p.bad ? '<q>“' + esc(squash(p.quote)) + '”</q>' : '') + '</div>';
+      }).join('') + '</div>'
+  : '';
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]');
+  if (!g) return;
+  showTab('memo');
+  const t = /^sum-/.test(g.dataset.go) ? el(g.dataset.go)
+    : document.querySelector('.claim[data-block="' + g.dataset.go + '"]');
+  if (!t) return;
+  t.scrollIntoView({block: 'center'});
+  t.classList.add('lit'); setTimeout(() => t.classList.remove('lit'), 2200);
+});
+
+/* How the sources were found. The check confirms the quotes are real, but it can't tell
+   whether someone only went looking for support for an answer they'd already settled on.
+   Listing the searches lets the reader judge that for themselves. */
+const searches = V.searches || [];
+const isContra = x => String(x.for || '').toLowerCase().startsWith('contra');
+const sItem = x => '<li>“' + esc(x.q || '') + '”'
+  + (String(x.where || '').toLowerCase() === 'web' ? '<span class="web">web search</span>' : '') + '</li>';
+function searchGroups(list){
+  const sFor = list.filter(x => !isContra(x)), sAgainst = list.filter(isContra);
+  return (sFor.length ? '<div class="grp">Looking for the answer (' + sFor.length + ')</div><ul>' + sFor.map(sItem).join('') + '</ul>' : '')
+    + (sAgainst.length ? '<div class="grp">Looking for anything that would contradict it (' + sAgainst.length + ')</div><ul>' + sAgainst.map(sItem).join('') + '</ul>'
+       : '<div class="grp">No search looked for evidence against the answer.</div>');
+}
+el('searchlog').innerHTML = '<div class="slog"><h3>How the sources were found</h3>'
+  + (searches.length
+    ? '<p class="hint">The searches run to find and read the sources, as recorded when the answer was written. '
+      + 'Searches marked “web search” looked for documents online. The rest searched the collected documents.</p>'
+      + (MULTI
+          ? TURNS.map((t, ti) => '<div class="slog-q">' + qLabel(ti) + ': ' + esc(t.title || squash(t.question || '')) + '</div>'
+              + searchGroups(searches.filter(x => (x.turn || 0) === ti))).join('')
+          : searchGroups(searches))
+    : '<p class="hint">No record was kept of the searches, so there’s no way to see how the sources were found.</p>')
+  + '</div>';
+
+/* the ledger, in plain words */
+const MATCH = {exact: ['Word for word', 'm-exact'], elided: ['Word for word, with a gap', 'm-exact'],
+  spanning: ['Word for word, across pages', 'm-exact'], fuzzy: ['Close, not exact', 'm-warn'],
+  UNVERIFIED: ['Not found', 'm-bad']};
+el('ledger-ct').textContent = cites.length;
+el('audit-rows').innerHTML = cites.map(c => {
+  const d = docs[c.doc] || {};
+  const [label, cls] = MATCH[c.status] || [c.status || '', ''];
+  return '<tr data-cite="' + c._i + '"><td class="n">' + (c._i + 1) + '</td>'
+    + '<td class="q">“' + esc(squash(c.quote)) + '”</td>'
+    + '<td class="w">' + esc(d.short || c.doc) + (c.page ? '<br>' + esc(pin(d, c.page)) : '') + '</td>'
+    + '<td class="m ' + cls + '">' + esc(label) + '</td></tr>';
+}).join('');
+
+/* ═══════════ tabs ═══════════ */
+const TABS = ['memo','sources','audit'];
+function showTab(name){
+  TABS.forEach(t => {
+    el('tab-' + t).setAttribute('aria-selected', String(t === name));
+    el('panel-' + t).hidden = t !== name;
+  });
+  try { localStorage.setItem('cite.tab', name); } catch(e){}
+}
+TABS.forEach(t => el('tab-' + t).addEventListener('click', () => showTab(t)));
+try { const s = localStorage.getItem('cite.tab'); if (TABS.includes(s)) showTab(s); } catch(e){}
+
+/* ═══════════ hover preview ═══════════ */
+const peek = el('peek');
+let peekTimer = null;
+function showPeek(target, c){
+  const d = docs[c.doc] || {};
+  peek.innerHTML = '<div class="pk-src"><span>' + esc(d.short || c.doc) + '</span>'
+    + (c.page ? '<span class="pg">' + esc(pin(d, c.page)) + '</span>' : '')
+    + gradeBadge(c, 'margin-left:auto') + '</div>'
+    + '<blockquote>' + esc(squash(c.quote)) + '</blockquote>'
+    + '<div class="pk-go"><span>Open source</span><span class="k">click</span></div>';
+  peek.classList.add('on');
+  const r = target.getBoundingClientRect();
+  const w = peek.offsetWidth, h = peek.offsetHeight;
+  let left = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12);
+  let top = r.bottom + 9;
+  if (top + h > innerHeight - 12) top = Math.max(12, r.top - h - 9);
+  peek.style.left = left + 'px';
+  peek.style.top = top + 'px';
+}
+function hidePeek(){ clearTimeout(peekTimer); peek.classList.remove('on'); }
+if (!COARSE){
+  document.addEventListener('mouseover', e => {
+    const t = e.target.closest('.cm, .cited');
+    if (!t){ if (!e.target.closest('.peek')) hidePeek(); return; }
+    clearTimeout(peekTimer);
+    peekTimer = setTimeout(() => showPeek(t, cites[Number(t.dataset.cite)]), 110);
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('.cm, .cited') && !(e.relatedTarget && e.relatedTarget.closest('.peek')))
+      peekTimer = setTimeout(hidePeek, 160);
+  });
+  document.addEventListener('focusin', e => {
+    const t = e.target.closest('.cm');
+    if (t) showPeek(t, cites[Number(t.dataset.cite)]); else hidePeek();
+  });
+}
+addEventListener('scroll', hidePeek, {passive: true});
+
+/* ═══════════ drawer ═══════════ */
+const drawer = el('drawer'), scrim = el('scrim'), dwBody = el('dw-body');
+let cur = null, curDoc = null, curPage = 1, mode = 'text', lastFocus = null;
+
+function renderPage(){
+  const d = docs[curDoc];
+  if (!d) return;
+  const page = (d.page_text || []).find(p => p.n === curPage);
+  const c = cur != null ? cites[cur] : null;
+  const here = c && c.doc === curDoc && c.page === curPage;
+
+  el('dw-num').textContent = c ? 'Citation ' + (c._i + 1) + ' of ' + cites.length : 'Browsing source';
+  el('dw-title').textContent = (META.short_names || {})[curDoc] || d.title;   // the answer's name for it, if it gave one
+  el('dw-path').textContent = d.path || d.filename;
+  el('pg-label').textContent = pin(d, curPage) + ' of ' + d.pages;
+  el('pg-prev').disabled = !(d.page_text || []).some(p => p.n < curPage);
+  el('pg-next').disabled = !(d.page_text || []).some(p => p.n > curPage);
+  const img = d.images && d.images[curPage];
+  el('viewseg').hidden = !img;
+  el('v-text').setAttribute('aria-pressed', String(mode === 'text'));
+  el('v-img').setAttribute('aria-pressed', String(mode === 'img'));
+  el('dw-copy').disabled = !c;
+
+  let head = '';
+  if (d.source && d.source.url){
+    head += '<div class="srcline"><span>Captured from</span>'
+      + '<a href="' + esc(d.source.final_url || d.source.url) + '" target="_blank" rel="noopener">'
+      + esc(d.source.url) + '</a>'
+      + '<span class="asof">as retrieved ' + esc(asof(d.source.retrieved_at)) + '</span>'
+      + (d.source.sha256 ? '<span class="asof">sha256 ' + esc(d.source.sha256.slice(0, 12)) + '</span>' : '')
+      + '<span class="asof">The text below is the archived copy the quote was taken from; '
+      + 'the live page may since have changed.</span></div>';
+  }
+  if (!(d.source && d.source.url)){
+    head += '<div class="srcline"><span>From your files</span><span>' + esc(d.path || d.filename)
+      + '</span><span class="asof">The text below is the copy that was read when this report was made.</span></div>';
+  }
+  if (d.thin){
+    head += '<div class="flag">Almost no text was extracted from this capture. It is very '
+      + 'likely site navigation rather than the document, and nothing here should be quoted.</div>';
+  }
+  if (d.ocr){
+    head += '<div class="flag">Read by OCR (' + esc(d.ocr.engine)
+      + '). The text below was inferred from the scan'
+      + (img ? ' \u2014 switch to <b>page</b> above to check it against the image.'
+             : '; no page image was bundled.') + '</div>';
+  }
+  if (here){
+    if (c._claim) head += '<div class="claimback"><b>Supports</b>' + esc(c._claim) + '</div>';
+    if (c.why) head += '<div class="why"><b>Why</b>' + esc(c.why) + '</div>';
+    if (c.status === 'fuzzy') head += '<div class="flag">The answer’s wording drifted from the source '
+      + '(similarity ' + Number(c.score).toFixed(2) + '). Highlighted is what the document actually says.</div>';
+    if (c.status === 'UNVERIFIED') head += '<div class="flag bad">This quote could not be located in the '
+      + 'source. Treat the proposition as unsupported.</div>';
+    if (c.ambiguous) head += '<div class="flag">This passage occurs more than once in the document; '
+      + 'the first occurrence is highlighted.</div>';
+    if (c.continues) head += '<div class="flag">The quoted sentence continues onto the next page.</div>';
+  }
+  if (!page){
+    dwBody.innerHTML = head + '<div class="empty">This page wasn\u2019t included in the report.<br>'
+      + (d.source && d.source.url ? 'The live page is linked above.'
+         : 'It\u2019s in ' + esc(d.path || d.filename) + ' on the computer the report was made on.') + '</div>';
+    return;
+  }
+  if (mode === 'img' && img){
+    dwBody.innerHTML = head + '<img class="pageimg" alt="' + esc(d.title) + ', ' + esc(pin(d, curPage))
+      + '" src="' + esc(img) + '">';
+    return;
+  }
+  /* Rejoin lines the source hard-wrapped so each sentence reads as one line. Each newline
+     is swapped for a single space (same length), so the verifier's character offsets
+     still line up. Short lines, like signature blocks, addresses and lists, keep their breaks. */
+  const t = page.text.replace(/([^\n]{55,})\n(?=[^\n\s#>*|-])/g, '$1 ');
+  dwBody.innerHTML = head + '<div class="sheet">'
+    + (here && c.start != null && c.end > c.start
+        ? esc(t.slice(0, c.start)) + '<mark id="hl" class="flash">' + esc(t.slice(c.start, c.end))
+          + '</mark>' + esc(t.slice(c.end))
+        : esc(t))
+    + '</div>';
+  const hl = el('hl');
+  if (hl) hl.scrollIntoView({block:'center', behavior:'auto'});
+  else dwBody.scrollTop = 0;
+}
+
+function openDrawer(){
+  if (drawer.classList.contains('open')) return;
+  lastFocus = document.activeElement;
+  drawer.classList.add('open'); scrim.classList.add('open'); document.body.classList.add('docked');
+  drawer.setAttribute('aria-hidden','false');
+  el('dw-close').focus({preventScroll:true});
+}
+function closeDrawer(){
+  drawer.classList.remove('open'); scrim.classList.remove('open'); document.body.classList.remove('docked');
+  drawer.setAttribute('aria-hidden','true');
+  clearMarks(); cur = null;
+  if (lastFocus && lastFocus.isConnected) lastFocus.focus({preventScroll:true});
+}
+function clearMarks(){
+  document.querySelectorAll('.cm.on, .cited.on').forEach(n => n.classList.remove('on'));
+  document.querySelectorAll('.claim.lit').forEach(n => n.classList.remove('lit'));
+}
+function showCite(i){
+  if (!cites.length) return;
+  hidePeek();
+  cur = (i + cites.length) % cites.length;
+  const c = cites[cur];
+  curDoc = c.doc; curPage = c.page || 1;
+  const d = docs[curDoc] || {};
+  if (!(d.images && d.images[curPage])) mode = 'text';
+  clearMarks();
+  document.querySelectorAll('[data-cite="' + cur + '"]').forEach(n => {
+    if (n.classList.contains('cm') || n.classList.contains('cited')) n.classList.add('on');
+  });
+  const m = document.querySelector('.cm.on');
+  if (m){
+    const p = m.closest('.claim');
+    if (p) p.classList.add('lit');
+    if (el('panel-memo').hidden === false){
+      const r = m.getBoundingClientRect();
+      if (r.top < 90 || r.bottom > innerHeight - 40)
+        m.scrollIntoView({block:'center', behavior:'smooth'});
+    }
+  }
+  openDrawer(); renderPage();
+}
+function browseDoc(id, page){
+  hidePeek(); cur = null; curDoc = id; curPage = page || 1; mode = 'text';
+  clearMarks(); openDrawer(); renderPage();
+}
+
+document.addEventListener('click', e => {
+  const hit = e.target.closest('.cm, .cited, .fn, tr[data-cite]');
+  if (hit){ showCite(Number(hit.dataset.cite)); return; }
+  const open = e.target.closest('.open-doc[data-doc]');
+  if (open) browseDoc(open.dataset.doc);
+});
+el('dw-close').addEventListener('click', closeDrawer);
+scrim.addEventListener('click', closeDrawer);
+el('pg-prev').addEventListener('click', () => { curPage--; renderPage(); });
+el('pg-next').addEventListener('click', () => { curPage++; renderPage(); });
+el('cite-prev').addEventListener('click', () => showCite((cur == null ? 0 : cur) - 1));
+el('cite-next').addEventListener('click', () => showCite(cur == null ? -1 : cur + 1));
+el('v-text').addEventListener('click', () => { mode = 'text'; renderPage(); });
+el('v-img').addEventListener('click', () => { mode = 'img'; renderPage(); });
+
+document.addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  if (e.key === 'Escape'){ if (drawer.classList.contains('open')) closeDrawer(); else hidePeek(); return; }
+  if (!drawer.classList.contains('open')) return;
+  if (e.key === 'j' || e.key === 'ArrowDown'){ e.preventDefault(); showCite((cur == null ? -1 : cur) + 1); }
+  if (e.key === 'k' || e.key === 'ArrowUp'){ e.preventDefault(); showCite((cur == null ? 1 : cur) - 1); }
+  if (e.key === 'ArrowLeft' && !el('pg-prev').disabled){ curPage--; renderPage(); }
+  if (e.key === 'ArrowRight' && !el('pg-next').disabled){ curPage++; renderPage(); }
+});
+
+/* ═══════════ exports ═══════════ */
+function toast(msg){
+  const t = el('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 1700);
+}
+async function copy(text, label){
+  try { await navigator.clipboard.writeText(text); toast(label + ' copied'); }
+  catch(err){ toast('Copy blocked — select the text instead'); }
+}
+el('dw-copy').addEventListener('click', () => {
+  if (cur == null) return;
+  const c = cites[cur], d = docs[c.doc] || {};
+  copy((d.title || c.doc) + (c.page ? ', ' + pin(d, c.page) : '') + ': “' + squash(c.quote) + '”', 'Citation');
+});
+function markdown(){
+  const L = ['# ' + TITLE, ''];
+  if (Q && Q !== TITLE && !MULTI) L.push('> ' + Q, '');
+  const fn = cs => (cs || []).map(c => '[^' + (c._i + 1) + ']').join('');
+  TURNS.forEach((t, ti) => {
+  if (MULTI){
+    L.push('## ' + qLabel(ti) + (t.title ? ': ' + t.title : ''), '');
+    if (t.question) L.push('> ' + squash(t.question), '');
+  }
+  if (t.summary) L.push('**' + t.summary + '**', '');
+  const H = MULTI ? '###' : '##';
+  let inPara = false;              // consecutive claims share a paragraph, as on the page
+  (DATA.blocks || []).slice(t._start, t._end).forEach(b => {
+    const type = b.type || 'claim';
+    if (type !== 'claim' || b.break || (inPara === 'list') !== !!b.list) inPara = false;
+    if (type === 'heading'){ L.push(H + ' ' + b.text, ''); return; }
+    if (type === 'note'){ L.push('*' + b.text + '*', ''); return; }
+    if (type === 'table'){
+      if (b.text) L.push(H + '# ' + b.text, '');
+      L.push('| ' + (b.columns || []).join(' | ') + ' |',
+             '|' + (b.columns || []).map(() => '---').join('|') + '|');
+      (b.rows || []).forEach(r => L.push('| ' + r.map(c => {
+        const isObj = c && typeof c === 'object';
+        return String(isObj ? c.text : c).replace(/\|/g, '\\|') + (isObj ? fn(c.cites) : '');
+      }).join(' | ') + ' |'));
+      L.push(''); return;
+    }
+    /* put each marker after the phrase it anchors to, as on the page */
+    let text = b.text || '', loose = [];
+    const placed = [];
+    (b.cites || []).forEach(c => {
+      const at = c.anchor ? text.indexOf(c.anchor) : -1;
+      if (at < 0) loose.push(c); else placed.push({end: at + c.anchor.length, c});
+    });
+    placed.sort((x, y) => y.end - x.end).forEach(p => {
+      text = text.slice(0, p.end) + '[^' + (p.c._i + 1) + ']' + text.slice(p.end);
+    });
+    text += fn(loose);
+    if (b.list){
+      if (L[L.length - 1] === '' && inPara === 'list') L.pop();
+      L.push((b.list === 'steps' ? '1. ' : '- ') + text, '');
+      inPara = 'list';
+      return;
+    }
+    if (inPara === true){ L.pop(); L[L.length - 1] += ' ' + text; L.push(''); }
+    else L.push(text, '');
+    inPara = true;
+  });
+  if ((t.gaps || []).length){
+    L.push(H + ' What the sources don\u2019t settle', '');
+    t.gaps.forEach(g => L.push('- ' + g));
+    L.push('');
+  }
+  });
+  L.push('---', '');
+  cites.forEach(c => {
+    const d = docs[c.doc] || {};
+    L.push('[^' + (c._i + 1) + ']: *' + (d.title || c.doc) + '*'
+      + (c.page ? ', ' + pin(d, c.page) : '') + ' — “' + squash(c.quote) + '”'
+      + (c.status && c.status !== 'exact' ? ' [' + c.status + ']' : ''));
+  });
+  return L.join('\n');
+}
+const menu = el('copy-menu'), menuBtn = el('copy-btn');
+const setMenu = on => { menu.hidden = !on; menuBtn.setAttribute('aria-expanded', String(on)); };
+menuBtn.addEventListener('click', e => { e.stopPropagation(); setMenu(menu.hidden); });
+document.addEventListener('click', e => { if (!e.target.closest('.head-side')) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+el('copy-md').addEventListener('click', () => { setMenu(false); copy(markdown(), 'Answer with footnotes'); });
+if (FOLLOW){
+  el('copy-fu').hidden = false;
+  el('copy-fu').addEventListener('click', () => { setMenu(false); copy(FOLLOW, 'Follow-up command'); });
+  el('fu-copy').addEventListener('click', () => copy(FOLLOW, 'Follow-up command'));
+}
+el('copy-json').addEventListener('click', () => (setMenu(false), copy(JSON.stringify({
+  report: DATA.report_id, title: TITLE, questions: TURNS.map(t => t.question),
+  generated: DATA.generated, corpus: V.corpus,
+  verification: {verified: V.verified, failed: V.failed, warnings: V.warnings, grades: V.grades},
+  citations: cites.map(c => ({n: c._i + 1, doc: c.doc, title: (docs[c.doc] || {}).title,
+    file: (docs[c.doc] || {}).path, page: c.page, start: c.start, end: c.end,
+    status: c.status, score: c.score, quote: c.quote, proposition: c._claim, question: c._turn + 1})),
+}, null, 1), 'Audit trail')));
+})();
+</script>

@@ -1,0 +1,12 @@
+{
+ "url": "https://www.law.cornell.edu/uscode/text/26/152",
+ "final_url": "https://www.law.cornell.edu/uscode/text/26/152",
+ "status": 200,
+ "content_type": "text/html",
+ "charset": "utf-8",
+ "retrieved_at": "2026-09-20T09:00:00Z",
+ "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+ "bytes": 1234,
+ "title": "26 U.S. Code § 152 - Dependent defined",
+ "captured_from": "fetch.py"
+}

@@ -1,0 +1,12 @@
+.citations/
+.fleet/
+__pycache__/
+*.verified.json
+report/
+reports/
+private/
+
+# eval runs and their source lists stay on the machine that made them;
+# the question set, scorer and scorecard are in the repo
+evals/runs/
+evals/sources/

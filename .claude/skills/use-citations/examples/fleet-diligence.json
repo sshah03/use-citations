@@ -1,0 +1,4107 @@
+{
+ "question": "What is in the eighty supplier agreements, and where is Orion exposed?",
+ "summary": "Sixteen of the eighty agreements cap nothing, eleven let the supplier be acquired without Orion's consent, and three do both at once. Twenty-seven renew themselves unless someone diaries a 90-day notice. Every cell in the grid below carries the sentence it was read from.",
+ "meta": {
+  "matter": "Orion Freight — supplier portfolio review"
+ },
+ "blocks": [
+  {
+   "type": "heading",
+   "text": "Where the exposure sits"
+  },
+  {
+   "type": "claim",
+   "text": "Sixteen agreements carry no aggregate cap on direct damages at all: the liability section waives consequential damages and then stops.",
+   "cites": [
+    {
+     "doc": "d2",
+     "anchor": "no aggregate cap on direct damages at all",
+     "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement.",
+     "why": "One of the sixteen. The count comes from the grid below, where every cell carries its own quote and can be checked one by one."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "Eleven agreements let the supplier assign to a successor in interest without Orion's consent, so a competitor that acquires the supplier inherits the contract and Orion has no say in it.",
+   "cites": [
+    {
+     "doc": "d7",
+     "anchor": "assign to a successor in interest without Orion's consent",
+     "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "Three agreements sit in both categories at once — uncapped exposure to a counterparty Orion cannot stop from changing hands. These are the first three to renegotiate.",
+   "cites": [
+    {
+     "doc": "d7",
+     "anchor": "uncapped exposure",
+     "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+    },
+    {
+     "doc": "d7",
+     "anchor": "cannot stop from changing hands",
+     "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days.",
+     "why": "Both defects in the same agreement."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "Eight agreements have no convenience exit whatsoever; absent a material breach Orion is bound for the full initial term of thirty-six (36) months.",
+   "cites": [
+    {
+     "doc": "d9",
+     "anchor": "no convenience exit whatsoever",
+     "quote": "This Agreement may be terminated only for cause as set out below."
+    },
+    {
+     "doc": "d9",
+     "anchor": "initial term of thirty-six (36) months",
+     "quote": "The initial term is thirty-six (36) months and expires at the end of that term unless the parties sign a written extension."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "Dates somebody has to diary"
+  },
+  {
+   "type": "claim",
+   "text": "Twenty-seven agreements renew automatically unless notice of non-renewal lands at least 90 days before the term ends — miss the window and Orion is committed for another twelve (12) month term.",
+   "cites": [
+    {
+     "doc": "d2",
+     "anchor": "at least 90 days before the term ends",
+     "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+    }
+   ]
+  },
+  {
+   "type": "note",
+   "text": "The grid below is the working record: sort it, take the three names from the paragraph above into renegotiation, and put the 90-day dates in a calendar."
+  },
+  {
+   "type": "table",
+   "text": "Every supplier agreement, term by term",
+   "columns": [
+    "Counterparty",
+    "Governing law",
+    "Convenience exit",
+    "Liability cap",
+    "Change of control",
+    "Renewal"
+   ],
+   "rows": [
+    [
+     {
+      "text": "Aldercrest Systems"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d1",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d1",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d1",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d1",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d1",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Baytown Logistics"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d2",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d2",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d2",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d2",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d2",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Cobalt Ridge Media"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d3",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d3",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d3",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d3",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d3",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Dunmore Analytics"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d4",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d4",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d4",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d4",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d4",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Eastvale Robotics"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d5",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d5",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d5",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d5",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d5",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Fernlea Foods"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d6",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d6",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d6",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d6",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d6",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Granthill Security"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d7",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d7",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d7",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d7",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d7",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Harrowgate Labs"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d8",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d8",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d8",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d8",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d8",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Ironvale Freight"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d9",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d9",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d9",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d9",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d9",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Juniper Park Health"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d10",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d10",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d10",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d10",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d10",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Kestrel Marine"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d11",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d11",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d11",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d11",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d11",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Lomond Textiles"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d12",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d12",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d12",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d12",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d12",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Marchbank Energy"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d13",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d13",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d13",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d13",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d13",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Northgate Dairy"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d14",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d14",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d14",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d14",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d14",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Oakbourne Aviation"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d15",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d15",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d15",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d15",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d15",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Pinecrest Optics"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d16",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d16",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d16",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d16",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d16",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Quarrymill Steel"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d17",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d17",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d17",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d17",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d17",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Redhaven Pharma"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d18",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d18",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d18",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d18",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d18",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Stonebridge Water"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d19",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d19",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d19",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d19",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d19",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Thornwick Mining"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d20",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d20",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d20",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d20",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d20",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Upminster Cables"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d21",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d21",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d21",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d21",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d21",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Vauxhall Paper"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d22",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d22",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d22",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d22",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d22",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Westcliff Grain"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d23",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d23",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d23",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d23",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d23",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Yarrowfield Tools"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d24",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d24",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d24",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d24",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d24",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Zephyr Ridge Chemicals"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d25",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d25",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d25",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d25",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d25",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Ashdown Plastics"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d26",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d26",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d26",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d26",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d26",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Brackenhill Tyres"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d27",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d27",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d27",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d27",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d27",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Caldermoor Glass"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d28",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d28",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d28",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d28",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d28",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Drayton Valley Seed"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d29",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d29",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d29",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d29",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d29",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Elmsworth Print"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d30",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d30",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d30",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d30",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d30",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Foxhall Instruments"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d31",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d31",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d31",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d31",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d31",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Glenmara Timber"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d32",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d32",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d32",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d32",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d32",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Havenport Shipping"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d33",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d33",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d33",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d33",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d33",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Inglewood Fabrics"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d34",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d34",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d34",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d34",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d34",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Jarrowgate Motors"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d35",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d35",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d35",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d35",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d35",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Kirkfield Composites"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d36",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d36",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d36",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d36",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d36",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Aldercrest Systems"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d37",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d37",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d37",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d37",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d37",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Baytown Logistics"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d38",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d38",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d38",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d38",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d38",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Cobalt Ridge Media"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d39",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d39",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d39",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d39",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d39",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Dunmore Analytics"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d40",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d40",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d40",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d40",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d40",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Eastvale Robotics"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d41",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d41",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d41",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d41",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d41",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Fernlea Foods"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d42",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d42",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d42",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d42",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d42",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Granthill Security"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d43",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d43",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d43",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d43",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d43",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Harrowgate Labs"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d44",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d44",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d44",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d44",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d44",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Ironvale Freight"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d45",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d45",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d45",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d45",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d45",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Juniper Park Health"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d46",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d46",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d46",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d46",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d46",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Kestrel Marine"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d47",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d47",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d47",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d47",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d47",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Lomond Textiles"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d48",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d48",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d48",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d48",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d48",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Marchbank Energy"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d49",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d49",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d49",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d49",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d49",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Northgate Dairy"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d50",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d50",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d50",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d50",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d50",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Oakbourne Aviation"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d51",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d51",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d51",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d51",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d51",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Pinecrest Optics"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d52",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d52",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d52",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d52",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d52",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Quarrymill Steel"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d53",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d53",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d53",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d53",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d53",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Redhaven Pharma"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d54",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d54",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d54",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d54",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d54",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Stonebridge Water"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d55",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d55",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d55",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d55",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d55",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Thornwick Mining"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d56",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d56",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d56",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d56",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d56",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Upminster Cables"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d57",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d57",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d57",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d57",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d57",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Vauxhall Paper"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d58",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d58",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d58",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d58",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d58",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Westcliff Grain"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d59",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d59",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d59",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d59",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d59",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Yarrowfield Tools"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d60",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d60",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d60",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d60",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d60",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Zephyr Ridge Chemicals"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d61",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d61",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d61",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d61",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d61",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Ashdown Plastics"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d62",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d62",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d62",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d62",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d62",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Brackenhill Tyres"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d63",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d63",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d63",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d63",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d63",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Caldermoor Glass"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d64",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d64",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d64",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d64",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d64",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Drayton Valley Seed"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d65",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d65",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d65",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d65",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d65",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Elmsworth Print"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d66",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d66",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d66",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d66",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d66",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Foxhall Instruments"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d67",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d67",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d67",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d67",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d67",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Glenmara Timber"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d68",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d68",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d68",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d68",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d68",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Havenport Shipping"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d69",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d69",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d69",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d69",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d69",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Inglewood Fabrics"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d70",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d70",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d70",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d70",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d70",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Jarrowgate Motors"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d71",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d71",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d71",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d71",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d71",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Kirkfield Composites"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d72",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "Excluded",
+      "cites": [
+       {
+        "doc": "d72",
+        "quote": "This Agreement may be terminated only for cause as set out below."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d72",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d72",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d72",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Aldercrest Systems"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d73",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d73",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d73",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d73",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d73",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Baytown Logistics"
+     },
+     {
+      "text": "Massachusetts",
+      "cites": [
+       {
+        "doc": "d74",
+        "quote": "This Agreement is governed by the laws of the State of Massachusetts, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d74",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d74",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d74",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d74",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Cobalt Ridge Media"
+     },
+     {
+      "text": "Washington",
+      "cites": [
+       {
+        "doc": "d75",
+        "quote": "This Agreement is governed by the laws of the State of Washington, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d75",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d75",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d75",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d75",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Dunmore Analytics"
+     },
+     {
+      "text": "Delaware",
+      "cites": [
+       {
+        "doc": "d76",
+        "quote": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d76",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "6-month fees",
+      "cites": [
+       {
+        "doc": "d76",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the six (6) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d76",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d76",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Eastvale Robotics"
+     },
+     {
+      "text": "Texas",
+      "cites": [
+       {
+        "doc": "d77",
+        "quote": "This Agreement is governed by the laws of the State of Texas, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d77",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "UNCAPPED",
+      "cites": [
+       {
+        "doc": "d77",
+        "quote": "The parties have not agreed any aggregate cap on direct damages under this Agreement."
+       }
+      ]
+     },
+     {
+      "text": "NO CONSENT RIGHT",
+      "cites": [
+       {
+        "doc": "d77",
+        "quote": "Either party may assign this Agreement to a successor in interest without the other party's consent, and shall give written notice of the assignment within thirty (30) days."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d77",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Fernlea Foods"
+     },
+     {
+      "text": "New York",
+      "cites": [
+       {
+        "doc": "d78",
+        "quote": "This Agreement is governed by the laws of the State of New York, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d78",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "2× 12-month fees",
+      "cites": [
+       {
+        "doc": "d78",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two (2) times the total fees paid by Customer under this Agreement in the prior twelve (12) months."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d78",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Expires at term",
+      "cites": [
+       {
+        "doc": "d78",
+        "quote": "There is no automatic renewal."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Granthill Security"
+     },
+     {
+      "text": "Illinois",
+      "cites": [
+       {
+        "doc": "d79",
+        "quote": "This Agreement is governed by the laws of the State of Illinois, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "60 days' notice",
+      "cites": [
+       {
+        "doc": "d79",
+        "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "12-month fees",
+      "cites": [
+       {
+        "doc": "d79",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds the total fees paid by Customer under this Agreement during the twelve (12) months preceding the claim."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d79",
+        "quote": "A change of control of Supplier is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 60-day notice",
+      "cites": [
+       {
+        "doc": "d79",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 60 days before the end of the then-current term."
+       }
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Harrowgate Labs"
+     },
+     {
+      "text": "California",
+      "cites": [
+       {
+        "doc": "d80",
+        "quote": "This Agreement is governed by the laws of the State of California, without regard to its conflict of laws principles."
+       }
+      ]
+     },
+     {
+      "text": "120 days' notice",
+      "cites": [
+       {
+        "doc": "d80",
+        "quote": "Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice to the other party."
+       }
+      ]
+     },
+     {
+      "text": "$2,000,000",
+      "cites": [
+       {
+        "doc": "d80",
+        "quote": "Neither party's aggregate liability arising out of or relating to this Agreement exceeds two million dollars ($2,000,000)."
+       }
+      ]
+     },
+     {
+      "text": "Consent required",
+      "cites": [
+       {
+        "doc": "d80",
+        "quote": "A change of control of either party is deemed an assignment requiring consent under this Section."
+       }
+      ]
+     },
+     {
+      "text": "Evergreen, 90-day notice",
+      "cites": [
+       {
+        "doc": "d80",
+        "quote": "This Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least 90 days before the end of the then-current term."
+       }
+      ]
+     }
+    ]
+   ]
+  }
+ ],
+ "gaps": [
+  "Order forms, SOWs and schedules are not in this set. Several agreements say fees and volumes live in schedules, so commercial terms cannot be compared from these files alone.",
+  "No amendments are present. A cap or a consent right may have been changed after signature, and nothing here would show it.",
+  "Insurance certificates are not in the set, so the $2,000,000 coverage each agreement requires is unverified in fact."
+ ]
+}

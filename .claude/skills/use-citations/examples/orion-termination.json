@@ -1,0 +1,186 @@
+{
+ "question": "If Orion terminates for convenience now, what notice must it give and what does it owe?",
+ "generated": "2026-09-20",
+ "summary": "Two notice periods run at once: 120 days to end the MSA, but only 30 days to end SOW No. 3, which the SOW buys with a 50% early-termination fee. The SOW expires on 30 September 2026 in any case, so notice served on the review date would take effect after it has already run. Prepaid fees for unperformed work come back within 45 days. And there is a faster door the question did not ask about: if Northwind is in uncured material breach, the MSA can be ended immediately after a 15-day cure period, with no fee.",
+ "meta": {
+  "title": "Ending the Orion contract early: notice and cost",
+  "matter": "Orion Freight — Northwind MSA",
+  "short_names": {
+   "d1": "Amendment No. 1",
+   "d2": "Signed counterpart",
+   "d3": "MSA",
+   "d4": "SOW No. 3"
+  },
+  "searches": [
+   {
+    "q": "terminate for convenience notice period",
+    "for": "confirm"
+   },
+   {
+    "q": "Section 11.1 deleted replaced amendment",
+    "for": "confirm"
+   },
+   {
+    "q": "SOW supersedes Section 11.1 early termination fee",
+    "for": "confirm"
+   },
+   {
+    "q": "prepaid fees refund",
+    "for": "confirm"
+   },
+   {
+    "q": "signature executed counterpart date signed",
+    "for": "confirm"
+   },
+   {
+    "q": "Amendment No. 2 second amendment subsequent — is there a later instrument that changes this?",
+    "for": "contradict"
+   },
+   {
+    "q": "termination for cause material breach immediately cure — is there a route that avoids the fee?",
+    "for": "contradict"
+   }
+  ]
+ },
+ "blocks": [
+  {
+   "type": "heading",
+   "text": "Notice"
+  },
+  {
+   "type": "claim",
+   "text": "The MSA as signed allowed either party out on 60 days' notice.",
+   "cites": [
+    {
+     "doc": "MSA_Northwind_Orion_2024",
+     "anchor": "60 days' notice",
+     "quote": "Either party may terminate this Agreement or any individual SOW for convenience upon sixty (60) days' prior written notice to the other party."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "Amendment No. 1 deleted that clause and doubled the period to 120 days, while handing SOW-level termination to each SOW's own terms.",
+   "cites": [
+    {
+     "doc": "Amendment_No_1_Jan2025",
+     "anchor": "doubled the period to 120 days",
+     "quote": "Section 11.1 of the Agreement is deleted in its entirety and replaced with the following: \"Either party may terminate this Agreement for convenience upon one hundred twenty (120) days' prior written notice. An individual SOW may be terminated for convenience only as expressly permitted by that SOW.\""
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "The amendment was executed: the scanned counterpart carries both signature blocks, dated 15 and 17 January 2025.",
+   "cites": [
+    {
+     "doc": "Amendment_No_1_SIGNED_scan",
+     "anchor": "carries both signature blocks",
+     "quote": "Each of the undersigned represents that it is duly authorized to execute this Amendment on behalf of the party indicated.",
+     "why": "Read by OCR from a scan; the drawer shows the page image. MSA § 14.1 requires a signed writing, so execution is what gives the 120-day clause force."
+    },
+    {
+     "doc": "Amendment_No_1_SIGNED_scan",
+     "anchor": "dated 15 and 17 January 2025",
+     "quote": "Date signed: January 15, 2025 ORION FREIGHT HOLDINGS, LLC By: Name: Daniel Okonkwo Title: Managing Member Date signed: January 17, 2025"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "SOW No. 3 is the express permission the amendment points to: it overrides § 11.1 for itself alone and sets 30 days' notice, priced at half the remaining commitment.",
+   "cites": [
+    {
+     "doc": "SOW-03-Dedicated-Team",
+     "anchor": "sets 30 days' notice, priced at half the remaining commitment",
+     "quote": "This SOW expressly supersedes Section 11.1 of the Agreement with respect to this SOW only. Customer may terminate this SOW for convenience upon thirty (30) days' prior written notice, provided that Customer pays an early termination fee equal to fifty percent (50%) of the remaining minimum commitment as of the effective date of termination."
+    },
+    {
+     "doc": "MSA_Northwind_Orion_2024",
+     "anchor": "overrides § 11.1 for itself alone",
+     "quote": "In the event of a conflict between this Agreement and any SOW, this Agreement controls except where the SOW expressly states that it supersedes a specified section of this Agreement.",
+     "why": "§ 1.2 requires the SOW to name the section it displaces. SOW No. 3 does."
+    }
+   ],
+   "break": true
+  },
+  {
+   "type": "claim",
+   "text": "The right is one-way: Northwind cannot end SOW No. 3 for convenience at all.",
+   "cites": [
+    {
+     "doc": "SOW-03-Dedicated-Team",
+     "anchor": "cannot end SOW No. 3 for convenience at all",
+     "quote": "Provider may not terminate this SOW for convenience during the SOW Term."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "Money"
+  },
+  {
+   "type": "claim",
+   "text": "The commitment the fee is half of is $2,160,000, billed at $120,000 a month.",
+   "cites": [
+    {
+     "doc": "SOW-03-Dedicated-Team",
+     "anchor": "$2,160,000, billed at $120,000 a month",
+     "quote": "Customer commits to a minimum of $2,160,000 over the SOW Term, invoiced as $120,000 per month."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "Prepaid fees for work not performed are refunded, and the amendment put a 45-day clock on paying them.",
+   "cites": [
+    {
+     "doc": "MSA_Northwind_Orion_2024",
+     "anchor": "Prepaid fees for work not performed are refunded",
+     "quote": "Provider shall refund any prepaid fees attributable to services not performed as of the effective date of termination, except that no refund is owed where Provider terminates for Customer's uncured material breach."
+    },
+    {
+     "doc": "Amendment_No_1_Jan2025",
+     "anchor": "a 45-day clock on paying them",
+     "quote": "Any refund of prepaid fees shall be paid within forty-five (45) days of the effective date of termination."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "text": "Timing, and a door the question did not ask about"
+  },
+  {
+   "type": "claim",
+   "text": "SOW No. 3 runs eighteen months from 1 April 2025 and so expires on 30 September 2026 — ten days after this review's date of 20 September 2026. Thirty days' notice served on that date lands after the SOW has ended, leaving no remaining commitment to take half of.",
+   "cites": [
+    {
+     "doc": "SOW-03-Dedicated-Team",
+     "anchor": "runs eighteen months from 1 April 2025",
+     "quote": "**SOW Effective Date:** April 1, 2025 **SOW Term:** Eighteen (18) months from the SOW Effective Date.",
+     "why": "The dates are quoted; the expiry and the ten-day gap to the review date are arithmetic on them, not something the document says."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "If Northwind is in material breach, the MSA can be terminated immediately once a 15-day cure period has run — no 120 days, and the refund exception cuts the other way.",
+   "confidence": "high",
+   "cites": [
+    {
+     "doc": "MSA_Northwind_Orion_2024",
+     "anchor": "terminated immediately once a 15-day cure period has run",
+     "quote": "Either party may terminate this Agreement immediately upon written notice if the other party commits a material breach that remains uncured for fifteen (15) days after written notice describing the breach in reasonable detail.",
+     "why": "Found by the disconfirming search for a route that avoids the fee. Whether a breach exists is a question of fact the file does not answer."
+    }
+   ],
+   "break": true
+  }
+ ],
+ "gaps": [
+  "SOWs No. 1 and No. 2 are referenced by numbering but are not in the file; if either is live it carries its own terms.",
+  "Nothing shows the prepaid balance actually standing to Orion's credit, so the refund figure cannot be computed.",
+  "Whether Northwind is in material breach — the condition for the § 11.2 route — is a question of fact outside these documents.",
+  "The scanned counterpart is the only evidence of execution; no wet-ink original is in the file."
+ ]
+}

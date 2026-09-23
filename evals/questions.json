@@ -1,0 +1,358 @@
+{
+ "about": "Public questions, quoted verbatim from sources that carry their own reference answer. None of the questions used while building this skill are included.",
+ "retrieved": "2026-09-20",
+ "questions": [
+  {
+   "id": "pm-mammography",
+   "domain": "health-research",
+   "question": "Can tailored interventions increase mammography use among HMO women?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/10808977/",
+   "retrieved": "2026-09-20",
+   "reference": "yes",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "pm-anticoag-trauma",
+   "domain": "health-research",
+   "question": "Therapeutic anticoagulation in the trauma patient: is it safe?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/18847643/",
+   "retrieved": "2026-09-20",
+   "reference": "no",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "pm-necrotizing-hbo",
+   "domain": "health-research",
+   "question": "Necrotizing fasciitis: an indication for hyperbaric oxygenation therapy?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/7482275/",
+   "retrieved": "2026-09-20",
+   "reference": "no",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "pm-acupuncture-voice",
+   "domain": "health-research",
+   "question": "Is Acupuncture Efficacious for Treating Phonotraumatic Vocal Pathologies?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/26298839/",
+   "retrieved": "2026-09-20",
+   "reference": "yes",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "pm-diabetes-fdgpet",
+   "domain": "health-research",
+   "question": "Does diabetes mellitus influence the efficacy of FDG-PET in the diagnosis of cervical cancer?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/15703931/",
+   "retrieved": "2026-09-20",
+   "reference": "no",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "pm-aneurysm-80",
+   "domain": "health-research",
+   "question": "Is aneurysm repair justified for the patients aged 80 or older after aneurysmal subarachnoid hemorrhage?",
+   "source": "PubMedQA pqa_labeled (bigbio/qiaojin, Hugging Face)",
+   "source_url": "https://pubmed.ncbi.nlm.nih.gov/24153338/",
+   "retrieved": "2026-09-20",
+   "reference": "yes",
+   "shape": "yes-no",
+   "expect_authority": "the paper itself (PubMed/PMC), not a summary of it"
+  },
+  {
+   "id": "tax-address",
+   "domain": "tax",
+   "question": "How do I notify the IRS my address has changed?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "how-to",
+   "expect_authority": "IRC/Treas. Reg. or the IRS form and its instructions (Form 8822)"
+  },
+  {
+   "id": "tax-1040x-efile",
+   "domain": "tax",
+   "question": "Can I file an amended Form 1040-X electronically?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no",
+   "expect_authority": "IRS form instructions / published procedure"
+  },
+  {
+   "id": "tax-dependent-age",
+   "domain": "tax",
+   "question": "Is there an age limit on claiming my child as a dependent?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "IRC § 152 and Publication 501"
+  },
+  {
+   "id": "tax-lost-refund",
+   "domain": "tax",
+   "question": "I lost my refund check. How do I get a new one?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "how-to",
+   "expect_authority": "IRS form and instructions (Form 3911)"
+  },
+  {
+   "id": "tax-w2-vs-1099",
+   "domain": "tax",
+   "question": "What's the difference between a Form W-2 and a Form 1099-MISC or Form 1099-NEC?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "explain",
+   "expect_authority": "form instructions; IRC §§ 3401/6041 for the underlying distinction"
+  },
+  {
+   "id": "tax-inherited-sale",
+   "domain": "tax",
+   "question": "Is money received from the sale of inherited property considered taxable income?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "IRC §§ 1014, 1001; Publication 551/559"
+  },
+  {
+   "id": "tax-minister-housing",
+   "domain": "tax",
+   "question": "I'm a minister and receive a salary plus a housing allowance. Is the housing allowance considered income and where do I report it?",
+   "source": "IRS Frequently Asked Questions",
+   "source_url": "https://www.irs.gov/faqs",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "IRC § 107; Publication 517"
+  },
+  {
+   "id": "ip-what-protected",
+   "domain": "law-ip",
+   "question": "What does copyright protect?",
+   "source": "U.S. Copyright Office FAQ",
+   "source_url": "https://www.copyright.gov/help/faq/",
+   "retrieved": "2026-09-20",
+   "shape": "explain",
+   "expect_authority": "17 U.S.C. § 102"
+  },
+  {
+   "id": "ip-register-required",
+   "domain": "law-ip",
+   "question": "Do I have to register with your office to be protected?",
+   "source": "U.S. Copyright Office FAQ",
+   "source_url": "https://www.copyright.gov/help/faq/",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no",
+   "expect_authority": "17 U.S.C. §§ 102, 408, 411, 412"
+  },
+  {
+   "id": "ip-duration",
+   "domain": "law-ip",
+   "question": "How long does a copyright last?",
+   "source": "U.S. Copyright Office FAQ",
+   "source_url": "https://www.copyright.gov/help/faq/",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "17 U.S.C. §§ 302–305"
+  },
+  {
+   "id": "ip-infringed",
+   "domain": "law-ip",
+   "question": "Somebody infringed my copyright. What can I do?",
+   "source": "U.S. Copyright Office FAQ",
+   "source_url": "https://www.copyright.gov/help/faq/",
+   "retrieved": "2026-09-20",
+   "shape": "how-to",
+   "expect_authority": "17 U.S.C. §§ 501–505, 411"
+  },
+  {
+   "id": "ip-quotes-samples",
+   "domain": "law-ip",
+   "question": "Could I be sued for using somebody else's work? How about quotes or samples?",
+   "source": "U.S. Copyright Office FAQ",
+   "source_url": "https://www.copyright.gov/help/faq/",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "17 U.S.C. §§ 106, 107, 501"
+  },
+  {
+   "id": "fin-free-credit-report",
+   "domain": "consumer-finance",
+   "question": "How do I get a free copy of my credit reports?",
+   "source": "Ask CFPB",
+   "source_url": "https://www.consumerfinance.gov/ask-cfpb/",
+   "retrieved": "2026-09-20",
+   "shape": "how-to",
+   "expect_authority": "FCRA 15 U.S.C. § 1681j; 12 CFR 1022"
+  },
+  {
+   "id": "fin-pmi-removal",
+   "domain": "consumer-finance",
+   "question": "When can I remove private mortgage insurance (PMI) from my loan?",
+   "source": "Ask CFPB",
+   "source_url": "https://www.consumerfinance.gov/ask-cfpb/",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "Homeowners Protection Act, 12 U.S.C. §§ 4901–4910"
+  },
+  {
+   "id": "fin-debt-collector-calls",
+   "domain": "consumer-finance",
+   "question": "When and how often can a debt collector call me on the phone?",
+   "source": "Ask CFPB",
+   "source_url": "https://www.consumerfinance.gov/ask-cfpb/",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "FDCPA 15 U.S.C. § 1692d; Regulation F, 12 CFR 1006.14"
+  },
+  {
+   "id": "fin-deposit-hold",
+   "domain": "consumer-finance",
+   "question": "How quickly can I get money after I deposit a check into my checking account? What is a deposit hold?",
+   "source": "Ask CFPB",
+   "source_url": "https://www.consumerfinance.gov/ask-cfpb/",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "Expedited Funds Availability Act; Regulation CC, 12 CFR 229"
+  },
+  {
+   "id": "emp-weekend-night-pay",
+   "domain": "law-employment",
+   "question": "Is extra pay required for weekend or night work?",
+   "source": "DOL Wage and Hour Division, FLSA FAQ",
+   "source_url": "https://www.dol.gov/agencies/whd/flsa/faq",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no",
+   "expect_authority": "FLSA 29 U.S.C. § 207; 29 CFR 778",
+   "reference": "No, not under the FLSA (a matter of agreement)"
+  },
+  {
+   "id": "emp-breaks",
+   "domain": "law-employment",
+   "question": "When must breaks and meal periods be given?",
+   "source": "DOL Wage and Hour Division, FLSA FAQ",
+   "source_url": "https://www.dol.gov/agencies/whd/flsa/faq",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "FLSA; 29 CFR 785.18–785.19",
+   "reference": "FLSA does not require them; short breaks if given are compensable"
+  },
+  {
+   "id": "emp-overtime-due",
+   "domain": "law-employment",
+   "question": "When is overtime due?",
+   "source": "DOL Wage and Hour Division, FLSA FAQ",
+   "source_url": "https://www.dol.gov/agencies/whd/flsa/faq",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "29 U.S.C. § 207(a); 29 CFR 778"
+  },
+  {
+   "id": "emp-max-hours",
+   "domain": "law-employment",
+   "question": "How many hours per day or per week can an employee work?",
+   "source": "DOL Wage and Hour Division, FLSA FAQ",
+   "source_url": "https://www.dol.gov/agencies/whd/flsa/faq",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "FLSA (no limit for 16+); 29 U.S.C. § 212 for minors",
+   "reference": "FLSA sets no limit for workers 16 and older"
+  },
+  {
+   "id": "emp-pay-stubs",
+   "domain": "law-employment",
+   "question": "Are pay stubs required?",
+   "source": "DOL Wage and Hour Division, FLSA FAQ",
+   "source_url": "https://www.dol.gov/agencies/whd/flsa/faq",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no",
+   "expect_authority": "29 CFR 516 (recordkeeping); state law",
+   "reference": "FLSA does not require pay stubs; it requires records"
+  },
+  {
+   "id": "eeoc-attorney",
+   "domain": "law-employment",
+   "question": "Do I need an attorney to file a job discrimination complaint with the EEOC?",
+   "source": "EEOC Frequently Asked Questions",
+   "source_url": "https://www.eeoc.gov/youth/frequently-asked-questions",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no",
+   "expect_authority": "42 U.S.C. § 2000e-5; 29 CFR 1601",
+   "reference": "No"
+  },
+  {
+   "id": "eeoc-time-limit",
+   "domain": "law-employment",
+   "question": "How much time do I have to report job discrimination to the EEOC?",
+   "source": "EEOC Frequently Asked Questions",
+   "source_url": "https://www.eeoc.gov/youth/frequently-asked-questions",
+   "retrieved": "2026-09-20",
+   "shape": "rule",
+   "expect_authority": "42 U.S.C. § 2000e-5(e)(1); 29 CFR 1601.13",
+   "reference": "180 days, extended to 300 where a state/local agency enforces a similar law"
+  },
+  {
+   "id": "eeoc-confidential",
+   "domain": "law-employment",
+   "question": "Will my company know if I talk to the EEOC?",
+   "source": "EEOC Frequently Asked Questions",
+   "source_url": "https://www.eeoc.gov/youth/frequently-asked-questions",
+   "retrieved": "2026-09-20",
+   "shape": "explain",
+   "expect_authority": "42 U.S.C. § 2000e-5(b); 29 CFR 1601"
+  },
+  {
+   "id": "fda-generics-safe",
+   "domain": "health-regulation",
+   "question": "What are generic drugs, and are they as safe and effective as brand name drugs?",
+   "source": "FDA, Generic Drugs: Questions & Answers",
+   "source_url": "https://www.fda.gov/drugs/generic-drugs/generic-drugs-questions-answers",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "21 U.S.C. § 355(j); 21 CFR part 314; FDA Orange Book"
+  },
+  {
+   "id": "fda-expiration",
+   "domain": "health-regulation",
+   "question": "Why is there an expiration date, the tablet looks perfectly fine?",
+   "source": "FDA, Generic Drugs: Questions & Answers",
+   "source_url": "https://www.fda.gov/drugs/generic-drugs/generic-drugs-questions-answers",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "21 U.S.C. § 355(j); 21 CFR part 314; FDA Orange Book"
+  },
+  {
+   "id": "fda-generic-side-effects",
+   "domain": "health-regulation",
+   "question": "Can generic drugs cause different side effects than brand name drugs?",
+   "source": "FDA, Generic Drugs: Questions & Answers",
+   "source_url": "https://www.fda.gov/drugs/generic-drugs/generic-drugs-questions-answers",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "21 U.S.C. § 355(j); 21 CFR part 314; FDA Orange Book"
+  },
+  {
+   "id": "fda-all-generics",
+   "domain": "health-regulation",
+   "question": "Are all prescription drugs available as generics?",
+   "source": "FDA, Generic Drugs: Questions & Answers",
+   "source_url": "https://www.fda.gov/drugs/generic-drugs/generic-drugs-questions-answers",
+   "retrieved": "2026-09-20",
+   "shape": "yes-no-with-rule",
+   "expect_authority": "21 U.S.C. § 355(j); 21 CFR part 314; FDA Orange Book"
+  }
+ ]
+}

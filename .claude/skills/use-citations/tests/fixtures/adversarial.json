@@ -1,0 +1,294 @@
+{
+ "question": "Adversarial fixture: every claim below is deliberately defective or deliberately tricky.",
+ "meta": {
+  "matter": "verifier test fixture",
+  "short_names": {
+   "d1": "The Provisions"
+  }
+ },
+ "blocks": [
+  {
+   "type": "claim",
+   "text": "CASE not-found: the quote below is invented and appears nowhere in the source.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Either party may cancel this Agreement immediately by sending an email to the other party."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE figure-swap: the source says fifty percent; this quote says twenty-five.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "an early termination fee equal to twenty-five percent (25%) of the remaining minimum commitment"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE uncited: a substantive claim carrying no citation at all."
+  },
+  {
+   "type": "claim",
+   "text": "CASE elided: a quote with an ellipsis must match each fragment in order.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Provider shall refund any prepaid fees ... as of the effective date of termination"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE hyphen-wrap: the source breaks a section number across a line.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "The gross receipts test is applied as provided in § 1.448-2(c) and in the related published guidance."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE typography: straight quotes and a hyphen must match curly quotes and an em dash.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "the \"Services\" are provided 'as is' - without warranty of any kind, express or implied."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE ambiguous-and-weak: a short provision that occurs twice in the document.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Time is of the essence"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE wrong-page: the page is misstated and should be corrected by the verifier.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "page": 7,
+     "quote": "Either party may terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE bad-anchor: the anchor is not a substring of this claim.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "anchor": "a phrase that is absent from the claim text",
+     "quote": "Nothing in this Section limits either party's rights or remedies at law or in equity, all of which are cumulative."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE unknown-doc: no document in the corpus matches this reference.",
+   "cites": [
+    {
+     "doc": "a-document-that-was-never-ingested",
+     "quote": "Time is of the essence in the performance of this Agreement."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE soft-hyphen: a word the source broke across a line must match the unbroken quote.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Each party shall provide the other with reasonable assistance in responding to any regulatory inquiry concerning the Services."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE negation-flip: source says 'may terminate'; the quote inserts 'not'.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Either party may not terminate this Agreement for convenience upon sixty (60) days' prior written notice to the other party."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE modal-flip: source says 'shall refund'; the quote says 'shall not refund'.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Provider shall not refund any prepaid fees attributable to services not performed as of the effective date of termination"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE elision-stitch: two fragments about 1,500 characters apart joined by an ellipsis.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Either party may terminate this Agreement ... all of which are cumulative."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE uncited-escape: no citation, and the old uncited_ok flag must no longer excuse it.",
+   "uncited_ok": true
+  },
+  {
+   "type": "claim",
+   "text": "CASE short-name: cited by the display name given in meta.short_names.",
+   "cites": [
+    {
+     "doc": "The Provisions",
+     "quote": "Customer shall pay an early termination fee equal to fifty percent (50%) of the remaining minimum commitment as of the effective date of termination."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE percent-word: the prose says fifty percent as 50 percent; the quote says 50%.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Customer shall pay an early termination fee equal to fifty percent (50%) of the remaining minimum commitment as of the effective date of termination."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE doc-number: Notice 2026-16, Rev. Proc. 2025-28, Table 3, Phase 2, ISO 9001 and version 4 are labels, not figures this claim asserts.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Nothing in this Section limits either party's rights or remedies at law or in equity, all of which are cumulative."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE compound-hyphen: an employee is protected for opposing on-the-job harassment.",
+   "cites": [
+    {
+     "doc": "d1",
+     "anchor": "opposing on-the-job harassment",
+     "quote": "because that employee has opposed on-the-job harassment or has made a charge under this title"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE statute-section: notice must be served within ten days under 42 U.S.C. 2000e-5(b) and 29 CFR 1601.14(a).",
+   "cites": [
+    {
+     "doc": "d1",
+     "anchor": "served within ten days",
+     "quote": "Notice of the charge shall be served on the respondent within ten days"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE partial-figure: a quote that stops inside $1,500 states a different rent.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Tenant shall pay monthly rent of $1"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE footnote-digit: a footnote marker read as a digit makes $500 into $5001.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "together with a late fee of $5001 for any payment received after the fifth day"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE dropped-negator: starting the quote just after 'Not' reverses a floor into a ceiling.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "less than thirty days before renewal, Tenant shall deliver written notice to Landlord"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE swapped-figures: the two deadlines are exchanged; both numbers still appear.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "The Supplier shall deliver within 60 days of the order and the Buyer shall pay within 30 days of delivery"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE comparison-flip: 'less than' becomes 'more than' in a near-verbatim quote.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "The liability cap shall not be more than the fees paid in the prior twelve months under this Agreement."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE number-word: a figure written as a word is changed from thirty to ninety.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Tenant may give notice to terminate this Lease upon ninety days' written notice to Landlord."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE subword-elision: an ellipsis fragment may not match inside another word ('not' in 'notice').",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "Tenant may ... not ... terminate this Lease"
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE endash-wrap: a regulation number the page breaks after its en dash still matches.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "The dollar limitation is set out in proposed § 1.163–16(h)(1) and applies to each return filed for the year."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "CASE faq-no: a quote that starts a new sentence after an FAQ's \"No.\" is not a dropped negation.",
+   "cites": [
+    {
+     "doc": "notice-provisions",
+     "quote": "You do not need to hire anyone to send the notice on your behalf."
+    }
+   ]
+  }
+ ]
+}

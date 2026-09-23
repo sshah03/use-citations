@@ -1,0 +1,37 @@
+{
+ "question": "hybrid fixture: one local file, one captured web document, both cited",
+ "meta": {
+  "searches": [
+   {
+    "q": "qualifying child age limit 152",
+    "for": "confirm"
+   },
+   {
+    "q": "age requirement exception disabled",
+    "for": "contradict"
+   }
+  ]
+ },
+ "blocks": [
+  {
+   "type": "claim",
+   "text": "The engagement covers only return preparation from client records.",
+   "cites": [
+    {
+     "doc": "engagement-letter",
+     "quote": "Our work is limited to the preparation of the returns from records you provide."
+    }
+   ]
+  },
+  {
+   "type": "claim",
+   "text": "A permanently disabled child meets the age test at any age.",
+   "cites": [
+    {
+     "doc": "26 U.S. Code § 152 - Dependent defined",
+     "quote": "In the case of an individual who is permanently and totally disabled (as defined in section 22(e)(3)) at any time during such calendar year, the requirements of subparagraph (A) shall be treated as met with respect to such individual."
+    }
+   ]
+  }
+ ]
+}
