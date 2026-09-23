@@ -24,12 +24,15 @@ run it again whenever you open a new Terminal window.
 ```bash
 CS=.claude/skills/use-citations/scripts
 
-python3 $CS/corpus.py new us-tax ~/libraries/us-tax \
+python3 $CS/corpus.py new us-tax \
   --describe "Primary US federal tax authority: statute, regs, published rulings"
 ```
 
-This creates a collection called `us-tax` in the folder `~/libraries/us-tax`. The skill
-keeps its own files in a hidden `.citations` folder inside it. Your documents stay wherever
+This creates a collection called `us-tax`. The skill keeps it in
+`~/.claude/citations/collections/us-tax`, out of the way. If you'd rather keep it
+somewhere you can see, put a folder after the name, like
+`corpus.py new us-tax ~/Documents/us-tax`, and the skill keeps its files in a hidden
+`.citations` folder inside that. Your documents stay wherever
 they are. The skill just keeps a short list of each collection's name and where it lives,
 so it can find it again.
 
@@ -40,7 +43,7 @@ Then add documents. You can add files from your computer, pages from the web, or
 ```bash
 python3 $CS/corpus.py add us-tax ~/Downloads/p17.pdf
 python3 $CS/corpus.py add us-tax --url https://www.irs.gov/pub/irs-pdf/p501.pdf
-python3 $CS/corpus.py add us-tax ~/libraries/us-tax/raw --images
+python3 $CS/corpus.py add us-tax ~/Documents/tax-pdfs --images
 ```
 
 The first line adds one file. The second downloads a document from a web address and

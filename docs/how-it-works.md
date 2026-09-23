@@ -103,7 +103,7 @@ doesn't show that its patterns will work on contracts written by different peopl
 ```bash
 python3 $CS/ingest.py ~/Documents/orion-contracts --images   # read a folder
 python3 $CS/fetch.py <url> --corpus us-tax               # save a web source
-python3 $CS/corpus.py new us-tax ~/libraries/us-tax      # name a collection
+python3 $CS/corpus.py new us-tax                        # name a collection
 python3 $CS/search.py "termination for convenience"      # search it
 python3 $CS/verify.py answer.json                        # check every quote
 python3 $CS/render.py answer.verified.json -o report     # build the report

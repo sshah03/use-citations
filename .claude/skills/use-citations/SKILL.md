@@ -65,10 +65,15 @@ unclear which copy of a document set to trust. When the user names the corpus to
 settles it: build there, even if another corpus holds some of the same documents. Make a new corpus for each matter rather than each question:
 
 ```bash
-python3 $CS/corpus.py new orion-msa ~/matters/orion \
-  --describe "Orion/Northwind contract file" --from ~/matters/orion/docs --images
-python3 $CS/corpus.py add orion-msa ~/matters/orion/late-arrivals
+python3 $CS/corpus.py new orion-msa \
+  --describe "Orion/Northwind contract file" --from ~/Documents/orion/docs --images
+python3 $CS/corpus.py add orion-msa ~/Documents/orion/late-arrivals
 ```
+
+Leave the folder out, as above. The collection then goes in
+`~/.claude/citations/collections/<name>`, beside the list of collections. Give a folder
+(`corpus.py new <name> <folder>`) only when the user names one. Never invent a new folder
+in their home directory or anywhere else.
 
 `$SK/references/corpora.md` is written to be handed to someone else. It explains how to build a
 corpus for a practice area and how to tell colleagues to point at it.
@@ -153,7 +158,7 @@ These rules matter most for web sources:
 ### 1b. Documents you already have
 
 ```bash
-python3 $CS/ingest.py ~/matters/orion --images
+python3 $CS/ingest.py ~/Documents/orion --images
 ```
 
 This splits every document into pages and stores the original text under `./.citations/`.

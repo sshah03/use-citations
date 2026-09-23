@@ -306,6 +306,20 @@ def phase_registry(tmp: Path) -> None:
             check(False, "an unregistered bare name fails loudly instead of becoming ./name")
         except SystemExit as e:
             check("no corpus named" in str(e), "an unregistered bare name fails loudly instead of becoming ./name", str(e)[:120])
+        # local files have "source": null, not a missing key, and that used to crash new/show
+        code, out, err = run("corpus.py", "new", "local-docs", str(tmp / "local"),
+                             "--describe", "files from this computer", "--from", str(FIX / "corpus"))
+        check(code == 0 and out and out.get("registered") == "local-docs",
+              "corpus new works on local files", err[-300:])
+        code, out, err = run("corpus.py", "show", "local-docs")
+        check(code == 0 and out and out.get("docs"), "corpus show lists local files", err[-300:])
+        code, _, err = run("corpus.py", "list")
+        check(code == 0, "corpus list works with a local-files corpus", err[-300:])
+        code, out, err = run("corpus.py", "new", "no-folder-given")
+        want = tmp / "registry" / "collections" / "no-folder-given" / ".citations"
+        got = _common.load_registry()["corpora"].get("no-folder-given", {}).get("path")
+        check(code == 0 and got == str(want.resolve()),
+              "with no folder, a collection goes beside the registry", f"{got} {err[-200:]}")
     finally:
         del os.environ["CITATIONS_REGISTRY"]
         importlib.reload(_common)

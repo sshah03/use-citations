@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Name a corpus so it can be pointed at, shared and reused.
 
-    python3 scripts/corpus.py new us-tax ~/libraries/tax --describe "IRC, regs, rulings"
+    python3 scripts/corpus.py new us-tax --describe "IRC, regs, rulings"   # lives in ~/.claude/citations/collections/us-tax
     python3 scripts/corpus.py add us-tax ~/downloads/rev-rul-2024-14.pdf
     python3 scripts/corpus.py add us-tax --url https://www.irs.gov/pub/irs-pdf/p501.pdf
     python3 scripts/corpus.py list
@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _common import (CORPUS_DIRNAME, corpus_manifest, corpus_root, die,  # noqa: E402
+from _common import (CORPUS_DIRNAME, REGISTRY, corpus_manifest, corpus_root, die,  # noqa: E402
                      load_registry, save_registry, forget_registry)
 
 HERE = Path(__file__).resolve().parent
@@ -71,7 +71,7 @@ def describe(root: Path) -> dict:
     manifest = corpus_manifest(root)
     index_file = root / "index.json"
     docs = json.loads(index_file.read_text())["docs"] if index_file.exists() else []
-    web = [d for d in docs if d.get("source", {}).get("url")]
+    web = [d for d in docs if (d.get("source") or {}).get("url")]
     return {
         **manifest,
         "path": str(root),
@@ -90,7 +90,9 @@ def cmd_new(args) -> int:
     if args.name in reg["corpora"] and not args.force:
         die(f"{args.name!r} is already registered at "
             f"{reg['corpora'][args.name]['path']} — use --force to repoint it")
-    root = Path(args.path).expanduser().resolve()
+    # With no folder given, collections live next to the list of them, out of the way,
+    # rather than in a new folder wherever Claude happens to guess.
+    root = (Path(args.path).expanduser() if args.path else REGISTRY.parent / "collections" / args.name).resolve()
     if root.name != CORPUS_DIRNAME:
         root = root / CORPUS_DIRNAME
     root.mkdir(parents=True, exist_ok=True)
@@ -149,7 +151,7 @@ def cmd_show(args) -> int:
                          "file": d["filename"],
                          **({"url": d["source"]["url"],
                              "retrieved": d["source"]["retrieved_at"]}
-                            if d.get("source", {}).get("url") else {}),
+                            if (d.get("source") or {}).get("url") else {}),
                          **({"low_yield": True} if d.get("thin") else {})}
                         for d in docs]
     print(json.dumps(info, indent=1))
@@ -174,7 +176,9 @@ def main() -> int:
 
     n = sub.add_parser("new", help="register a named corpus and optionally fill it")
     n.add_argument("name")
-    n.add_argument("path", help="where the corpus lives (a .citations dir is created inside)")
+    n.add_argument("path", nargs="?", default=None,
+                   help="where the corpus lives (a .citations dir is created inside); "
+                        "default ~/.claude/citations/collections/<name>")
     n.add_argument("--describe", default=None)
     n.add_argument("--from", dest="from_", nargs="*", default=[], help="documents to ingest now")
     n.add_argument("--url", nargs="*", default=[], help="URLs to capture now")
