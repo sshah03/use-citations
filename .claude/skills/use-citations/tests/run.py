@@ -281,6 +281,10 @@ def phase_hybrid(tmp: Path) -> None:
     from ingest import title_for  # noqa: E402
     got = title_for(Path("title-29-0a237027.html"), ["\u00a7 825.114 Inpatient care.\n\nInpatient care means an overnight stay."])
     check(got == "\u00a7 825.114 Inpatient care", "a section heading is used as the title", f"got {got!r}")
+    got = [title_for(Path(f), ["study on tests assessing the abilities important for the"]) for f in
+           ("USCODE-2023-title42-chap21-subchapVI-sec2000e-5-c402f4ab.pdf", "CFR-2024-title26-vol1-sec1-152-1.pdf")]
+    check(got == ["42 U.S.C. \u00a7 2000e-5", "26 C.F.R. \u00a7 1.152-1"],
+          "govinfo Code and CFR files are named from the file name, not the page's first line", f"got {got!r}")
 
 
 def phase_registry(tmp: Path) -> None:

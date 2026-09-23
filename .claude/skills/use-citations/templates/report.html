@@ -567,6 +567,9 @@ const el = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const pin = (d, n) => (d.page_label || 'p.') + ' ' + n;
+// what to call a document: the answer's own name for it if it gave one, since titles read
+// off a page are sometimes the tail of the previous section
+const docName = id => ((DATA.meta || {}).short_names || {})[id] || (docs[id] || {}).title || id;
 const squash = s => String(s || '').replace(/\s+/g,' ').trim();
 const host = u => { try { return new URL(u).host.replace(/^www\./, ''); } catch(e){ return u; } };
 const asof = s => String(s || '').slice(0, 10);
@@ -1210,7 +1213,7 @@ function renderPage(){
   const here = c && c.doc === curDoc && c.page === curPage;
 
   el('dw-num').textContent = c ? 'Citation ' + (c._i + 1) + ' of ' + cites.length : 'Browsing source';
-  el('dw-title').textContent = (META.short_names || {})[curDoc] || d.title;   // the answer's name for it, if it gave one
+  el('dw-title').textContent = docName(curDoc);
   el('dw-path').textContent = d.path || d.filename;
   el('pg-label').textContent = pin(d, curPage) + ' of ' + d.pages;
   el('pg-prev').disabled = !(d.page_text || []).some(p => p.n < curPage);
@@ -1263,7 +1266,7 @@ function renderPage(){
     return;
   }
   if (mode === 'img' && img){
-    dwBody.innerHTML = head + '<img class="pageimg" alt="' + esc(d.title) + ', ' + esc(pin(d, curPage))
+    dwBody.innerHTML = head + '<img class="pageimg" alt="' + esc(docName(curDoc)) + ', ' + esc(pin(d, curPage))
       + '" src="' + esc(img) + '">';
     return;
   }
@@ -1366,7 +1369,7 @@ async function copy(text, label){
 el('dw-copy').addEventListener('click', () => {
   if (cur == null) return;
   const c = cites[cur], d = docs[c.doc] || {};
-  copy((d.title || c.doc) + (c.page ? ', ' + pin(d, c.page) : '') + ': “' + squash(c.quote) + '”', 'Citation');
+  copy(docName(c.doc) + (c.page ? ', ' + pin(d, c.page) : '') + ': “' + squash(c.quote) + '”', 'Citation');
 });
 function markdown(){
   const L = ['# ' + TITLE, ''];
@@ -1425,7 +1428,7 @@ function markdown(){
   L.push('---', '');
   cites.forEach(c => {
     const d = docs[c.doc] || {};
-    L.push('[^' + (c._i + 1) + ']: *' + (d.title || c.doc) + '*'
+    L.push('[^' + (c._i + 1) + ']: *' + docName(c.doc) + '*'
       + (c.page ? ', ' + pin(d, c.page) : '') + ' — “' + squash(c.quote) + '”'
       + (c.status && c.status !== 'exact' ? ' [' + c.status + ']' : ''));
   });
@@ -1446,7 +1449,7 @@ el('copy-json').addEventListener('click', () => (setMenu(false), copy(JSON.strin
   report: DATA.report_id, title: TITLE, questions: TURNS.map(t => t.question),
   generated: DATA.generated, corpus: V.corpus,
   verification: {verified: V.verified, failed: V.failed, warnings: V.warnings, grades: V.grades},
-  citations: cites.map(c => ({n: c._i + 1, doc: c.doc, title: (docs[c.doc] || {}).title,
+  citations: cites.map(c => ({n: c._i + 1, doc: c.doc, title: docName(c.doc),
     file: (docs[c.doc] || {}).path, page: c.page, start: c.start, end: c.end,
     status: c.status, score: c.score, quote: c.quote, proposition: c._claim, question: c._turn + 1})),
 }, null, 1), 'Audit trail')));

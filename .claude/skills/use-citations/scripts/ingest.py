@@ -200,6 +200,15 @@ def title_for(path: Path, pages: list[str]) -> str:
     received stamp above the actual title, so we score the first few candidate
     lines and take the best one.
     """
+    # govinfo's U.S. Code and CFR files open mid-page (the previous section's tail),
+    # but their file names say exactly what they are
+    stem = re.sub(r"-[0-9a-f]{8}$", "", path.stem)          # fetch.py's hash suffix
+    m = re.match(r"USCODE-\d{4}-title(\d+)\S*?-sec(\w+(?:-\w+)?)$", stem)
+    if m:
+        return f"{m.group(1)} U.S.C. \u00a7 {m.group(2)}"
+    m = re.match(r"CFR-\d{4}-title(\d+)\S*?-sec(\d+)-(\w+(?:-\w+)?)$", stem)
+    if m:
+        return f"{m.group(1)} C.F.R. \u00a7 {m.group(2)}.{m.group(3)}"
     # a Markdown file that opens with a level-one heading: use the heading
     if path.suffix.lower() in {".md", ".markdown"}:
         first = next((ln.strip() for ln in (pages[0] if pages else "").splitlines() if ln.strip()), "")
