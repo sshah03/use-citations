@@ -5,9 +5,7 @@ matched against the original file.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-
-https://github.com/user-attachments/assets/49d3089f-8a89-42f4-8a72-446724f1568a
-
+https://github.com/user-attachments/assets/7212a2e2-f890-4c6e-ac81-28bc4d308e7f
 
 This is a Claude Code skill for questions where you need to see exactly where an answer
 came from: contracts, tax rules, statutes, clinical guidelines, research papers, company
