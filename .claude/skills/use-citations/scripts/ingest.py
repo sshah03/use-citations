@@ -243,7 +243,7 @@ class _HTMLText(html.parser.HTMLParser):
 
 def read_html(path: Path) -> str:
     p = _HTMLText()
-    p.feed(path.read_text(errors="replace"))
+    p.feed(path.read_text(encoding="utf-8", errors="replace"))
     main = re.sub(r"\n{3,}", "\n\n", "".join(p.main_out)).strip()
     whole = re.sub(r"\n{3,}", "\n\n", "".join(p.out) + "".join(p.main_out)).strip()
     # use <main>/<article> only when it holds a real share of the page's text
@@ -251,7 +251,7 @@ def read_html(path: Path) -> str:
 
 
 def read_rtf(path: Path) -> str:
-    raw = path.read_text(errors="replace")
+    raw = path.read_text(encoding="utf-8", errors="replace")
     raw = re.sub(r"\\'([0-9a-fA-F]{2})", lambda m: chr(int(m.group(1), 16)), raw)
     raw = re.sub(r"\\par[d]?\b", "\n", raw)
     raw = re.sub(r"\{\\\*?[^{}]*\}", " ", raw)
@@ -419,7 +419,7 @@ def main() -> int:
         ensure_deps(["pymupdf"], ["pymupdf"], root)
 
     index_file = root / "index.json"
-    index = json.loads(index_file.read_text()) if index_file.exists() else {"docs": []}
+    index = json.loads(index_file.read_text(encoding="utf-8")) if index_file.exists() else {"docs": []}
     by_path = {d["path"]: d for d in index["docs"]}
     next_n = 1 + max((int(d["id"][1:]) for d in index["docs"] if d["id"][1:].isdigit()), default=0)
 
@@ -428,7 +428,7 @@ def main() -> int:
     for f in files:
         digest = hashlib.sha256(f.read_bytes()).hexdigest()
         sidecar = Path(str(f) + ".source.json")
-        source = json.loads(sidecar.read_text()) if sidecar.exists() else None
+        source = json.loads(sidecar.read_text(encoding="utf-8")) if sidecar.exists() else None
         prior = by_path.get(str(f.resolve()))
         if prior and prior["sha256"] == digest and not args.force:
             skipped += 1
@@ -437,6 +437,7 @@ def main() -> int:
         ext = f.suffix.lower()
         scanned = False
         ocr_info = None
+        no_ocr = False
         try:
             if ext == ".pdf":
                 pages, scanned, empty_pages = read_pdf(f)
@@ -445,7 +446,19 @@ def main() -> int:
                         f"{f.name}: {empty_pages} of {len(pages)} pages have no text layer and "
                         f"were not OCR'd \u2014 likely scanned exhibits inside a text document. "
                         f"Re-run with --ocr force if you need to cite them.")
-                if args.ocr != "off" and (scanned or args.ocr == "force"):
+                want_ocr = args.ocr != "off" and (scanned or args.ocr == "force")
+                if want_ocr and args.ocr_engine == "auto":
+                    from ocr import available_engines
+                    if not available_engines():
+                        # Not installed is normal on Windows and Linux. Read the rest of the
+                        # folder and say how to fix it, rather than stopping on this file.
+                        want_ocr, no_ocr = False, True
+                        warnings.append(
+                            f"{f.name}: this is a scan (no text layer) and no OCR program is "
+                            f"installed, so it can't be read or cited. Install Tesseract "
+                            f"(Windows: winget install UB-Mannheim.TesseractOCR; Linux: sudo apt "
+                            f"install tesseract-ocr; Mac: brew install tesseract), then read it again.")
+                if want_ocr:
                     from ocr import LOW_CONFIDENCE, ocr_pdf
                     res = ocr_pdf(f, args.ocr_dpi, args.ocr_engine, root)
                     pages = [p["text"] for p in res["pages"]]
@@ -470,7 +483,7 @@ def main() -> int:
             elif ext == ".rtf":
                 pages = paginate(read_rtf(f))
             else:
-                pages = paginate(f.read_text(errors="replace"))
+                pages = paginate(f.read_text(encoding="utf-8", errors="replace"))
         except Exception as exc:  # warn and move on; one bad file shouldn't stop the run
             warnings.append(f"{f.name}: {type(exc).__name__}: {exc}")
             continue
@@ -498,7 +511,7 @@ def main() -> int:
                 f"consent wall. Check it before citing anything from it; the document is "
                 f"usually available elsewhere.")
 
-        if scanned:
+        if scanned and not no_ocr:
             warnings.append(f"{f.name}: no text layer (scanned image PDF) and --ocr off \u2014 "
                             f"it cannot be cited. Re-run without --ocr off.")
 

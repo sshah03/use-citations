@@ -80,7 +80,8 @@ checked.
   happens. It also warns you about pages that download fine but turn out to be almost
   empty.
 - **Scans.** If a PDF is just images of pages, the skill reads the text with OCR (text
-  recognition, built into macOS). Quotes from a scan are marked as such, and a picture of
+  recognition). On a Mac that's built in; on Linux and Windows it uses Tesseract, which
+  you install once. Quotes from a scan are marked as such, and a picture of
   the page is included so you can check the text against it.
 - **Saved collections.** You can save a set of documents under a name, such as `us-tax`,
   and ask about it again later. [`references/corpora.md`](../.claude/skills/use-citations/references/corpora.md)

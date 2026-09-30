@@ -89,7 +89,7 @@ def main() -> int:
     src = Path(args.answer)
     if not src.exists():
         die(f"no such file: {src}")
-    answer = json.loads(src.read_text())
+    answer = json.loads(src.read_text(encoding="utf-8"))
     if "verification" not in answer:
         die("this answer has not been verified — run scripts/verify.py first")
 
@@ -224,11 +224,11 @@ def main() -> int:
         home = str(Path.home())
         data = data.replace(json.dumps(home)[1:-1], "~")
     data = data.replace("<", "\\u003c")
-    html = (TEMPLATE.read_text()
+    html = (TEMPLATE.read_text(encoding="utf-8")
             .replace("__TITLE__", title.replace("<", "").replace("&", "&amp;"))
             .replace("__CITATION_DATA__", data))
     page = out_dir / "index.html"
-    page.write_text(html)
+    page.write_text(html, encoding="utf-8")
 
     print(json.dumps({
         "page": str(page),

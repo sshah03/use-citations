@@ -17,7 +17,7 @@ answer isn't shown to you until that's fixed.
 ## Install
 
 You need [Claude Code](https://claude.com/claude-code) and Python 3.10 or newer, on a
-Mac or Linux.
+Mac, Linux or Windows.
 
 The easy way is to let Claude do it. Start Claude Code and paste this in:
 
@@ -39,11 +39,18 @@ Then start a new Claude Code session, and `/use-citations` is ready. To see whic
 you have, type `python3 --version` in the Terminal. Most Macs already have it. If yours
 doesn't, you can get it from [python.org](https://www.python.org/downloads/).
 
+**On Windows**, install Python from [python.org](https://www.python.org/downloads/) and tick
+"Add python.exe to PATH" in the installer. Check it with `python --version` (on Windows
+it's usually `python`, not `python3`). To read scanned PDFs you also need Tesseract, the
+free text-recognition program: in PowerShell, run `winget install UB-Mannheim.TesseractOCR`.
+PDFs that already have text don't need it.
+
 To update it later, type `/plugin marketplace update use-citations` in Claude Code, then
 `/plugin update use-citations@use-citations`. To remove it, type
 `/plugin uninstall use-citations@use-citations`.
 
-**If you'd rather not use a plugin**, you can still install it by hand. Open the Terminal
+**If you'd rather not use a plugin**, you can still install it by hand on a Mac or Linux
+(on Windows, use the plugin). Open the Terminal
 app (on a Mac, press Cmd+Space and type "Terminal"), paste these lines and press Return:
 
 ```bash
@@ -169,7 +176,9 @@ how to run the same questions yourself.
   isn't there.
 - It checks quotes. The reasoning between them, like which document wins when two
   disagree, or any arithmetic, is Claude's, and the report marks it so you can check it.
-- It hasn't been tested on Windows. And none of this is legal, tax or medical advice.
+- On Windows, every test passes, but it has had much less real use than on a Mac. If
+  something goes wrong there, please [open an issue](https://github.com/sshah03/use-citations/issues).
+- None of this is legal, tax or medical advice.
 
 ## More
 

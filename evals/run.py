@@ -50,7 +50,7 @@ RESULTS_JSON = HERE / "results.json"
 
 
 def questions() -> list[dict]:
-    return json.loads(QUESTIONS.read_text())["questions"]
+    return json.loads(QUESTIONS.read_text(encoding="utf-8"))["questions"]
 
 
 def corpus_for(qid: str) -> Path | None:
@@ -74,14 +74,14 @@ def score_one(q: dict) -> dict:
 
     r = subprocess.run([sys.executable, str(CS / "verify.py"), str(answer), "--corpus", str(root),
                         "--lenient", "-o", str(run_dir / "answer.verified.json")],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8")
     try:
         v = json.loads(r.stdout)
     except json.JSONDecodeError:
         return {**out, "status": "verify-error", "error": (r.stderr or r.stdout)[-200:]}
 
-    verified = json.loads((run_dir / "answer.verified.json").read_text())
-    index = json.loads((root / "index.json").read_text())
+    verified = json.loads((run_dir / "answer.verified.json").read_text(encoding="utf-8"))
+    index = json.loads((root / "index.json").read_text(encoding="utf-8"))
     by_id = {d["id"]: d for d in index["docs"]}
     cited_ids = {e["doc"] for e in v.get("ledger", []) or verified["verification"]["ledger"]}
     cited_urls = {(by_id[d].get("source") or {}).get("url") for d in cited_ids if d in by_id}
@@ -94,7 +94,7 @@ def score_one(q: dict) -> dict:
     judgment = {}
     jf = run_dir / "judgment.json"
     if jf.exists():
-        judgment = json.loads(jf.read_text())
+        judgment = json.loads(jf.read_text(encoding="utf-8"))
     agrees = judgment.get("agrees_with_reference")
 
     passed = (v["failed"] == 0 and has_contra and not circular
@@ -125,7 +125,7 @@ def cmd_score(ids: list[str], out_md: Path = RESULTS_MD, out_json: Path = RESULT
     run = [r for r in rows if r["status"] == "run"]
     passed = [r for r in run if r["pass"]]
     # A fresh clone has answers but no corpora, so don't overwrite the real scorecard with an empty one.
-    if not run and out_md == RESULTS_MD and RESULTS_MD.exists() and "of" in RESULTS_MD.read_text()[:400]:
+    if not run and out_md == RESULTS_MD and RESULTS_MD.exists() and "of" in RESULTS_MD.read_text(encoding="utf-8")[:400]:
         print("no run has a corpus on this machine; leaving the committed RESULTS.md untouched.\n"
               "Rebuild a corpus with: python3 evals/run.py rebuild <id>", file=sys.stderr)
         return 1
@@ -163,8 +163,8 @@ def cmd_score(ids: list[str], out_md: Path = RESULTS_MD, out_json: Path = RESULT
         notes = [(r["id"], r["notes"]) for r in run if r.get("notes")]
         if notes:
             lines += ["", "## Notes", "", "For each answer I checked by hand: what the official answer says, and how the skill's answer compares.", ""] + [f"- **{i}**: {n}" for i, n in notes]
-    out_md.write_text("\n".join(lines) + "\n")
-    out_json.write_text(json.dumps({"scored": date.today().isoformat(), "rows": rows}, indent=1))
+    out_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    out_json.write_text(json.dumps({"scored": date.today().isoformat(), "rows": rows}, indent=1), encoding="utf-8")
     print("\n".join(lines))
     return 0
 
@@ -173,7 +173,7 @@ def cmd_rebuild(qid: str) -> int:
     src = RUNS / qid / "sources.json"
     if not src.exists():
         print(f"no sources.json for {qid}", file=sys.stderr); return 2
-    urls = [d["url"] for d in json.loads(src.read_text())["documents"] if d.get("url")]
+    urls = [d["url"] for d in json.loads(src.read_text(encoding="utf-8"))["documents"] if d.get("url")]
     if not urls:
         print(f"{qid}: sources.json lists no URLs (local-file corpus); nothing to rebuild", file=sys.stderr); return 2
     r = subprocess.run([sys.executable, str(CS / "corpus.py"), "new", f"eval-{qid}", str(RUNS / qid),

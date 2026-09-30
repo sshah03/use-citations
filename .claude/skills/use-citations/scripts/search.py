@@ -89,7 +89,7 @@ def load_bm25(root: Path, index: dict) -> dict:
         key = (str(f), f.stat().st_mtime)
         if key not in _BM25_CACHE:
             _BM25_CACHE.clear()
-            _BM25_CACHE[key] = json.loads(f.read_text())
+            _BM25_CACHE[key] = json.loads(f.read_text(encoding="utf-8"))
         return _BM25_CACHE[key]
     bm = build_index(root, index)
     _BM25_CACHE.clear()

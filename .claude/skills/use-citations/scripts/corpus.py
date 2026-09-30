@@ -39,7 +39,7 @@ def run(script: str, args: list[str]) -> dict:
     couldn't be parsed, and every caller of these scripts parses their output.
     """
     r = subprocess.run([sys.executable, str(HERE / script), *args],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8")
     sys.stderr.write(r.stderr)
     if r.returncode != 0:
         print(r.stdout, file=sys.stderr)
@@ -70,7 +70,7 @@ def summarize(steps: dict) -> dict:
 def describe(root: Path) -> dict:
     manifest = corpus_manifest(root)
     index_file = root / "index.json"
-    docs = json.loads(index_file.read_text())["docs"] if index_file.exists() else []
+    docs = json.loads(index_file.read_text(encoding="utf-8"))["docs"] if index_file.exists() else []
     web = [d for d in docs if (d.get("source") or {}).get("url")]
     return {
         **manifest,
@@ -100,7 +100,7 @@ def cmd_new(args) -> int:
         "name": args.name,
         "description": args.describe or "",
         "created": now(),
-    }, indent=1))
+    }, indent=1), encoding="utf-8")
     reg["corpora"][args.name] = {"path": str(root), "description": args.describe or "",
                                  "created": now()}
     save_registry(reg)
@@ -146,7 +146,7 @@ def cmd_show(args) -> int:
     info = describe(root)
     index_file = root / "index.json"
     if index_file.exists():
-        docs = json.loads(index_file.read_text())["docs"]
+        docs = json.loads(index_file.read_text(encoding="utf-8"))["docs"]
         info["docs"] = [{"id": d["id"], "title": d["title"], "pages": d["pages"],
                          "file": d["filename"],
                          **({"url": d["source"]["url"],

@@ -6,10 +6,14 @@ If someone has asked you to install this skill, these are the steps. Tell them b
 what you're about to do, then do it.
 
 1. **Check the basics.** You need Python 3.10 or newer (and `git`, if installing by hand).
-   Run `python3 --version`.
-   If Python is missing or older than 3.10, stop and tell them: on a Mac they can get it
-   from https://www.python.org/downloads/. It works on macOS and Linux; it hasn't been
-   tested on Windows, so say so if that's what they're on.
+   Run `python3 --version`; on Windows, run `python --version`, since `python3` there is
+   often a shortcut to the Microsoft Store that prints "Python was not found".
+   If Python is missing or older than 3.10, stop and tell them they can get it from
+   https://www.python.org/downloads/ (on Windows, tick "Add python.exe to PATH" in the
+   installer). It works on macOS, Linux and Windows. On Windows, also check for Tesseract
+   (`tesseract --version`). It's only needed for scanned PDFs, so if it's missing, tell
+   them they can install it with `winget install UB-Mannheim.TesseractOCR` and carry on.
+   On Windows, always use the plugin install, not the hand install, which needs symlinks.
 
 2. **Install the plugin.** The repo is its own plugin marketplace:
 
@@ -42,6 +46,8 @@ what you're about to do, then do it.
    SK="$(claude plugin list --json | python3 -c "import json,sys; print(next(p['installPath'] for p in json.load(sys.stdin) if p['id'] == 'use-citations@use-citations'))")/.claude/skills/use-citations"
    python3 "$SK/tests/run.py"
    ```
+
+   On Windows, use `python` in place of `python3` in both lines.
 
    It should end with "0 failed". A few tests are skipped on a fresh install, which is
    expected. If anything fails, show them the failure rather than carrying on.

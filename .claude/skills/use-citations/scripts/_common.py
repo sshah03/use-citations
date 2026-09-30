@@ -16,6 +16,13 @@ from pathlib import Path
 
 CORPUS_DIRNAME = ".citations"
 VENV_DIRNAME = "venv"
+WINDOWS = os.name == "nt"
+
+# Print UTF-8 everywhere. Windows otherwise uses its old code page for the console and
+# pipes, and a document with a curly quote or a "§" would crash the first print.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure") and (_stream.encoding or "").lower().replace("-", "") != "utf8":
+        _stream.reconfigure(encoding="utf-8")
 
 # --------------------------------------------------------------------------
 # dependency bootstrap
@@ -45,13 +52,19 @@ def ensure_deps(mods: list[str], packages: list[str], corpus_root: Path) -> None
         return
 
     venv = corpus_root / VENV_DIRNAME
-    py = venv / "bin" / "python"
+    py = venv / ("Scripts" if WINDOWS else "bin") / ("python.exe" if WINDOWS else "python")
     if not py.exists():
         log(f"creating dependency venv at {venv} (one time)")
         corpus_root.mkdir(parents=True, exist_ok=True)
         subprocess.run([sys.executable, "-m", "venv", str(venv)], check=True)
     _pip_install(py, packages)
-    os.execve(str(py), [str(py), *sys.argv], dict(os.environ, CITATIONS_IN_VENV="1"))
+    env = dict(os.environ, CITATIONS_IN_VENV="1")
+    if WINDOWS:
+        # On Windows exec doesn't replace this process: it exits at once and the new one
+        # carries on unseen, so whoever ran the script sees it finish early and misses its
+        # output. Run it as a child and hand back its exit code instead.
+        sys.exit(subprocess.run([str(py), *sys.argv], env=env).returncode)
+    os.execve(str(py), [str(py), *sys.argv], env)
 
 
 def _importable(mod: str) -> bool:
@@ -186,7 +199,7 @@ REGISTRY = Path(os.environ.get("CITATIONS_REGISTRY") or (Path.home() / ".claude"
 def load_registry() -> dict:
     if REGISTRY.exists():
         try:
-            return json.loads(REGISTRY.read_text())
+            return json.loads(REGISTRY.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             return {"corpora": {}}
     return {"corpora": {}}
@@ -204,18 +217,18 @@ def locked_json_update(path: Path, key: str, fn) -> None:
         fcntl = None
     path.parent.mkdir(parents=True, exist_ok=True)
     lock = path.with_suffix(".lock")
-    with open(lock, "w") as lf:
+    with open(lock, "w", encoding="utf-8") as lf:
         if fcntl:
             fcntl.flock(lf, fcntl.LOCK_EX)
         try:
             try:
-                current = json.loads(path.read_text()) if path.exists() else {key: {}}
+                current = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {key: {}}
             except json.JSONDecodeError:
                 current = {key: {}}
             current.setdefault(key, {})
             fn(current)
             fd, tmp = tempfile.mkstemp(dir=path.parent, prefix="." + path.stem + "-", suffix=".json")
-            with os.fdopen(fd, "w") as f:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
                 json.dump(current, f, indent=1)
             os.replace(tmp, path)
         finally:
@@ -278,7 +291,9 @@ def corpus_root(path: str | os.PathLike | None) -> Path:
     if path is None:
         path = os.environ.get("CITATIONS_CORPUS") or None
 
-    looks_like_name = isinstance(path, str) and path and os.sep not in path and not path.startswith(".")
+    # "/" counts as a path separator on Windows too, and so does a drive letter ("C:docs")
+    looks_like_name = (isinstance(path, str) and path and not path.startswith(".")
+                       and not any(sep in path for sep in ("/", "\\", ":")))
     if looks_like_name:
         entry = load_registry()["corpora"].get(path)
         if entry:
@@ -300,7 +315,7 @@ def corpus_root(path: str | os.PathLike | None) -> Path:
         idx = p / "index.json"
         if idx.exists():
             try:
-                docs = json.loads(idx.read_text()).get("docs", [])
+                docs = json.loads(idx.read_text(encoding="utf-8")).get("docs", [])
                 first = (docs[0].get("title") or docs[0].get("filename")) if docs else "empty"
                 print(f"note: no --corpus given; using {p} ({len(docs)} documents; first: {first!r})",
                       file=sys.stderr)
@@ -313,7 +328,7 @@ def corpus_manifest(root: Path) -> dict:
     f = root / "corpus.json"
     if f.exists():
         try:
-            return json.loads(f.read_text())
+            return json.loads(f.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             pass
     return {}
@@ -323,7 +338,7 @@ def load_index(root: Path) -> dict:
     f = root / "index.json"
     if not f.exists():
         die(f"no corpus at {root} — run scripts/ingest.py first")
-    return json.loads(f.read_text())
+    return json.loads(f.read_text(encoding="utf-8"))
 
 
 _DOC_CACHE: dict[str, dict] = {}
@@ -337,13 +352,13 @@ def load_doc(root: Path, doc_id: str) -> dict:
     if key not in _DOC_CACHE:
         if len(_DOC_CACHE) > 256:          # bound it; a corpus can be thousands of files
             _DOC_CACHE.clear()
-        _DOC_CACHE[key] = json.loads(f.read_text())
+        _DOC_CACHE[key] = json.loads(f.read_text(encoding="utf-8"))
     return _DOC_CACHE[key]
 
 
 def save_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=1))
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def resolve_doc_id(index: dict, ref: str) -> str | None:

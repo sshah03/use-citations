@@ -18,6 +18,8 @@ jobs:
           - { os: ubuntu-latest, python: "3.10" }
           - { os: ubuntu-latest, python: "3.14" }
           - { os: macos-latest, python: "3.14" }
+          - { os: windows-latest, python: "3.10" }
+          - { os: windows-latest, python: "3.14" }
     steps:
       - uses: actions/checkout@v5
 
@@ -26,10 +28,56 @@ jobs:
           python-version: ${{ matrix.python }}
 
       # The scanned-page test needs an OCR engine. macOS has one built in; on Linux
-      # it's tesseract, the same thing a Linux user would install.
-      - name: Install tesseract
+      # and Windows it's tesseract, the same thing a user there would install.
+      - name: Install tesseract (Linux)
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
 
+      # Chocolatey puts a tesseract launcher on PATH. The test for finding it in its
+      # install folder when it isn't on PATH takes it off PATH for itself.
+      - name: Install tesseract (Windows)
+        if: runner.os == 'Windows'
+        run: choco install tesseract --no-progress -y
+
       - name: Run the tests
         run: python .claude/skills/use-citations/tests/run.py -v
+
+  # Install the repo as a Claude Code plugin, the way a user would, and run the tests
+  # from the installed copy. Installing plugins doesn't need a Claude login. The
+  # marketplace is this checkout, so a pull request tests its own changes.
+  plugin-install:
+    name: plugin install, ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash          # Git Bash on Windows, which is what Claude Code uses there
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code && claude --version
+
+      - name: Check the plugin files
+        run: claude plugin validate .
+
+      - name: Install the plugin
+        run: |
+          claude plugin marketplace add ./
+          claude plugin install use-citations@use-citations
+          claude plugin list
+
+      - name: Run the tests from the installed copy
+        run: |
+          # the same lines as AGENTS.md, with python rather than python3 (see AGENTS.md)
+          SK="$(claude plugin list --json | python -c "import json,sys; print(next(p['installPath'] for p in json.load(sys.stdin) if p['id'] == 'use-citations@use-citations'))")/.claude/skills/use-citations"
+          echo "installed at: $SK"
+          case "$SK" in "$GITHUB_WORKSPACE"*) echo "::error::the plugin ran from the checkout, not an installed copy"; exit 1;; esac
+          python "$SK/tests/run.py"
