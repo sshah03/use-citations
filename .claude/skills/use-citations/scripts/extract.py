@@ -131,7 +131,7 @@ def main() -> int:
 
     root = corpus_root(args.corpus)
     index = load_index(root)
-    fields = json.loads(Path(args.fields).read_text())
+    fields = json.loads(Path(args.fields).read_text(encoding="utf-8"))
     if not isinstance(fields, list) or not fields:
         die("--fields must be a non-empty JSON list of column definitions")
 
@@ -156,7 +156,7 @@ def main() -> int:
 
     if args.out:
         Path(args.out).write_text(json.dumps(
-            {"summary": summary, "rows": worksheet}, ensure_ascii=False, indent=1))
+            {"summary": summary, "rows": worksheet}, ensure_ascii=False, indent=1), encoding="utf-8")
         summary["worksheet"] = args.out
 
     if args.answer:
@@ -177,7 +177,7 @@ def main() -> int:
             table["rows"].append(cells)
         Path(args.answer).write_text(json.dumps({
             "question": args.title or "Extracted terms across the document set",
-            "blocks": [table]}, ensure_ascii=False, indent=1))
+            "blocks": [table]}, ensure_ascii=False, indent=1), encoding="utf-8")
         summary["answer"] = args.answer
 
     print(json.dumps(summary, indent=1))

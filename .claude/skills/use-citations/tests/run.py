@@ -41,6 +41,12 @@ EX = SKILL / "examples"
 FIX = SKILL / "tests" / "fixtures"
 VERBOSE = "-v" in sys.argv
 
+# the phase headings and failure details have non-ASCII characters; Windows would
+# otherwise print them in its old code page, or crash
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure") and (_stream.encoding or "").lower().replace("-", "") != "utf8":
+        _stream.reconfigure(encoding="utf-8")
+
 PASS, FAIL, SKIP = "\033[32mpass\033[0m", "\033[31mFAIL\033[0m", "\033[33mskip\033[0m"
 results: list[tuple[str, str, str]] = []
 
@@ -58,7 +64,7 @@ def check(cond: bool, name: str, detail: str = "") -> bool:
 
 def run(script: str, *args: str) -> tuple[int, dict | None, str]:
     r = subprocess.run([sys.executable, str(CS / script), *args],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8")
     try:
         return r.returncode, json.loads(r.stdout), r.stderr
     except json.JSONDecodeError:
@@ -122,7 +128,7 @@ def phase_adversarial(tmp: Path) -> None:
     if not check(code == 0 and out is not None, "fixture corpus ingests", err[-300:]):
         return
 
-    answer = json.loads((FIX / "adversarial.json").read_text())
+    answer = json.loads((FIX / "adversarial.json").read_text(encoding="utf-8"))
     case_at = {}
     for i, b in enumerate(answer["blocks"]):
         text = b.get("text", "")
@@ -130,7 +136,7 @@ def phase_adversarial(tmp: Path) -> None:
             case_at[f"block{i}"] = text.split(":", 1)[0][5:].strip()
 
     work = tmp / "adversarial.json"
-    work.write_text(json.dumps(answer))
+    work.write_text(json.dumps(answer), encoding="utf-8")
     code, report, err = run("verify.py", str(work), "--corpus", str(corpus))
     if report is None:
         check(False, "adversarial answer verifies", err[-400:])
@@ -140,7 +146,7 @@ def phase_adversarial(tmp: Path) -> None:
     check(report["failed"] >= 6, "multiple citations fail", f"failed={report['failed']}")
     check(report["clean"] is False, "answer is not reported clean")
 
-    verified = json.loads((work.with_suffix(".verified.json")).read_text())
+    verified = json.loads((work.with_suffix(".verified.json")).read_text(encoding="utf-8"))
     ledger_by_at = {e["at"]: e for e in verified["verification"]["ledger"]}
     problems, warnings = report["problems"], report["warning_details"]
 
@@ -177,7 +183,7 @@ def phase_adversarial(tmp: Path) -> None:
     ]:
         variant = dict(answer, meta={**answer.get("meta", {}), "searches": entries})
         vpath = tmp / f"searches-{len(entries)}.json"
-        vpath.write_text(json.dumps(variant))
+        vpath.write_text(json.dumps(variant), encoding="utf-8")
         _, rep, verr = run("verify.py", str(vpath), "--corpus", str(corpus))
         if rep is None:
             check(False, f"search record: {label}", verr[-200:])
@@ -214,7 +220,7 @@ def phase_integration(tmp: Path) -> None:
         check(not out["warnings"], f"{name}: ingests without warnings", str(out["warnings"])[:200])
 
         work = tmp / f"{name}.json"
-        work.write_text(answer.read_text())
+        work.write_text(answer.read_text(encoding="utf-8"))
         code, report, err = run("verify.py", str(work), "--corpus", str(corpus))
         if not check(code == 0 and report, f"{name}: verifies clean", err[-300:]):
             continue
@@ -259,7 +265,7 @@ def phase_numbering(tmp: Path) -> None:
     pages = []
     for n in (1, 2):
         r = subprocess.run([sys.executable, str(CS / "search.py"), "--show", f"d1:{n}", "--plain",
-                            "--corpus", str(corpus)], capture_output=True, text=True)
+                            "--corpus", str(corpus)], capture_output=True, text=True, encoding="utf-8")
         pages.append(r.stdout)
     one, two = pages
     check("12.1. This Agreement shall remain" in one and "13. General" in one,
@@ -285,7 +291,7 @@ def phase_hybrid(tmp: Path) -> None:
     check(out["web_documents"] == 1, "the captured document is recognised as web-sourced",
           f"web_documents={out['web_documents']}")
     work = tmp / "hybrid-answer.json"
-    work.write_text((FIX / "hybrid-answer.json").read_text())
+    work.write_text((FIX / "hybrid-answer.json").read_text(encoding="utf-8"))
     code, rep, err = run("verify.py", str(work), "--corpus", str(corpus))
     if not check(code == 0 and rep, "answer citing both kinds verifies clean", err[-300:]):
         return
@@ -296,7 +302,7 @@ def phase_hybrid(tmp: Path) -> None:
                               "--corpus", str(corpus), "-o", str(out_dir))
     if not check(code == 0 and rendered, "hybrid report renders", err[-300:]):
         return
-    html = (out_dir / "index.html").read_text()
+    html = (out_dir / "index.html").read_text(encoding="utf-8")
     check(rendered.get("documents_listed") == 2, "Sources tab lists every document in the corpus, cited or not",
           f"listed={rendered.get('documents_listed')}")
     check("law.cornell.edu/uscode/text/26/152" in html and "2026-09-20" in html,
@@ -369,8 +375,8 @@ def phase_plugin() -> None:
     print("\nplugin — the repo installs as a Claude Code plugin")
     root = SKILL.parent.parent.parent
     try:
-        plugin = json.loads((root / ".claude-plugin" / "plugin.json").read_text())
-        market = json.loads((root / ".claude-plugin" / "marketplace.json").read_text())
+        plugin = json.loads((root / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        market = json.loads((root / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as e:
         check(False, "plugin: both manifests load", str(e))
         return
@@ -383,7 +389,7 @@ def phase_plugin() -> None:
           "plugin: its skills path leads to this SKILL.md", str(plugin.get("skills")))
     check("version" not in plugin and not (entry or {}).get("version"),
           "plugin: no version is pinned, so installs follow new commits")
-    body = (SKILL / "SKILL.md").read_text()
+    body = (SKILL / "SKILL.md").read_text(encoding="utf-8")
     check('SK="${CLAUDE_SKILL_DIR}"' in body and "SK=~/" not in body,
           "plugin: SKILL.md finds its folder through ${CLAUDE_SKILL_DIR}, not a fixed path")
 
@@ -397,16 +403,16 @@ def phase_evals() -> None:
     if not qfile.exists():
         record(SKIP, "evals: no question set present")
         return
-    qs = json.loads(qfile.read_text())["questions"]
+    qs = json.loads(qfile.read_text(encoding="utf-8"))["questions"]
     check(len(qs) >= 24, f"evals: at least two dozen questions ({len(qs)})")
     check(all(q.get("source_url") and q.get("retrieved") for q in qs),
           "evals: every question records its public source and pull date")
 
-    r = subprocess.run([sys.executable, str(evals / "run.py"), "list"], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(evals / "run.py"), "list"], capture_output=True, text=True, encoding="utf-8")
     check(r.returncode == 0 and f"{len(qs)} questions" in r.stdout, "evals: harness lists the set")
     tmp_out = Path(tempfile.mkdtemp(prefix="evals-")) / "RESULTS.md"
     r = subprocess.run([sys.executable, str(evals / "run.py"), "score", "--out", str(tmp_out)],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8")
     check(r.returncode in (0, 1) and tmp_out.exists(), "evals: harness scores without touching the committed scorecard",
           r.stderr[-200:])
     check((evals / "RESULTS.md").exists(), "evals: committed RESULTS.md is present")
@@ -416,15 +422,15 @@ def check_js(page: Path, name: str) -> None:
     if not shutil.which("node"):
         record(SKIP, name, "node not installed")
         return
-    html = page.read_text()
+    html = page.read_text(encoding="utf-8")
     try:
         js = html.split("<script>\n(function(){", 1)[1].rsplit("})();\n</script>", 1)[0]
     except IndexError:
         check(False, name, "could not locate the page script")
         return
     tmp = page.parent / "_check.js"
-    tmp.write_text("(function(){" + js + "})")
-    r = subprocess.run(["node", "--check", str(tmp)], capture_output=True, text=True)
+    tmp.write_text("(function(){" + js + "})", encoding="utf-8")
+    r = subprocess.run(["node", "--check", str(tmp)], capture_output=True, text=True, encoding="utf-8", errors="replace")
     check(r.returncode == 0, name, r.stderr[:200])
     tmp.unlink(missing_ok=True)
 
@@ -448,7 +454,7 @@ def phase_web() -> None:
     if not WEB_CHECKS.exists():
         record(SKIP, "no private web checks on this machine")
         return
-    checks = json.loads(WEB_CHECKS.read_text()).get("checks", [])
+    checks = json.loads(WEB_CHECKS.read_text(encoding="utf-8")).get("checks", [])
     for item in checks:
         name, answer, expected = item["corpus"], PRIV / item["answer"], item["citations"]
         if not answer.exists():
@@ -483,7 +489,7 @@ def phase_followup(tmp: Path) -> None:
                       "searches": [{"q": "terminate for convenience", "for": "confirm"},
                                    {"q": "may not terminate", "for": "contradict"}]},
              "blocks": [q1], "gaps": []}
-    answer.write_text(json.dumps(first))
+    answer.write_text(json.dumps(first), encoding="utf-8")
     code, _, err = run("verify.py", str(answer), "--corpus", str(corpus))
     code, out, err = run("render.py", str(answer.with_suffix(".verified.json")), "--corpus", str(corpus),
                          "-o", str(work / "report"))
@@ -514,11 +520,11 @@ def phase_followup(tmp: Path) -> None:
                      {"question": "And what does ending it early cost?", "summary": "Half the remaining commitment.",
                       "asked": "2026-09-22", "blocks": [q2],
                       "searches": [{"q": "early termination fee", "for": "confirm"}], "gaps": []}]}
-    answer.write_text(json.dumps(two))
+    answer.write_text(json.dumps(two), encoding="utf-8")
     code, rep, err = run("verify.py", str(answer), "--corpus", str(corpus))
     if not check(code == 0 and rep, "a two-question answer verifies", err[-300:]):
         return
-    ledger = json.loads(answer.with_suffix(".verified.json").read_text())["verification"]["ledger"]
+    ledger = json.loads(answer.with_suffix(".verified.json").read_text(encoding="utf-8"))["verification"]["ledger"]
     check([e["at"] for e in ledger] == ["block0", "block1"],
           "citation locations run on across questions", str([e["at"] for e in ledger]))
     check(any(w.get("at") == "turn1" and "none marked" in w["problem"] for w in rep["warning_details"]),
@@ -533,16 +539,16 @@ def phase_followup(tmp: Path) -> None:
     check(found and found.get("questions") == 2 and found.get("url") == url,
           "the record shows two questions and keeps the link")
 
-    v = json.loads(answer.with_suffix(".verified.json").read_text())
+    v = json.loads(answer.with_suffix(".verified.json").read_text(encoding="utf-8"))
     v["turns"][1]["blocks"][0]["cites"][0]["quote"] += " And more."
     stale = work / "stale.verified.json"
-    stale.write_text(json.dumps(v))
+    stale.write_text(json.dumps(v), encoding="utf-8")
     code, _, _ = run("render.py", str(stale), "--corpus", str(corpus), "-o", str(work / "stale"))
     check(code != 0, "a follow-up edited after checking is refused")
 
     other = tmp / "fu-other"
     other.mkdir()
-    (other / "answer.json").write_text(json.dumps(first))
+    (other / "answer.json").write_text(json.dumps(first), encoding="utf-8")
     run("verify.py", str(other / "answer.json"), "--corpus", str(corpus))
     _, out, _ = run("render.py", str(other / "answer.verified.json"), "--corpus", str(corpus), "-o", str(other / "report"))
     check(out and out.get("report") == "notice-test-2", "a second report can't take a name in use",

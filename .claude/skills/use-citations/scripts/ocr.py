@@ -51,7 +51,9 @@ def pick_engine(requested: str) -> str:
         return requested
     if not have:
         die("no OCR engine available. On macOS this should not happen; otherwise install "
-            "one:\n  brew install ocrmypdf     (best)\n  brew install tesseract")
+            "one:\n  macOS:    brew install ocrmypdf     (best)   or   brew install tesseract"
+            "\n  Linux:    sudo apt install tesseract-ocr"
+            "\n  Windows:  winget install UB-Mannheim.TesseractOCR, then open a new terminal")
     return have[0]
 
 
@@ -64,7 +66,7 @@ def ocr_with_ocrmypdf(pdf: Path, dpi: int) -> list[tuple[str, float | None]]:
     with tempfile.TemporaryDirectory() as td:
         out = Path(td) / "ocr.pdf"
         cmd = ["ocrmypdf", "--force-ocr", "--quiet", "--image-dpi", str(dpi), str(pdf), str(out)]
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if r.returncode != 0:
             die(f"ocrmypdf failed: {(r.stderr or r.stdout).strip()[:400]}")
         with pymupdf.open(out) as doc:
@@ -80,7 +82,7 @@ def ocr_with_tesseract(pdf: Path, dpi: int) -> list[tuple[str, float | None]]:
             png = Path(td) / f"p{i}.png"
             page.get_pixmap(dpi=dpi).save(png)
             r = subprocess.run(["tesseract", str(png), "stdout", "--psm", "1"],
-                               capture_output=True, text=True)
+                               capture_output=True, text=True, encoding="utf-8", errors="replace")
             if r.returncode != 0:
                 die(f"tesseract failed on page {i}: {r.stderr.strip()[:300]}")
             pages.append((r.stdout, None))

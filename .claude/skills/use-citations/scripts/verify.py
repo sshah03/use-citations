@@ -383,7 +383,7 @@ def main() -> int:
     if not src.exists():
         die(f"no such answer file: {src}")
     try:
-        answer = json.loads(src.read_text())
+        answer = json.loads(src.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         die(f"{src} is not valid JSON: {exc}")
 

@@ -38,7 +38,7 @@ def now() -> str:
 
 def load() -> dict:
     try:
-        return json.loads(REPORTS.read_text()).get("reports", {})
+        return json.loads(REPORTS.read_text(encoding="utf-8")).get("reports", {})
     except (OSError, json.JSONDecodeError):
         return {}
 

@@ -130,7 +130,7 @@ def fetch_one(url: str, sources: Path, as_title: str | None) -> dict:
 
     info |= {"sha256": digest, "bytes": len(raw), "file": str(path),
              "title": title, "captured_from": "fetch.py"}
-    Path(str(path) + ".source.json").write_text(json.dumps(info, indent=1))
+    Path(str(path) + ".source.json").write_text(json.dumps(info, indent=1), encoding="utf-8")
     log(f"captured {len(raw):,} bytes of {ctype or 'unknown type'} → {path.name}")
     return info
 
@@ -167,7 +167,7 @@ def main() -> int:
                *[r["file"] for r in captured], "--corpus", str(root)]
         if args.images:
             cmd.append("--images")
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
         sys.stderr.write(r.stderr)
         if r.returncode != 0:
             die(f"captured the files but ingest failed:\n{r.stdout[-800:]}")

@@ -419,7 +419,7 @@ def main() -> int:
         ensure_deps(["pymupdf"], ["pymupdf"], root)
 
     index_file = root / "index.json"
-    index = json.loads(index_file.read_text()) if index_file.exists() else {"docs": []}
+    index = json.loads(index_file.read_text(encoding="utf-8")) if index_file.exists() else {"docs": []}
     by_path = {d["path"]: d for d in index["docs"]}
     next_n = 1 + max((int(d["id"][1:]) for d in index["docs"] if d["id"][1:].isdigit()), default=0)
 
@@ -428,7 +428,7 @@ def main() -> int:
     for f in files:
         digest = hashlib.sha256(f.read_bytes()).hexdigest()
         sidecar = Path(str(f) + ".source.json")
-        source = json.loads(sidecar.read_text()) if sidecar.exists() else None
+        source = json.loads(sidecar.read_text(encoding="utf-8")) if sidecar.exists() else None
         prior = by_path.get(str(f.resolve()))
         if prior and prior["sha256"] == digest and not args.force:
             skipped += 1
