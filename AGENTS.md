@@ -5,7 +5,8 @@
 If someone has asked you to install this skill, these are the steps. Tell them briefly
 what you're about to do, then do it.
 
-1. **Check the basics.** You need Python 3.10 or newer. Run `python3 --version`.
+1. **Check the basics.** You need Python 3.10 or newer (and `git`, if installing by hand).
+   Run `python3 --version`.
    If Python is missing or older than 3.10, stop and tell them: on a Mac they can get it
    from https://www.python.org/downloads/. It works on macOS and Linux; it hasn't been
    tested on Windows, so say so if that's what they're on.
@@ -20,7 +21,13 @@ what you're about to do, then do it.
    If it's already installed, run `claude plugin marketplace update use-citations` and
    `claude plugin update use-citations@use-citations` instead.
 
-3. **Look for an old install.** Before it was a plugin, people installed it by cloning to
+   If they'd rather not use a plugin, install it by hand as the README describes: clone
+   the repo to `~/.claude/use-citations` and link
+   `~/.claude/use-citations/.claude/skills/use-citations` into `~/.claude/skills/`. Then
+   skip step 3, and in step 4 run the tests from
+   `~/.claude/use-citations/.claude/skills/use-citations/tests/run.py`.
+
+3. **Look for a hand install.** Installing by hand means cloning to
    `~/.claude/use-citations` and linking `~/.claude/skills/use-citations` to it. If that
    link is still there, `/use-citations` runs the old copy instead of the plugin. Check
    with `ls -la ~/.claude/skills/use-citations`. If it's a link into

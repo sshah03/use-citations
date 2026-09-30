@@ -43,9 +43,20 @@ To update it later, type `/plugin marketplace update use-citations` in Claude Co
 `/plugin update use-citations@use-citations`. To remove it, type
 `/plugin uninstall use-citations@use-citations`.
 
-**If you installed it before it was a plugin** (by copying it into `~/.claude/use-citations`),
-remove the old link after installing the plugin, or `/use-citations` will keep running the
-old copy. In the Terminal: `rm ~/.claude/skills/use-citations`. You can also delete the old
+**If you'd rather not use a plugin**, you can still install it by hand. Open the Terminal
+app (on a Mac, press Cmd+Space and type "Terminal"), paste these lines and press Return:
+
+```bash
+git clone https://github.com/sshah03/use-citations.git ~/.claude/use-citations
+mkdir -p ~/.claude/skills
+ln -s ~/.claude/use-citations/.claude/skills/use-citations ~/.claude/skills/use-citations
+```
+
+The first line downloads the skill, and the other two tell Claude Code where it is. To
+update it later, run `git -C ~/.claude/use-citations pull`.
+
+**If you installed it by hand and are switching to the plugin**, remove the old link after
+installing the plugin, or `/use-citations` will keep running the old copy. In the Terminal: `rm ~/.claude/skills/use-citations`. You can also delete the old
 folder, `~/.claude/use-citations`, if you want the files gone.
 
 ## Use
