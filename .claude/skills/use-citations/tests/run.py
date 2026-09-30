@@ -208,9 +208,20 @@ CASES = [
 ]
 
 
+def ocr_installed() -> bool:
+    r = subprocess.run([sys.executable, "-c", "import ocr; print(len(ocr.available_engines()))"],
+                       cwd=str(CS), capture_output=True, text=True, encoding="utf-8")
+    return r.stdout.strip() not in ("", "0")
+
+
 def phase_integration(tmp: Path) -> None:
     print("\nintegration — the committed matters, end to end")
+    have_ocr = ocr_installed()
     for name, src, answer, _, expected in CASES:
+        if name == "orion" and not have_ocr:
+            # its signature page is a scan; the no-OCR behaviour is checked under "scans"
+            record(SKIP, "orion: end to end", "no OCR program installed for its scanned page")
+            continue
         corpus = tmp / name
         code, out, err = run("ingest.py", str(src), "--corpus", str(corpus))
         if not check(code == 0 and out, f"{name}: ingests", err[-300:]):
@@ -273,6 +284,23 @@ def phase_scans(tmp: Path) -> None:
     check("report-with-two-scans.pdf: 2 of 10 pages have no text layer" in w,
           "two image pages in a typed report are reported, not OCR'd", w[:200])
     check_tesseract_lookup()
+
+    # With no OCR program installed, a scan is skipped with a warning that says how to
+    # install one, and the rest of the folder is still read.
+    r = subprocess.run([sys.executable, str(CS / "ingest.py"), str(EX / "orion-contracts"),
+                        "--corpus", str(tmp / "no-ocr")], capture_output=True, text=True,
+                       encoding="utf-8", env=dict(os.environ, CITATIONS_NO_OCR="1"))
+    try:
+        out = json.loads(r.stdout)
+    except json.JSONDecodeError:
+        out = None
+    if check(r.returncode == 0 and out is not None,
+             "with no OCR program, a folder with a scan in it still reads", (r.stderr + r.stdout)[-300:]):
+        w = "\n".join(out["warnings"])
+        check("no OCR program is installed" in w and "winget install" in w,
+              "the scan is named, with how to install OCR", w[:300])
+        check(out["documents"] == 4 and out["ocr_documents"] == 0,
+              "the other documents are read normally", f"documents={out['documents']}")
 
 
 def phase_numbering(tmp: Path) -> None:

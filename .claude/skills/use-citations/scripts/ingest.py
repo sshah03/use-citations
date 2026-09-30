@@ -437,6 +437,7 @@ def main() -> int:
         ext = f.suffix.lower()
         scanned = False
         ocr_info = None
+        no_ocr = False
         try:
             if ext == ".pdf":
                 pages, scanned, empty_pages = read_pdf(f)
@@ -445,7 +446,19 @@ def main() -> int:
                         f"{f.name}: {empty_pages} of {len(pages)} pages have no text layer and "
                         f"were not OCR'd \u2014 likely scanned exhibits inside a text document. "
                         f"Re-run with --ocr force if you need to cite them.")
-                if args.ocr != "off" and (scanned or args.ocr == "force"):
+                want_ocr = args.ocr != "off" and (scanned or args.ocr == "force")
+                if want_ocr and args.ocr_engine == "auto":
+                    from ocr import available_engines
+                    if not available_engines():
+                        # Not installed is normal on Windows and Linux. Read the rest of the
+                        # folder and say how to fix it, rather than stopping on this file.
+                        want_ocr, no_ocr = False, True
+                        warnings.append(
+                            f"{f.name}: this is a scan (no text layer) and no OCR program is "
+                            f"installed, so it can't be read or cited. Install Tesseract "
+                            f"(Windows: winget install UB-Mannheim.TesseractOCR; Linux: sudo apt "
+                            f"install tesseract-ocr; Mac: brew install tesseract), then read it again.")
+                if want_ocr:
                     from ocr import LOW_CONFIDENCE, ocr_pdf
                     res = ocr_pdf(f, args.ocr_dpi, args.ocr_engine, root)
                     pages = [p["text"] for p in res["pages"]]
@@ -498,7 +511,7 @@ def main() -> int:
                 f"consent wall. Check it before citing anything from it; the document is "
                 f"usually available elsewhere.")
 
-        if scanned:
+        if scanned and not no_ocr:
             warnings.append(f"{f.name}: no text layer (scanned image PDF) and --ocr off \u2014 "
                             f"it cannot be cited. Re-run without --ocr off.")
 

@@ -47,6 +47,8 @@ def tesseract_path() -> str | None:
 
 
 def available_engines() -> list[str]:
+    if os.environ.get("CITATIONS_NO_OCR") == "1":      # for tests: act as if none is installed
+        return []
     out = []
     if shutil.which("ocrmypdf"):
         out.append("ocrmypdf")
