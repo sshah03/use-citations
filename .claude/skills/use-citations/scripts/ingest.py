@@ -415,8 +415,8 @@ def main() -> int:
         die("no supported documents found")
 
     if any(f.suffix.lower() == ".pdf" for f in files):
-        from _common import ensure_deps
-        ensure_deps(["pymupdf"], ["pymupdf"], root)
+        from _common import PYMUPDF, ensure_deps
+        ensure_deps(["pymupdf"], [PYMUPDF], root)
 
     index_file = root / "index.json"
     index = json.loads(index_file.read_text(encoding="utf-8")) if index_file.exists() else {"docs": []}

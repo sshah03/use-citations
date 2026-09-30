@@ -475,6 +475,13 @@ def phase_plugin() -> None:
           "plugin: its skills path leads to this SKILL.md", str(plugin.get("skills")))
     check("version" not in plugin and not (entry or {}).get("version"),
           "plugin: no version is pinned, so installs follow new commits")
+    sys.path.insert(0, str(CS))
+    import _common
+    pins = [_common.PYMUPDF, *_common.PYOBJC]
+    check(all("==" in p for p in pins), "plugin: every package it installs is pinned to one version", str(pins))
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    check(all(p.split("==")[1] in readme for p in pins),
+          "plugin: the README names the versions it installs", str(pins))
     body = (SKILL / "SKILL.md").read_text(encoding="utf-8")
     check('SK="${CLAUDE_SKILL_DIR}"' in body and "SK=~/" not in body,
           "plugin: SKILL.md finds its folder through ${CLAUDE_SKILL_DIR}, not a fixed path")

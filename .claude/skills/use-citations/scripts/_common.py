@@ -18,6 +18,11 @@ CORPUS_DIRNAME = ".citations"
 VENV_DIRNAME = "venv"
 WINDOWS = os.name == "nt"
 
+# The only packages the scripts ever install, pinned to the versions the tests run with.
+# They go into a venv beside the saved documents, the first time a PDF is read.
+PYMUPDF = "pymupdf==1.28.2"
+PYOBJC = ["pyobjc-framework-Vision==12.2.2", "pyobjc-framework-Quartz==12.2.2"]   # macOS OCR
+
 # Print UTF-8 everywhere. Windows otherwise uses its old code page for the console and
 # pipes, and a document with a curly quote or a "§" would crash the first print.
 for _stream in (sys.stdout, sys.stderr):
