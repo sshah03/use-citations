@@ -1,0 +1,65 @@
+name: windows end to end
+
+# One real /use-citations question on Windows: Claude Code installs the plugin and
+# follows SKILL.md in Git Bash, on the public Orion example. It uses a Claude login, so
+# it costs about one question and only runs when started by hand (Actions tab, or
+# `gh workflow run windows-e2e.yml`). Needs the CLAUDE_CODE_OAUTH_TOKEN secret, from
+# `claude setup-token`.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  question:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash          # Git Bash, which is what Claude Code uses on Windows
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      # the example has a scanned signature page
+      - name: Install tesseract
+        run: choco install tesseract --no-progress -y
+
+      - name: Install Claude Code and the plugin
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --version
+          claude plugin marketplace add ./
+          claude plugin install use-citations@use-citations
+
+      - name: Ask a question
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/work" && cp -r .claude/skills/use-citations/examples/orion-contracts "$RUNNER_TEMP/work/"
+          cd "$RUNNER_TEMP/work"
+          # the plugin copy, not the checkout's project skill: run from outside the checkout
+          claude -p "/use-citations The contracts are in $RUNNER_TEMP/work/orion-contracts. How much notice does the customer have to give to cancel? (This is a test run with no way to publish. Keep every file in the current folder.)" \
+            --allowedTools "Bash,Read,Glob,Grep" --max-turns 80 \
+            --output-format stream-json --verbose > transcript.jsonl
+          tail -c 3000 transcript.jsonl
+
+      - name: Check a verified report was built
+        run: |
+          cd "$RUNNER_TEMP/work"
+          ls -la
+          v="$(find . -name '*.verified.json' -not -path '*/.citations/*' | head -1)"
+          test -n "$v" || { echo "::error::no verified answer was written"; exit 1; }
+          python -c "import json,sys; v=json.load(open(sys.argv[1], encoding='utf-8'))['verification']; print({k: v.get(k) for k in ('citations','verified','failed','warnings')}); sys.exit(1 if v.get('failed') else 0)" "$v"
+          test -n "$(find . -name index.html -path '*report*' | head -1)" || { echo "::error::no report page was built"; exit 1; }
+
+      - name: Keep the report and transcript
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-e2e
+          path: |
+            ${{ runner.temp }}/work
+            !${{ runner.temp }}/work/**/venv/**
