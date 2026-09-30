@@ -17,6 +17,7 @@ Phases, in the order they run:
   hybrid        local files and a captured web document in one corpus.
   registry      two sessions saving the corpus registry at once.
   follow-up     a second question added to an existing report.
+  plugin        the repo's plugin manifests point at this skill and pin no version.
   evals         the public eval set loads and scores.
   web           the captured web corpora, if they are registered on this machine.
                 Skipped otherwise, so the suite never touches the network.
@@ -361,6 +362,32 @@ def phase_registry(tmp: Path) -> None:
         importlib.reload(_common)
 
 
+def phase_plugin() -> None:
+    """The repo installs as a Claude Code plugin. Its two manifests have to point at this
+    skill, and neither may set a version: with one set, installs stay on the old copy
+    until someone remembers to change it."""
+    print("\nplugin — the repo installs as a Claude Code plugin")
+    root = SKILL.parent.parent.parent
+    try:
+        plugin = json.loads((root / ".claude-plugin" / "plugin.json").read_text())
+        market = json.loads((root / ".claude-plugin" / "marketplace.json").read_text())
+    except (OSError, json.JSONDecodeError) as e:
+        check(False, "plugin: both manifests load", str(e))
+        return
+    check(True, "plugin: both manifests load")
+    entry = next((p for p in market.get("plugins", []) if p.get("name") == plugin.get("name")), None)
+    check(entry is not None and entry.get("source") == "./",
+          "plugin: the marketplace lists this repo as the plugin", str(market.get("plugins"))[:200])
+    dirs = [root / d for d in plugin.get("skills", [])]
+    check(any((d / SKILL.name / "SKILL.md").exists() for d in dirs),
+          "plugin: its skills path leads to this SKILL.md", str(plugin.get("skills")))
+    check("version" not in plugin and not (entry or {}).get("version"),
+          "plugin: no version is pinned, so installs follow new commits")
+    body = (SKILL / "SKILL.md").read_text()
+    check('SK="${CLAUDE_SKILL_DIR}"' in body and "SK=~/" not in body,
+          "plugin: SKILL.md finds its folder through ${CLAUDE_SKILL_DIR}, not a fixed path")
+
+
 def phase_evals() -> None:
     """The public eval set should load and score. By my own rule it contains none
     of the questions I used while building the skill."""
@@ -534,6 +561,7 @@ def main() -> int:
         phase_hybrid(tmp)
         phase_registry(tmp)
         phase_followup(tmp)
+        phase_plugin()
         phase_evals()
         phase_web()
 

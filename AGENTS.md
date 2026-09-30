@@ -5,60 +5,62 @@
 If someone has asked you to install this skill, these are the steps. Tell them briefly
 what you're about to do, then do it.
 
-1. **Check the basics.** You need `git` and Python 3.10 or newer. Run `python3 --version`.
+1. **Check the basics.** You need Python 3.10 or newer. Run `python3 --version`.
    If Python is missing or older than 3.10, stop and tell them: on a Mac they can get it
    from https://www.python.org/downloads/. It works on macOS and Linux; it hasn't been
    tested on Windows, so say so if that's what they're on.
 
-2. **Download it.** Clone the repo to `~/.claude/use-citations`, unless they asked for a
-   different place:
+2. **Install the plugin.** The repo is its own plugin marketplace:
 
    ```bash
-   git clone https://github.com/sshah03/use-citations.git ~/.claude/use-citations
+   claude plugin marketplace add sshah03/use-citations
+   claude plugin install use-citations@use-citations
    ```
 
-   If that folder already exists and is a clone of this repo, run `git -C
-   ~/.claude/use-citations pull` instead of cloning again.
+   If it's already installed, run `claude plugin marketplace update use-citations` and
+   `claude plugin update use-citations@use-citations` instead.
 
-3. **Make it available to Claude Code.** Link the skill folder into their personal skills
-   folder:
+3. **Look for an old install.** Before it was a plugin, people installed it by cloning to
+   `~/.claude/use-citations` and linking `~/.claude/skills/use-citations` to it. If that
+   link is still there, `/use-citations` runs the old copy instead of the plugin. Check
+   with `ls -la ~/.claude/skills/use-citations`. If it's a link into
+   `~/.claude/use-citations`, tell them and offer to remove the link (`rm
+   ~/.claude/skills/use-citations`), and the old folder too if they want the files gone.
+   If it's anything else, don't touch it: tell them what's there and ask.
 
-   ```bash
-   mkdir -p ~/.claude/skills
-   ln -s ~/.claude/use-citations/.claude/skills/use-citations ~/.claude/skills/use-citations
-   ```
-
-   If `~/.claude/skills/use-citations` already exists, look at what it is before doing
-   anything. If it's already a link to this clone, you're done with this step. If it's
-   something else, don't delete or overwrite it: tell them what's there and ask.
-
-4. **Check it works.** Run the test suite. It doesn't need the internet and takes a
-   minute or two:
+4. **Check it works.** Run the test suite from the installed copy. It doesn't need the
+   internet and takes a minute or two:
 
    ```bash
-   python3 ~/.claude/use-citations/.claude/skills/use-citations/tests/run.py
+   SK="$(claude plugin list --json | python3 -c "import json,sys; print(next(p['installPath'] for p in json.load(sys.stdin) if p['id'] == 'use-citations@use-citations'))")/.claude/skills/use-citations"
+   python3 "$SK/tests/run.py"
    ```
 
    It should end with "0 failed". A few tests are skipped on a fresh install, which is
    expected. If anything fails, show them the failure rather than carrying on.
 
 5. **Tell them how to use it.** Keep it short:
+   - Start a new Claude Code session first, so the plugin loads.
    - Type `/use-citations` followed by a question, for example
      `/use-citations Is there an age limit on claiming my child as a dependent?`
    - Add `follow-up` to ask another question in the same report.
-   - The first time they give it a PDF, it sets up a small PDF reader in the folder they're
-     working in. That's normal.
-   - If `/use-citations` doesn't show up, they should start a new Claude Code session.
+   - The first time they give it a PDF, it sets up a small PDF reader beside the saved
+     documents. That's normal.
 
-To update later: `git -C ~/.claude/use-citations pull`. To uninstall: remove the link at
-`~/.claude/skills/use-citations`, and delete `~/.claude/use-citations` if they want the
-files gone too.
+To update later: `claude plugin marketplace update use-citations`, then `claude plugin
+update use-citations@use-citations`. To uninstall: `claude plugin uninstall
+use-citations@use-citations`.
 
 ## Working on this repo
 
 - The skill is in `.claude/skills/use-citations/`. `SKILL.md` is what Claude follows when
   someone types `/use-citations`; the scripts do the reading, searching, checking and
   report building.
+- The repo is also a Claude Code plugin: `.claude-plugin/plugin.json` points at
+  `.claude/skills/`, and `.claude-plugin/marketplace.json` lists the plugin. Leave
+  `version` out of both, so installs follow new commits. Check them with `claude plugin
+  validate .`. In SKILL.md, refer to the skill's own files through `${CLAUDE_SKILL_DIR}`,
+  never a fixed path, since the folder differs between a plugin install and a project.
 - Run the tests after any change: `python3 .claude/skills/use-citations/tests/run.py`.
   Some verifier messages are matched word for word by the tests and by the report page,
   so don't reword them without updating both.

@@ -25,22 +25,28 @@ The easy way is to let Claude do it. Start Claude Code and paste this in:
 Install the use-citations skill from https://github.com/sshah03/use-citations. Follow the repo's AGENTS.md.
 ```
 
-Claude downloads the skill, sets it up, checks that it works, and tells you how to use
-it. The steps it follows are in [AGENTS.md](AGENTS.md) if you want to see them first.
+Claude installs it as a Claude Code plugin, checks that it works, and tells you how to
+use it. The steps it follows are in [AGENTS.md](AGENTS.md) if you want to see them first.
 
-To do it yourself instead, open the Terminal app (on a Mac, press Cmd+Space and type
-"Terminal"), paste these lines and press Return:
+To do it yourself instead, type these two lines into Claude Code, one at a time:
 
-```bash
-git clone https://github.com/sshah03/use-citations.git ~/.claude/use-citations
-mkdir -p ~/.claude/skills
-ln -s ~/.claude/use-citations/.claude/skills/use-citations ~/.claude/skills/use-citations
+```
+/plugin marketplace add sshah03/use-citations
+/plugin install use-citations@use-citations
 ```
 
-The first line downloads the skill, and the other two tell Claude Code where it is. To
-see which Python you have, type `python3 --version`. Most Macs already have it. If
-yours doesn't, you can get it from [python.org](https://www.python.org/downloads/).
-To update it later, run `git -C ~/.claude/use-citations pull`.
+Then start a new Claude Code session, and `/use-citations` is ready. To see which Python
+you have, type `python3 --version` in the Terminal. Most Macs already have it. If yours
+doesn't, you can get it from [python.org](https://www.python.org/downloads/).
+
+To update it later, type `/plugin marketplace update use-citations` in Claude Code, then
+`/plugin update use-citations@use-citations`. To remove it, type
+`/plugin uninstall use-citations@use-citations`.
+
+**If you installed it before it was a plugin** (by copying it into `~/.claude/use-citations`),
+remove the old link after installing the plugin, or `/use-citations` will keep running the
+old copy. In the Terminal: `rm ~/.claude/skills/use-citations`. You can also delete the old
+folder, `~/.claude/use-citations`, if you want the files gone.
 
 ## Use
 
