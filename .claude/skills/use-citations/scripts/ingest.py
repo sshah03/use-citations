@@ -40,13 +40,83 @@ def read_pdf(path: Path) -> tuple[list[str], bool]:
     import pymupdf
 
     with pymupdf.open(path) as doc:
-        pages = [page.get_text("text") for page in doc]
+        pages = [pdf_page_text(page) for page in doc]
     # Count blank pages instead of averaging characters per page. A 50-page scan with a
     # typed cover sheet averages 40 characters a page and would pass as a text PDF with
     # 49 blank pages.
     empty = sum(1 for p in pages if len(p.strip()) < 40)
     scanned = bool(pages) and empty >= max(1, (len(pages) + 1) // 2)
     return pages, scanned, empty
+
+
+# A clause number on a line of its own: "12.", "12.1.", "12.1". Plain "12" is left alone,
+# since that's as likely to be a table figure or a page number.
+_CLAUSE_NO = re.compile(r"\d{1,3}(?:\.\d{1,3})*\.|\d{1,3}(?:\.\d{1,3})+")
+_CLAUSE_NO_LINE = re.compile(r"^[ \t]*(?:" + _CLAUSE_NO.pattern + r")[ \t]*$", re.M)
+
+
+def pdf_page_text(page) -> str:
+    """A PDF page's text, with clause numbers put back in front of their clauses.
+
+    Some PDFs (often Word files with automatic numbering) store each clause number as a
+    separate scrap of text, and the reader lists them all at the bottom of the page:
+    "Term and Termination ... 9.\\n10.\\n10.1.\\n12.1." instead of "12.1. This
+    Agreement...". A number is moved only when all of these are true:
+
+      - its scrap of text holds nothing but clause numbers,
+      - it sits just to the left of a line of text, at the same height,
+      - it isn't already right before that line.
+
+    Any other page gets exactly the text it got before. Two-column pages, tables and
+    ordinary numbered lists don't match, so they're untouched.
+    """
+    text = page.get_text("text")
+    if not _CLAUSE_NO_LINE.search(text):
+        return text
+    fixed = _reattach_clause_numbers(page, text)
+    return text if fixed is None else fixed
+
+
+def _reattach_clause_numbers(page, text: str) -> str | None:
+    lines = []                                    # (block, text, bbox) in reading order
+    for bi, b in enumerate(page.get_text("dict")["blocks"]):
+        for ln in b.get("lines", []):
+            lines.append((bi, "".join(s["text"] for s in ln["spans"]), ln["bbox"]))
+    # the line-by-line view has to add up to exactly the plain text, or we can't be
+    # sure what we're moving, so leave the page alone
+    if "".join(t + "\n" for _, t, _ in lines) != text:
+        return None
+
+    blocks: dict[int, list[str]] = {}
+    for bi, t, _ in lines:
+        blocks.setdefault(bi, []).append(t)
+    number_blocks = {bi for bi, ts in blocks.items() if all(_CLAUSE_NO.fullmatch(t.strip()) for t in ts)}
+    if not number_blocks:
+        return None
+
+    prefix: dict[int, str] = {}                   # line index -> number to put in front
+    moved: set[int] = set()
+    for i, (bi, t, box) in enumerate(lines):
+        if bi not in number_blocks:
+            continue
+        mid, half = (box[1] + box[3]) / 2, (box[3] - box[1]) / 2
+        best, best_gap = None, None
+        for j, (bj, u, ub) in enumerate(lines):
+            if bj in number_blocks or not u.strip():
+                continue
+            gap = ub[0] - box[2]
+            if -1 <= gap <= 24 and abs((ub[1] + ub[3]) / 2 - mid) < half:
+                if best_gap is None or gap < best_gap:
+                    best, best_gap = j, gap
+        if best is None or best == i + 1 or best in prefix:
+            continue
+        prefix[best] = t.strip()
+        moved.add(i)
+    if not moved:
+        return None
+    out = [f"{prefix[j]} {u}" if j in prefix else u
+           for j, (_, u, _) in enumerate(lines) if j not in moved]
+    return "".join(t + "\n" for t in out)
 
 
 _JUNK_META = re.compile(r"^(microsoft\s+\w+\s+-|untitled|document\d*$|powerpoint presentation|slide \d)"

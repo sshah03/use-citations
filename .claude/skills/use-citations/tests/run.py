@@ -13,6 +13,7 @@ Phases, in the order they run:
   integration   the example document sets end to end: ingest, verify,
                 render, and a syntax check of the report's JavaScript.
   scans         per-page detection of image-only pages in PDFs.
+  numbering     clause numbers stored apart from their clauses are put back in front.
   hybrid        local files and a captured web document in one corpus.
   registry      two sessions saving the corpus registry at once.
   follow-up     a second question added to an existing report.
@@ -242,6 +243,32 @@ def phase_scans(tmp: Path) -> None:
           "cover sheet over five scans is still a scan", w[:200])
     check("report-with-two-scans.pdf: 2 of 10 pages have no text layer" in w,
           "two image pages in a typed report are reported, not OCR'd", w[:200])
+
+
+def phase_numbering(tmp: Path) -> None:
+    """Clause numbers that a PDF stores apart from their clauses are put back in front of
+    them. Page 1 is laid out like a Word export where the reader lists every number at
+    the bottom of the page. Page 2 has to come through exactly as before: two columns
+    with a wrapped line that is just "3.", and a numbered list already in order."""
+    print("\nnumbering — clause numbers go back in front of their clauses")
+    corpus = tmp / "numbering"
+    code, out, err = run("ingest.py", str(FIX / "corpus-numbering"), "--corpus", str(corpus))
+    if not check(code == 0 and out is not None, "numbered-clause fixture ingests", err[-300:]):
+        return
+    pages = []
+    for n in (1, 2):
+        r = subprocess.run([sys.executable, str(CS / "search.py"), "--show", f"d1:{n}", "--plain",
+                            "--corpus", str(corpus)], capture_output=True, text=True)
+        pages.append(r.stdout)
+    one, two = pages
+    check("12.1. This Agreement shall remain" in one and "13. General" in one,
+          "a clause number is put back in front of its clause", one[-300:])
+    check("13.1.\n" not in one and not one.rstrip().endswith("13.1."),
+          "no list of numbers is left at the bottom of the page", one[-300:])
+    check("described in Section\n3.\nThe Supplier" in two,
+          "a wrapped \"3.\" in a two-column page stays where it was", two[:300])
+    check("are:\n1.\ndeliver the Products" in two and "3. Payment" not in two,
+          "a numbered list that is already in order is left alone", two[:400])
 
 
 def phase_hybrid(tmp: Path) -> None:
@@ -503,6 +530,7 @@ def main() -> int:
         phase_adversarial(tmp)
         phase_integration(tmp)
         phase_scans(tmp)
+        phase_numbering(tmp)
         phase_hybrid(tmp)
         phase_registry(tmp)
         phase_followup(tmp)
