@@ -1,0 +1,11 @@
+{
+  "name": "use-citations",
+  "displayName": "use-citations",
+  "description": "Ask a research question and get an answer with every quote checked, word for word, against a saved copy of its source.",
+  "author": { "name": "sshah03", "url": "https://github.com/sshah03" },
+  "homepage": "https://github.com/sshah03/use-citations",
+  "repository": "https://github.com/sshah03/use-citations",
+  "license": "MIT",
+  "keywords": ["citations", "research", "quotes", "contracts", "tax", "pdf"],
+  "skills": ["./.claude/skills/"]
+}

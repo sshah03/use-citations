@@ -10,7 +10,7 @@ disable-model-invocation: true
 allowed-tools: Bash, Read, Glob, Grep, AskUserQuestion, Artifact
 metadata:
   last-updated: 2026-09-22
-  install-scope: project-only while under test (.claude/skills/use-citations)
+  install-scope: Claude Code plugin, or a personal or project skill
   outputs: verified answer JSON, markdown with footnotes, a published review artifact
 ---
 
@@ -25,26 +25,29 @@ cannot be located is treated as a fabricated citation, and the pipeline stops.
 
 ## Where the scripts live
 
-Everything lives beside this file, wherever it is installed. That is `~/.claude/skills/use-citations/`
-when installed for every project, or `<project>/.claude/skills/use-citations/` when it is
-project-scoped:
+Everything lives beside this file, wherever it is installed: in the plugin's folder when
+installed as a Claude Code plugin, `~/.claude/skills/use-citations/` when linked in by
+hand, or `<project>/.claude/skills/use-citations/` in a project.
 
 ```
 SKILL.md  scripts/  templates/  references/  examples/  tests/
 ```
 
-Resolve `SK` from wherever this SKILL.md sits; do not assume a working directory. Two
+Don't assume a working directory. Claude Code fills in this skill's folder below. Two
 paths are used throughout (shell state may not persist between commands, so repeat them
 where needed or use the literal paths):
 
 ```bash
-SK=~/.claude/skills/use-citations        # or .claude/skills/use-citations in a project
-CS=$SK/scripts
+SK="${CLAUDE_SKILL_DIR}"
+CS="$SK/scripts"
 ```
 
+If the first line still reads `${CLAUDE_SKILL_DIR}` rather than a real path, your version
+of Claude Code doesn't fill it in. Use the base directory it gave for this skill instead.
+
 Run them with plain `python3`. They are stdlib-only except for PDF reading, which
-installs PyMuPDF into a project-local venv at `.citations/venv` the first time a PDF
-is ingested. No global installs, no network access at answer time.
+installs PyMuPDF into a venv beside the saved documents (`.citations/venv`) the first
+time a PDF is read. No global installs, no network access at answer time.
 
 ## Pointing at a corpus
 

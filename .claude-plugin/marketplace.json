@@ -1,0 +1,15 @@
+{
+  "name": "use-citations",
+  "description": "The use-citations skill for Claude Code: research answers with every quote checked against its source.",
+  "owner": {
+    "name": "sshah03",
+    "url": "https://github.com/sshah03"
+  },
+  "plugins": [
+    {
+      "name": "use-citations",
+      "source": "./",
+      "description": "Ask a research question and get an answer with every quote checked, word for word, against a saved copy of its source."
+    }
+  ]
+}
