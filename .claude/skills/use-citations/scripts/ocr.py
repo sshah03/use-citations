@@ -27,7 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _common import corpus_root as default_corpus_root  # noqa: E402
-from _common import die, ensure_deps, log  # noqa: E402
+from _common import PYMUPDF, PYOBJC, die, ensure_deps, log  # noqa: E402
 
 LOW_CONFIDENCE = 0.80
 
@@ -157,11 +157,11 @@ def ocr_pdf(pdf: Path, dpi: int = 300, engine: str = "auto",
             corpus_root: Path | None = None) -> dict:
     # install deps into the working corpus's venv, never into a folder of the user's documents
     engine = pick_engine(engine)
-    deps = ["pymupdf"]
+    deps = [PYMUPDF]
     mods = ["pymupdf"]
     if engine == "vision":
         mods += ["Vision", "Quartz"]
-        deps += ["pyobjc-framework-Vision", "pyobjc-framework-Quartz"]
+        deps += PYOBJC
     ensure_deps(mods, deps, corpus_root or default_corpus_root(None))
 
     log(f"OCR {pdf.name} with {engine} at {dpi} dpi")

@@ -154,14 +154,32 @@ research dataset. All 372 passages it cited were found in their sources. The res
 in [evals/RESULTS.md](evals/RESULTS.md), and [evals/README.md](evals/README.md) explains
 how to run the same questions yourself.
 
-## Your documents
+## Your documents, and what it downloads and sends
 
-- Your files stay on your computer. The only time anything is downloaded is when you ask
-  for a web page to be saved.
-- Claude reads the parts of your documents it searches, the same as it would with any
-  file you open in Claude Code.
+- Your files stay on your computer. Claude reads the parts of your documents it searches,
+  the same as it would with any file you open in Claude Code.
 - A report you publish includes the pages it quotes from. If a document can't leave your
   computer, don't publish the report. You can open it as a file on your computer instead.
+
+Everything it runs, downloads or sends:
+
+- **Its own Python scripts**, in the skill's folder. They read your documents, search them,
+  check the quotes and build the report. They use only Python's standard library, except
+  for reading PDFs.
+- **A PDF reader, downloaded once.** The first time you give it a PDF, it installs
+  [PyMuPDF](https://pypi.org/project/PyMuPDF/) 1.28.2 from PyPI into a folder beside your
+  saved documents (`.citations/venv`), not into your system. On a Mac, reading a scanned PDF
+  also installs pyobjc 12.2.2, which lets Python use the Mac's built-in text recognition.
+- **Web pages you ask for.** When you ask about something that isn't in your files, Claude
+  finds the official source and downloads that page or PDF straight from the site, so it
+  can quote a saved copy. The site gets only the request for that page, with nothing about
+  your question or your files. The request identifies itself as a desktop web browser,
+  since some government sites turn away other programs.
+- **Reports you publish** go to claude.ai as a private page that only you can see until you
+  share it.
+
+It sends nothing anywhere else. There's no tracking or usage data, and it keeps no record
+outside the folders on your computer. See [PRIVACY.md](PRIVACY.md).
 
 ## What it can't do yet
 
