@@ -17,6 +17,7 @@ Phases, in the order they run:
   hybrid        local files and a captured web document in one corpus.
   registry      two sessions saving the corpus registry at once.
   follow-up     a second question added to an existing report.
+  encoding      every text read and write in the code says UTF-8 (for Windows).
   plugin        the repo's plugin manifests point at this skill and pin no version.
   evals         the public eval set loads and scores.
   web           the captured web corpora, if they are registered on this machine.
@@ -220,7 +221,7 @@ def phase_integration(tmp: Path) -> None:
         check(not out["warnings"], f"{name}: ingests without warnings", str(out["warnings"])[:200])
 
         work = tmp / f"{name}.json"
-        work.write_text(answer.read_text(encoding="utf-8"))
+        work.write_text(answer.read_text(encoding="utf-8"), encoding="utf-8")
         code, report, err = run("verify.py", str(work), "--corpus", str(corpus))
         if not check(code == 0 and report, f"{name}: verifies clean", err[-300:]):
             continue
@@ -291,7 +292,7 @@ def phase_hybrid(tmp: Path) -> None:
     check(out["web_documents"] == 1, "the captured document is recognised as web-sourced",
           f"web_documents={out['web_documents']}")
     work = tmp / "hybrid-answer.json"
-    work.write_text((FIX / "hybrid-answer.json").read_text(encoding="utf-8"))
+    work.write_text((FIX / "hybrid-answer.json").read_text(encoding="utf-8"), encoding="utf-8")
     code, rep, err = run("verify.py", str(work), "--corpus", str(corpus))
     if not check(code == 0 and rep, "answer citing both kinds verifies clean", err[-300:]):
         return
@@ -366,6 +367,41 @@ def phase_registry(tmp: Path) -> None:
     finally:
         del os.environ["CITATIONS_REGISTRY"]
         importlib.reload(_common)
+
+
+def phase_encoding() -> None:
+    """Every text file the scripts read or write says it's UTF-8. Without that, Windows
+    uses its old code page: curly quotes and section signs crash, or quietly turn into
+    the wrong characters. This reads the code rather than running it, so it also covers
+    paths the other tests don't reach."""
+    import ast
+    print("\nencoding — every text read and write says UTF-8")
+    root = SKILL.parent.parent.parent
+    files = [*sorted(CS.glob("*.py")), Path(__file__), root / "evals" / "run.py"]
+    bad = []
+    for f in files:
+        if not f.exists():
+            continue
+        for node in ast.walk(ast.parse(f.read_text(encoding="utf-8"))):
+            if not isinstance(node, ast.Call):
+                continue
+            fn = node.func
+            name = fn.attr if isinstance(fn, ast.Attribute) else fn.id if isinstance(fn, ast.Name) else ""
+            owner = fn.value.id if isinstance(fn, ast.Attribute) and isinstance(fn.value, ast.Name) else ""
+            kw = {k.arg for k in node.keywords}
+            if name in ("read_text", "write_text"):
+                needs = True
+            elif name in ("open", "fdopen") and owner in ("", "os", "io"):
+                mode = node.args[1] if len(node.args) > 1 else next((k.value for k in node.keywords if k.arg == "mode"), None)
+                needs = not (isinstance(mode, ast.Constant) and "b" in str(mode.value))
+            elif name == "run" and owner == "subprocess":
+                needs = any(k.arg in ("text", "universal_newlines") for k in node.keywords)
+            else:
+                continue
+            if needs and "encoding" not in kw:
+                bad.append(f"{f.name}:{node.lineno} {name}()")
+    check(not bad, "encoding: no text read or write relies on the system's default encoding",
+          ", ".join(bad[:8]))
 
 
 def phase_plugin() -> None:
@@ -567,6 +603,7 @@ def main() -> int:
         phase_hybrid(tmp)
         phase_registry(tmp)
         phase_followup(tmp)
+        phase_encoding()
         phase_plugin()
         phase_evals()
         phase_web()

@@ -217,7 +217,7 @@ def locked_json_update(path: Path, key: str, fn) -> None:
         fcntl = None
     path.parent.mkdir(parents=True, exist_ok=True)
     lock = path.with_suffix(".lock")
-    with open(lock, "w") as lf:
+    with open(lock, "w", encoding="utf-8") as lf:
         if fcntl:
             fcntl.flock(lf, fcntl.LOCK_EX)
         try:

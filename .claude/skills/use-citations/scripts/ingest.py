@@ -243,7 +243,7 @@ class _HTMLText(html.parser.HTMLParser):
 
 def read_html(path: Path) -> str:
     p = _HTMLText()
-    p.feed(path.read_text(errors="replace"))
+    p.feed(path.read_text(encoding="utf-8", errors="replace"))
     main = re.sub(r"\n{3,}", "\n\n", "".join(p.main_out)).strip()
     whole = re.sub(r"\n{3,}", "\n\n", "".join(p.out) + "".join(p.main_out)).strip()
     # use <main>/<article> only when it holds a real share of the page's text
@@ -251,7 +251,7 @@ def read_html(path: Path) -> str:
 
 
 def read_rtf(path: Path) -> str:
-    raw = path.read_text(errors="replace")
+    raw = path.read_text(encoding="utf-8", errors="replace")
     raw = re.sub(r"\\'([0-9a-fA-F]{2})", lambda m: chr(int(m.group(1), 16)), raw)
     raw = re.sub(r"\\par[d]?\b", "\n", raw)
     raw = re.sub(r"\{\\\*?[^{}]*\}", " ", raw)
@@ -470,7 +470,7 @@ def main() -> int:
             elif ext == ".rtf":
                 pages = paginate(read_rtf(f))
             else:
-                pages = paginate(f.read_text(errors="replace"))
+                pages = paginate(f.read_text(encoding="utf-8", errors="replace"))
         except Exception as exc:  # warn and move on; one bad file shouldn't stop the run
             warnings.append(f"{f.name}: {type(exc).__name__}: {exc}")
             continue
