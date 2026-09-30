@@ -237,6 +237,27 @@ def phase_integration(tmp: Path) -> None:
         check_js(out_dir / "index.html", f"{name}: report JavaScript parses")
 
 
+def check_tesseract_lookup() -> None:
+    """On Windows, Tesseract's installer doesn't always add it to PATH, so ocr.py also
+    looks in its usual install folder. Run that lookup with every folder that has a
+    tesseract in it taken off PATH, and it should still find it."""
+    if os.name != "nt":
+        record(SKIP, "tesseract is found off PATH on Windows", "not Windows")
+        return
+    default = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "Tesseract-OCR" / "tesseract.exe"
+    if not default.exists():
+        record(SKIP, "tesseract is found off PATH on Windows", "not installed in its usual folder")
+        return
+    keep = [d for d in os.environ.get("PATH", "").split(os.pathsep)
+            if d and not any((Path(d) / n).exists() for n in ("tesseract.exe", "tesseract"))]
+    r = subprocess.run([sys.executable, "-c", "import ocr; print(ocr.tesseract_path())"],
+                       cwd=str(CS), env=dict(os.environ, PATH=os.pathsep.join(keep)),
+                       capture_output=True, text=True, encoding="utf-8")
+    found = r.stdout.strip()
+    check(found.lower() == str(default).lower(), "tesseract is found off PATH on Windows",
+          f"found {found!r}; {r.stderr[-200:]}")
+
+
 def phase_scans(tmp: Path) -> None:
     """Scanned pages are detected page by page. Two fixtures: five scans behind a
     typed cover sheet (should be treated as a scan), and a typed report with two
@@ -251,6 +272,7 @@ def phase_scans(tmp: Path) -> None:
           "cover sheet over five scans is still a scan", w[:200])
     check("report-with-two-scans.pdf: 2 of 10 pages have no text layer" in w,
           "two image pages in a typed report are reported, not OCR'd", w[:200])
+    check_tesseract_lookup()
 
 
 def phase_numbering(tmp: Path) -> None:

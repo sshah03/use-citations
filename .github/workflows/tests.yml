@@ -33,18 +33,11 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
 
-      # Not added to PATH on purpose: the Windows installer often doesn't, so this checks
-      # that the scripts find it in its usual install folder anyway.
+      # Chocolatey puts a tesseract launcher on PATH. The test for finding it in its
+      # install folder when it isn't on PATH takes it off PATH for itself.
       - name: Install tesseract (Windows)
         if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          choco install tesseract --no-progress -y
-          if (Get-Command tesseract -ErrorAction SilentlyContinue) {
-            Write-Output "::warning::tesseract is on PATH, so the install-folder lookup isn't being tested"
-          } else {
-            Write-Output "tesseract is not on PATH; the tests have to find it in its install folder"
-          }
+        run: choco install tesseract --no-progress -y
 
       - name: Run the tests
         run: python .claude/skills/use-citations/tests/run.py -v
