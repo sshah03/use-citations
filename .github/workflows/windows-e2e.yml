@@ -31,8 +31,11 @@ jobs:
         run: |
           npm install -g @anthropic-ai/claude-code
           claude --version
-          claude plugin marketplace add ./
+          # from GitHub, as a user would, so Claude works from an installed copy.
+          # That's what's on main, whichever branch this run was started from.
+          claude plugin marketplace add "$GITHUB_REPOSITORY"
           claude plugin install use-citations@use-citations
+          claude plugin list --json
 
       - name: Ask a question
         env:
@@ -48,6 +51,7 @@ jobs:
 
       - name: Check a verified report was built
         run: |
+          grep -q 'plugins/cache' "$RUNNER_TEMP/work/transcript.jsonl" || { echo "::error::Claude didn't run the installed copy"; exit 1; }
           cd "$RUNNER_TEMP/work"
           ls -la
           v="$(find . -name '*.verified.json' -not -path '*/.citations/*' | head -1)"
@@ -60,6 +64,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-e2e
+          include-hidden-files: true
           path: |
             ${{ runner.temp }}/work
             !${{ runner.temp }}/work/**/venv/**
