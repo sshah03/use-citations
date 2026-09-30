@@ -8,7 +8,7 @@ Engines, in order of preference:
 
   ocrmypdf   best when installed; rebuilds a searchable PDF and keeps the page layout
   vision     macOS Vision framework via pyobjc; no system install, very good on English
-  tesseract  the CLI, if it is on PATH
+  tesseract  the CLI, if it is on PATH (or, on Windows, in its usual install folder)
 
 OCR text is inferred from pixels, so it's weaker evidence than a real text layer. When the
 engine reports a confidence (Vision does), each page keeps its mean recognition confidence,
@@ -32,13 +32,27 @@ from _common import die, ensure_deps, log  # noqa: E402
 LOW_CONFIDENCE = 0.80
 
 
+def tesseract_path() -> str | None:
+    """The tesseract program. On Windows its installer doesn't always add it to PATH, so
+    also look where it installs by default."""
+    found = shutil.which("tesseract")
+    if found or os.name != "nt":
+        return found
+    for base in (os.environ.get("ProgramFiles"), os.environ.get("ProgramFiles(x86)"),
+                 os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs")):
+        exe = Path(base or "") / "Tesseract-OCR" / "tesseract.exe"
+        if base and exe.exists():
+            return str(exe)
+    return None
+
+
 def available_engines() -> list[str]:
     out = []
     if shutil.which("ocrmypdf"):
         out.append("ocrmypdf")
     if sys.platform == "darwin":
         out.append("vision")
-    if shutil.which("tesseract"):
+    if tesseract_path():
         out.append("tesseract")
     return out
 
@@ -81,7 +95,7 @@ def ocr_with_tesseract(pdf: Path, dpi: int) -> list[tuple[str, float | None]]:
         for i, page in enumerate(doc, 1):
             png = Path(td) / f"p{i}.png"
             page.get_pixmap(dpi=dpi).save(png)
-            r = subprocess.run(["tesseract", str(png), "stdout", "--psm", "1"],
+            r = subprocess.run([tesseract_path(), str(png), "stdout", "--psm", "1"],
                                capture_output=True, text=True, encoding="utf-8", errors="replace")
             if r.returncode != 0:
                 die(f"tesseract failed on page {i}: {r.stderr.strip()[:300]}")

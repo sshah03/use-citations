@@ -33,12 +33,11 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
 
+      # Not added to PATH on purpose: the Windows installer often doesn't, so this checks
+      # that the scripts find it in its usual install folder anyway.
       - name: Install tesseract (Windows)
         if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          choco install tesseract --no-progress -y
-          "C:\Program Files\Tesseract-OCR" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        run: choco install tesseract --no-progress -y
 
       - name: Run the tests
         run: python .claude/skills/use-citations/tests/run.py -v

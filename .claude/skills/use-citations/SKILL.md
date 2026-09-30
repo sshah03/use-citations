@@ -45,7 +45,9 @@ CS="$SK/scripts"
 If the first line still reads `${CLAUDE_SKILL_DIR}` rather than a real path, your version
 of Claude Code doesn't fill it in. Use the base directory it gave for this skill instead.
 
-Run them with plain `python3`. They are stdlib-only except for PDF reading, which
+Run them with plain `python3`. On Windows, use `python` instead if `python3` isn't found
+or says "Python was not found" (that's a Microsoft Store shortcut, not Python), and use
+it everywhere this file says `python3`. They are stdlib-only except for PDF reading, which
 installs PyMuPDF into a venv beside the saved documents (`.citations/venv`) the first
 time a PDF is read. No global installs, no network access at answer time.
 
@@ -171,7 +173,8 @@ Re-running is cheap: unchanged files are skipped by hash.
 Read the output. **Never cite a document that failed to ingest.**
 
 A PDF with no text layer is OCR'd automatically. macOS Vision needs nothing installed;
-`ocrmypdf` or `tesseract` are used instead when present. An OCR'd document always gets
+`ocrmypdf` or `tesseract` are used instead when present. On Linux and Windows one of those
+has to be installed; if neither is, ingest says how to install it, so pass that on. An OCR'd document always gets
 its page images rendered, because for a scan the image is the evidence and the text is
 an inference from it. This has two consequences:
 
