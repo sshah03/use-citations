@@ -1,0 +1,65 @@
+{
+ "about": "Prompts for checking when the skill starts. It should start only when the command is typed or the skill is asked for by name: 'start' prompts type it, and 'skip' prompts, including ones that look like they need a checked answer, must get a normal answer. ./orion-contracts is the repo's made-up example.",
+ "prompts": [
+  {
+   "expect": "skip",
+   "prompt": "The contracts are in ./orion-contracts. How much notice does the customer have to give to cancel?"
+  },
+  {
+   "expect": "skip",
+   "prompt": "Does the IRS let me deduct a home office if I'm a W-2 employee? I need to show my accountant where it says so."
+  },
+  {
+   "expect": "skip",
+   "prompt": "Where in the FLSA does it say overtime is time and a half? Give me the actual text."
+  },
+  {
+   "expect": "skip",
+   "prompt": "My landlord says the lease in ./orion-contracts lets them raise the price any time. Is that what it says?"
+  },
+  {
+   "expect": "skip",
+   "prompt": "You told me earlier the notice period was 60 days. Are you sure? Back it up from the documents in ./orion-contracts."
+  },
+  {
+   "expect": "skip",
+   "prompt": "What does 26 U.S.C. 152 say about the age limit for a qualifying child? I want the exact wording."
+  },
+  {
+   "expect": "skip",
+   "prompt": "Explain in simple terms what a qualifying child is for tax purposes."
+  },
+  {
+   "expect": "skip",
+   "prompt": "Summarize the MSA in ./orion-contracts in three bullet points."
+  },
+  {
+   "expect": "skip",
+   "prompt": "Draft a polite email asking my landlord to fix the heating."
+  },
+  {
+   "expect": "skip",
+   "prompt": "What's the capital of Australia?"
+  },
+  {
+   "expect": "skip",
+   "prompt": "Rewrite this sentence to sound more formal: we can't do the thing by friday."
+  },
+  {
+   "expect": "skip",
+   "prompt": "Roughly how long do most SaaS contracts give you to cancel? Just a ballpark."
+  },
+  {
+   "expect": "start",
+   "prompt": "/use-citations:use-citations The contracts are in ./orion-contracts. How much notice does the customer have to give to cancel?"
+  },
+  {
+   "expect": "start",
+   "prompt": "/use-citations:use-citations What does 26 U.S.C. 152 say about the age limit for a qualifying child?"
+  },
+  {
+   "expect": "start",
+   "prompt": "Use the use-citations skill to check how much notice the customer has to give to cancel, from the contracts in ./orion-contracts."
+  }
+ ]
+}
