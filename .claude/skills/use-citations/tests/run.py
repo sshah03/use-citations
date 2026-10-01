@@ -483,6 +483,16 @@ def phase_plugin() -> None:
     check(all(p.split("==")[1] in readme for p in pins),
           "plugin: the README names the versions it installs", str(pins))
     body = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+    front = body.split("---")[1]
+    desc = " ".join(front.split("description: >", 1)[1].split("allowed-tools:", 1)[0].split())
+    # disable-model-invocation would also stop the typed command working in Cowork, which
+    # runs a typed skill by having Claude load it. The description keeps it typed-only.
+    check("disable-model-invocation" not in front and "Run only when the user types /use-citations." in desc,
+          "plugin: the skill runs only when typed, by its description, so typing it works in Cowork too",
+          desc[-160:])
+    started = " ".join(body.split("## How it is started", 1)[1].split("\n## ", 1)[0].split())
+    check("stop here" in started and "answer their message as you normally would" in started,
+          "plugin: if Claude loads it without the command being typed, it stops and answers normally")
     check('SK="${CLAUDE_SKILL_DIR}"' in body and "SK=~/" not in body,
           "plugin: SKILL.md finds its folder through ${CLAUDE_SKILL_DIR}, not a fixed path")
 

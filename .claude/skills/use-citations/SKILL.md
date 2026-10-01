@@ -1,15 +1,14 @@
 ---
 name: use-citations
-version: 1.2.0
+version: 1.3.0
 description: >
   Answer a question from a specific set of documents (contracts, statutes, rulings,
   guidelines, papers, policies, or sources it captures from the web) with every quote
   checked against the source file, and publish a report a reviewer can check. Run only
   when the user types /use-citations.
-disable-model-invocation: true
 allowed-tools: Bash, Read, Glob, Grep, AskUserQuestion, Artifact
 metadata:
-  last-updated: 2026-09-22
+  last-updated: 2026-10-01
   install-scope: Claude Code plugin, or a personal or project skill
   outputs: verified answer JSON, markdown with footnotes, a published review artifact
 ---
@@ -85,9 +84,13 @@ corpus for a practice area and how to tell colleagues to point at it.
 
 ## How it is started
 
-Only by the user typing `/use-citations`. The skill never starts on its own, so when it runs,
-the user has asked for a checked, cited report: every run ends with one (step 5), however
-short the question.
+Only by the user typing `/use-citations`. When it runs, the user has asked for a checked,
+cited report: every run ends with one (step 5), however short the question.
+
+If you loaded this skill yourself, and the user neither typed `/use-citations` nor asked
+for it by name, stop here. Don't follow these instructions, and answer their message as
+you normally would. If their question is about what specific documents say, you can
+mention in one line that `/use-citations` gives a source-checked report.
 
 ```
 /use-citations <question>                              a new report

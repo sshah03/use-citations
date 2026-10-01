@@ -74,6 +74,11 @@ use-citations@use-citations`.
   `version` out of both, so installs follow new commits. Check them with `claude plugin
   validate .`. In SKILL.md, refer to the skill's own files through `${CLAUDE_SKILL_DIR}`,
   never a fixed path, since the folder differs between a plugin install and a project.
+- Don't add `disable-model-invocation: true` to SKILL.md. Cowork runs a typed skill by
+  having Claude load it, and that setting forbids exactly that, so `/use-citations` would
+  show in Cowork's menu and then do nothing. The skill stays typed-only through its
+  description and the first lines of "How it is started" instead. `evals/triggers.py`
+  checks that it starts only when typed or asked for by name.
 - Run the tests after any change: `python3 .claude/skills/use-citations/tests/run.py`.
   Some verifier messages are matched word for word by the tests and by the report page,
   so don't reword them without updating both.

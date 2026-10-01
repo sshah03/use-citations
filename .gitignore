@@ -10,3 +10,6 @@ private/
 # the question set, scorer and scorecard are in the repo
 evals/runs/
 evals/sources/
+
+# plugin zips for testing uploads in claude.ai; not part of the repo
+test-uploads/
