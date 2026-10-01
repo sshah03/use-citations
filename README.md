@@ -16,8 +16,12 @@ answer isn't shown to you until that's fixed.
 
 ## Install
 
-You need [Claude Code](https://claude.com/claude-code) and Python 3.10 or newer, on a
-Mac, Linux or Windows.
+It works in [Claude Code](https://claude.com/claude-code) and in Cowork, in claude.ai or
+the Claude desktop app. It doesn't work in ordinary claude.ai chat.
+
+### In Claude Code
+
+You need Claude Code and Python 3.10 or newer, on a Mac, Linux or Windows.
 
 The easy way is to let Claude do it. Start Claude Code and paste this in:
 
@@ -63,13 +67,27 @@ The first line downloads the skill, and the other two tell Claude Code where it 
 update it later, run `git -C ~/.claude/use-citations pull`.
 
 **If you installed it by hand and are switching to the plugin**, remove the old link after
-installing the plugin, or `/use-citations` will keep running the old copy. In the Terminal: `rm ~/.claude/skills/use-citations`. You can also delete the old
-folder, `~/.claude/use-citations`, if you want the files gone.
+installing the plugin, or `/use-citations` will keep running the old copy. In the
+Terminal: `rm ~/.claude/skills/use-citations`. You can also delete the old folder,
+`~/.claude/use-citations`, if you want the files gone.
+
+### In Cowork
+
+You need a paid Claude plan. In claude.ai there's nothing to install on your computer:
+Cowork runs it on Anthropic's computers, where Python is already set up.
+
+1. In claude.ai or the desktop app, go to **Customize**, then **Plugins**.
+2. Click **Add**, then **Add marketplace**, then **Add from a repository**.
+3. Paste `https://github.com/sshah03/use-citations` and click **Sync**.
+4. `use-citations` appears in the list. Click **Add**.
+
+claude.ai may then offer to install the Claude GitHub app so the plugin updates by itself.
+You don't need it to use the plugin.
 
 ## Use
 
-Start Claude Code by typing `claude` in the Terminal. Then type `/use-citations` and your
-question:
+Start Claude Code by typing `claude` in the Terminal, or start a task in Cowork. Then type
+`/use-citations` and your question:
 
 ```
 /use-citations Is there an age limit on claiming my child as a dependent?
@@ -80,14 +98,15 @@ question:
 
 You can point it at a folder of your own documents, or just ask, and it will find the
 official sources online (irs.gov, the court's website, the government agency) and save a
-copy of each one.
+copy of each one. In Cowork in claude.ai, attach your documents to the message instead of
+giving a folder, since it runs on Anthropic's computers and can't see your files.
 
 Each question gives you a report. Add `follow-up` to add another question to the report
 you just made, or `follow-up` plus a report's name to add to one from an earlier
 conversation. Each report shows its name, with a button that copies the command.
 
-The skill only runs when you type `/use-citations`, so the rest of your Claude Code
-session works as normal.
+The skill only runs when you type `/use-citations`, so the rest of your session works as
+normal.
 
 ## What you get
 
@@ -183,6 +202,7 @@ outside the folders on your computer. See [PRIVACY.md](PRIVACY.md).
 
 ## What it can't do yet
 
+- It doesn't work in ordinary claude.ai chat, only in Claude Code and Cowork.
 - It can't save web pages that need a login, or pages that only load properly in a full
   browser. That includes PACER, EDGAR search and most data rooms.
 - It doesn't read from apps you've connected to Claude, like Google Drive, Notion or a
